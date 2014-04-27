@@ -29,7 +29,6 @@
  */
 package com.jcabi.w3c;
 
-import com.jcabi.aspects.Loggable;
 import com.jcabi.http.Request;
 import com.jcabi.http.request.JdkRequest;
 import com.jcabi.log.Logger;
@@ -56,7 +55,6 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
  * @version $Id$
  */
 @ToString
-@Loggable(Loggable.DEBUG)
 class BaseValidator {
 
     /**
@@ -64,9 +62,9 @@ class BaseValidator {
      */
     protected static final String USER_AGENT = String.format(
         "ReXSL-W3C %s %s %s",
-        Manifests.read("ReXSL-Version"),
-        Manifests.read("ReXSL-Build"),
-        Manifests.read("ReXSL-Date")
+        Manifests.read("JCabi-Version"),
+        Manifests.read("JCabi-Build"),
+        Manifests.read("JCabi-Date")
     );
 
     /**

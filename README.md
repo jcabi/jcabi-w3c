@@ -9,7 +9,7 @@ The library contains a few Java adapters to
 
 ```java
 import com.jcabi.w3c.HtmlValidator;
-new HtmlValidator("<html>hello!</html>").errors();
+assert ValidatorBuilder.html().validate("<html>hello!</html>").valid();
 ```
 
 You need just this dependency:

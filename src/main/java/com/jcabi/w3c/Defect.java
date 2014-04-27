@@ -29,9 +29,7 @@
  */
 package com.jcabi.w3c;
 
-import com.jcabi.aspects.Loggable;
 import com.jcabi.log.Logger;
-import javax.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 
 /**
@@ -45,7 +43,6 @@ import lombok.EqualsAndHashCode;
  * @checkstyle LineLength (2 lines)
  */
 @EqualsAndHashCode(of = { "iline", "icolumn", "isource", "iexplanation", "msg", "imessage" })
-@Loggable(Loggable.DEBUG)
 public final class Defect {
 
     /**
@@ -61,25 +58,21 @@ public final class Defect {
     /**
      * Source line.
      */
-    @NotNull
     private final transient String isource;
 
     /**
      * Explanation.
      */
-    @NotNull
     private final transient String iexplanation;
 
     /**
      * Message id.
      */
-    @NotNull
     private final transient String msg;
 
     /**
      * The message.
      */
-    @NotNull
     private final transient String imessage;
 
     /**
@@ -92,9 +85,9 @@ public final class Defect {
      * @param message Message text
      * @checkstyle ParameterNumber (5 lines)
      */
-    Defect(final int line, final int column, @NotNull final String source,
-        @NotNull final String explanation, @NotNull final String mid,
-        @NotNull final String message) {
+    Defect(final int line, final int column, final String source,
+        final String explanation, final String mid,
+        final String message) {
         this.iline = line;
         this.icolumn = column;
         this.isource = source.trim();
@@ -136,7 +129,6 @@ public final class Defect {
      * Source line, as quoted by W3C validator.
      * @return Full text of the source line
      */
-    @NotNull
     public String source() {
         return this.isource;
     }
@@ -145,7 +137,6 @@ public final class Defect {
      * Explanation of the problem.
      * @return Text
      */
-    @NotNull
     public String explanation() {
         return this.iexplanation;
     }
@@ -154,7 +145,6 @@ public final class Defect {
      * Message ID, according to W3C API.
      * @return The ID
      */
-    @NotNull
     public String messageId() {
         return this.msg;
     }
@@ -163,7 +153,6 @@ public final class Defect {
      * Text of the message.
      * @return The message returned by W3C server
      */
-    @NotNull
     public String message() {
         return this.imessage;
     }

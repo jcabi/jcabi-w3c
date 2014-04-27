@@ -29,15 +29,12 @@
  */
 package com.jcabi.w3c;
 
-import com.jcabi.aspects.Loggable;
 import com.jcabi.log.Logger;
 import java.net.URI;
 import java.nio.charset.Charset;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 
 /**
@@ -49,7 +46,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(
     of = { "ivalid", "validator", "type", "encoding", "ierrors", "iwarnings" }
 )
-@Loggable(Loggable.DEBUG)
 final class DefaultValidationResponse implements ValidationResponse {
 
     /**
@@ -60,30 +56,27 @@ final class DefaultValidationResponse implements ValidationResponse {
     /**
      * Who validated it?
      */
-    @NotNull
     private final transient URI validator;
 
     /**
      * DOCTYPE of the document.
      */
-    @NotNull
     private final transient String type;
 
     /**
      * The encoding.
      */
-    @NotNull
     private final transient Charset encoding;
 
     /**
      * Set of errors found.
      */
-    private final transient Set<Defect> ierrors = new HashSet<Defect>();
+    private final transient Set<Defect> ierrors = new HashSet<Defect>(0);
 
     /**
      * Set of warnings found.
      */
-    private final transient Set<Defect> iwarnings = new HashSet<Defect>();
+    private final transient Set<Defect> iwarnings = new HashSet<Defect>(0);
 
     /**
      * Public ctor.
@@ -94,8 +87,8 @@ final class DefaultValidationResponse implements ValidationResponse {
      * @checkstyle ParameterNumber (3 lines)
      */
     DefaultValidationResponse(final boolean val,
-        @NotNull final URI server, @NotNull final String tpe,
-        @NotNull final Charset enc) {
+        final URI server, final String tpe,
+        final Charset enc) {
         this.ivalid = val;
         this.validator = server;
         this.type = tpe;
@@ -156,7 +149,7 @@ final class DefaultValidationResponse implements ValidationResponse {
      * Add error.
      * @param error The error to add
      */
-    public void addError(@Valid final Defect error) {
+    public void addError(final Defect error) {
         this.ierrors.add(error);
     }
 
@@ -164,7 +157,7 @@ final class DefaultValidationResponse implements ValidationResponse {
      * Add warning.
      * @param warning The warning to add
      */
-    public void addWarning(@Valid final Defect warning) {
+    public void addWarning(final Defect warning) {
         this.iwarnings.add(warning);
     }
 

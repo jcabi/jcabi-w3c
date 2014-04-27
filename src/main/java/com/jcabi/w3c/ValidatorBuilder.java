@@ -29,9 +29,7 @@
  */
 package com.jcabi.w3c;
 
-import com.jcabi.aspects.Loggable;
 import java.net.URI;
-import javax.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
@@ -64,7 +62,6 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode
-@Loggable(Loggable.DEBUG)
 public final class ValidatorBuilder {
 
     /**
@@ -87,7 +84,6 @@ public final class ValidatorBuilder {
      * Build HTML validator.
      * @return The validator
      */
-    @NotNull
     public Validator html() {
         return ValidatorBuilder.HTML;
     }
@@ -96,7 +92,6 @@ public final class ValidatorBuilder {
      * Build CSS validator.
      * @return The validator
      */
-    @NotNull
     public Validator css() {
         return ValidatorBuilder.CSS;
     }
@@ -106,7 +101,6 @@ public final class ValidatorBuilder {
      * @param uri URI of validator
      * @return The validator
      */
-    @NotNull
     public Validator html(final URI uri) {
         return new DefaultHtmlValidator(uri);
     }
@@ -116,7 +110,6 @@ public final class ValidatorBuilder {
      * @param uri URI of validator
      * @return The validator
      */
-    @NotNull
     public Validator css(final URI uri) {
         return new DefaultCssValidator(uri);
     }

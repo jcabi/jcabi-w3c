@@ -30,13 +30,11 @@
 package com.jcabi.w3c;
 
 import com.jcabi.aspects.Immutable;
-import com.jcabi.aspects.Loggable;
 import com.jcabi.http.Request;
 import com.jcabi.http.response.XmlResponse;
 import java.io.IOException;
 import java.net.URI;
 import java.util.regex.Pattern;
-import javax.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
@@ -50,7 +48,6 @@ import lombok.ToString;
 @Immutable
 @ToString
 @EqualsAndHashCode(callSuper = false, of = "uri")
-@Loggable(Loggable.DEBUG)
 final class DefaultCssValidator extends BaseValidator implements Validator {
 
     /**
@@ -62,14 +59,13 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
      * Public ctor.
      * @param entry Entry point to use
      */
-    DefaultCssValidator(@NotNull final URI entry) {
+    DefaultCssValidator(final URI entry) {
         super();
         this.uri = entry.toString();
     }
 
     @Override
-    @NotNull
-    public ValidationResponse validate(@NotNull final String css)
+    public ValidationResponse validate(final String css)
         throws IOException {
         final ValidationResponse response;
         final Pattern pattern = Pattern.compile(

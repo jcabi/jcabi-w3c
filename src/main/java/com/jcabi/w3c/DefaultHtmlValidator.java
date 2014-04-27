@@ -30,12 +30,10 @@
 package com.jcabi.w3c;
 
 import com.jcabi.aspects.Immutable;
-import com.jcabi.aspects.Loggable;
 import com.jcabi.http.Request;
 import com.jcabi.http.response.XmlResponse;
 import java.io.IOException;
 import java.net.URI;
-import javax.validation.constraints.NotNull;
 import javax.ws.rs.core.MediaType;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -50,7 +48,6 @@ import lombok.ToString;
 @Immutable
 @ToString
 @EqualsAndHashCode(callSuper = false, of = "uri")
-@Loggable(Loggable.DEBUG)
 final class DefaultHtmlValidator extends BaseValidator implements Validator {
 
     /**
@@ -62,14 +59,13 @@ final class DefaultHtmlValidator extends BaseValidator implements Validator {
      * Public ctor.
      * @param entry Entry point to use
      */
-    DefaultHtmlValidator(@NotNull final URI entry) {
+    DefaultHtmlValidator(final URI entry) {
         super();
         this.uri = entry.toString();
     }
 
     @Override
-    @NotNull
-    public ValidationResponse validate(@NotNull final String html)
+    public ValidationResponse validate(final String html)
         throws IOException {
         final Request req = this.request(
             this.uri,

@@ -30,7 +30,6 @@
 package com.jcabi.w3c;
 
 import java.io.IOException;
-import javax.validation.constraints.NotNull;
 
 /**
  * Validator of CSS pages through W3C validation API.
@@ -85,6 +84,6 @@ public interface Validator {
      * @return The response
      * @throws IOException If fails
      */
-    ValidationResponse validate(@NotNull String content) throws IOException;
+    ValidationResponse validate(String content) throws IOException;
 
 }
