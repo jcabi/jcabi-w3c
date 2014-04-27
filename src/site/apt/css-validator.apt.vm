@@ -1,5 +1,5 @@
  ------
- W3C Java Validators
+ W3C CSS Java Validator
  ------
  Yegor Bugayenko
  ------
@@ -36,48 +36,28 @@
 ~~ OF THE POSSIBILITY OF SUCH DAMAGE.
 ~~
 
-W3C Java Validators
+W3C CSS Java Validator
 
-  The library contains Java adapters of W3C online validators:
-
-   * {{{./html-validator.html}<<<HtmlValidator>>>}} -
-     validates HTML against
-     {{{http://validator.w3.org/}W3C Markup Validation Service}};
-
-   * {{{./css-validator.html}<<<CssValidator>>>}} -
-     validates CSS against
-     {{{http://jigsaw.w3.org/css-validator/}W3C Jigsaw validator}}.
-
-  The only dependency you need is
-  (you can also download
-  {{{http://repo1.maven.org/maven2/com/jcabi/jcabi-w3c/${project.version}/jcabi-w3c-${project.version}.jar}<<<jcabi-w3c-${project.version}.jar>>>}}
-  and add it to the classpath):
+  Validate your CSS against
+  {{{http://jigsaw.w3.org/css-validator/}W3C Jigsaw validator}}
+  with this code:
 
 +--
-<dependency>
-  <groupId>com.jcabi</groupId>
-  <artifactId>jcabi-w3c</artifactId>
-  <version>${project.version}</version>
-</dependency>
+public class My {
+  public void main() {
+    String css = "body { font-family: Arial; }";
+    ValidationResponse response =
+      new ValidatorBuilder().css().validate(css);
+    assert response.valid();
+  }
+}
 +--
 
-* Cutting Edge Version
+  Similar mechanism is available for
+  {{{./html-validator.html}HTML validation}}.
 
-  If you want to use current version of the product, you can do it with
-  this configuration in your <<<pom.xml>>>:
+  All events are logged through {{{http://www.slf4j.org/}slf4j}},
+  using <<<"com.jcabi.w3c">>> logger.
+  If you want to see them, just add proper binding to classpath,
+  as explained in {{{http://www.slf4j.org/manual.html}SLF4J manual}}.
 
-+--
-<repositories>
-  <repository>
-    <id>oss.sonatype.org</id>
-    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-  </repository>
-</repositories>
-<dependencies>
-  <dependency>
-    <groupId>com.jcabi</groupId>
-    <artifactId>jcabi-w3c</artifactId>
-    <version>2.0-SNAPSHOT</version>
-  </dependency>
-</dependencies>
-+--
