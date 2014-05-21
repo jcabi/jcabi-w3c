@@ -1,6 +1,7 @@
 <img src="http://img.jcabi.com/logo-square.png" width="64px" height="64px" />
 
 [![Build Status](https://travis-ci.org/jcabi/jcabi-w3c.svg?branch=master)](https://travis-ci.org/jcabi/jcabi-w3c)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.jcabi/jcabi-w3c/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.jcabi/jcabi-w3c)
 
 More details are here: [w3c.jcabi.com](http://w3c.jcabi.com/index.html)
 
@@ -10,16 +11,6 @@ The library contains a few Java adapters to
 ```java
 import com.jcabi.w3c.HtmlValidator;
 assert ValidatorBuilder.html().validate("<html>hello!</html>").valid();
-```
-
-You need just this dependency:
-
-```xml
-<dependency>
-  <groupId>com.jcabi</groupId>
-  <artifactId>jcabi-w3c</artifactId>
-  <version>1.0</version>
-</dependency>
 ```
 
 ## Questions?
