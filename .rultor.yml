@@ -12,7 +12,7 @@ install:
 
 merge:
   script: |
-    mvn clean install -Pqulice --errors --settings ../settings.xml
+    mvn clean install site -Psite -Pqulice --errors --settings ../settings.xml
     mvn clean
     pdd --source=$(pwd) --verbose --file=/dev/null
 
