@@ -54,7 +54,9 @@ public class My {
 +--
 
   Similar mechanism is available for
-  {{{./html-validator.html}HTML validation}}.
+  {{{./html-validator-local-instance.html}HTML local validation}}
+  and
+  {{{./html-validator.html}HTML remote validation}}.
 
   All events are logged through {{{http://www.slf4j.org/}slf4j}},
   using <<<"com.jcabi.w3c">>> logger.
