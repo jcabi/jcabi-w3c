@@ -47,38 +47,38 @@ W3C HTML Java Validator (Local)
   Install required packages.
 
 +--
-  apt-get install w3c-markup-validator mercurial subversion python default-jdk
+apt-get install w3c-markup-validator mercurial subversion python default-jdk
 +--
 
   Compile/install the HTML5 validator (not included in W3 validator).
 
 +--
-  mkdir /usr/share/html5-validator
-  cd /usr/share/html5-validator
+mkdir /usr/share/html5-validator
+cd /usr/share/html5-validator
 +--
 
   Set the <<<JAVA_HOME>>> path.
 
 +--
-  export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
+export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
 +--
 
   Clone the latest validator source.
 
 +--
-  hg clone https://bitbucket.org/validator/build build
+hg clone https://bitbucket.org/validator/build build
 +--
 
   Start the build (If you encounter a Java exception, run the build script again).
 
 +--
-  python build/build.py all
+python build/build.py all
 +--
 
   Configuring the w3c-validator to allow private networks in <<</etc/w3c/validator.conf>>>.
 
 +--
-  Allow Private IPs = yes
+Allow Private IPs = yes
 +--
 
   Enable the HTML5 validator by uncommenting the following.
@@ -94,26 +94,26 @@ W3C HTML Java Validator (Local)
   Create the upstart script to start the HTML5 validator at boot.
 
 +--
-  vim /etc/init/html5-validator.conf
+vim /etc/init/html5-validator.conf
 +--
 
   Contents.
 
 +--
-  description "Validator.nu HTML5 Validator"
+description "Validator.nu HTML5 Validator"
 
-  start on (local-filesystems and net-device-up)
-  stop on runlevel [016]
+start on (local-filesystems and net-device-up)
+stop on runlevel [016]
 
-  chdir /usr/share/html5-validator
-  exec python build/build.py --control-port=8889 run
-  respawn
+chdir /usr/share/html5-validator
+exec python build/build.py --control-port=8889 run
+respawn
 +--
 
   Save and start it.
 
 +--
-  start html5-validator
+start html5-validator
 +--
 
   Afterwards you can access your validator via <<<http://server/w3c-validator>>> and set the URI in your code.
