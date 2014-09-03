@@ -58,6 +58,7 @@
         </menu>
         <menu name="Examples">
             <item name="HTML Validator" href="./html-validator.html"/>
+            <item name="HTML Validator (local)" href="./html-validator-local-instance.html"/>
             <item name="CSS Validator" href="./css-validator.html"/>
         </menu>
         <menu ref="reports"/>

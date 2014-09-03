@@ -1,9 +1,9 @@
  ------
- W3C HTML Java Validator
+ W3C HTML Java Validator (Local)
  ------
- Yegor Bugayenko
+ Antonio Acevedo
  ------
- 2014-04-27
+ 2014-09-03
  ------
 
 ~~
@@ -36,25 +36,102 @@
 ~~ OF THE POSSIBILITY OF SUCH DAMAGE.
 ~~
 
-W3C HTML Java Validator
+W3C HTML Java Validator (Local)
 
-  Validate your HTML against
+  Validate your HTML against a local instance of
   {{{http://validator.w3.org/}W3C Markup Validation Service}}
-  with this code.
+  installed in your server as describes the following
+  {{{https://raymii.org/s/tutorials/Local_W3C_HTML5_Validator_Server.html}tutorial}}.
+
+
+  Install required packages.
+
++--
+  apt-get install w3c-markup-validator mercurial subversion python default-jdk
++--
+
+  Compile/install the HTML5 validator (not included in W3 validator).
+
++--
+  mkdir /usr/share/html5-validator
+  cd /usr/share/html5-validator
++--
+
+  Set the <<<JAVA_HOME>>> path.
+
++--
+  export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
++--
+
+  Clone the latest validator source.
+
++--
+  hg clone https://bitbucket.org/validator/build build
++--
+
+  Start the build (If you encounter a Java exception, run the build script again).
+
++--
+  python build/build.py all
++--
+
+  Configuring the w3c-validator to allow private networks in <<</etc/w3c/validator.conf>>>.
+
++--
+  Allow Private IPs = yes
++--
+
+  Enable the HTML5 validator by uncommenting the following.
+
++--
+<![CDATA[
+  <External>
+  HTML5 = http://localhost:8888/html5/
+  </External>
+]]>
++--
+
+  Create the upstart script to start the HTML5 validator at boot.
+
++--
+  vim /etc/init/html5-validator.conf
++--
+
+  Contents.
+
++--
+  description "Validator.nu HTML5 Validator"
+
+  start on (local-filesystems and net-device-up)
+  stop on runlevel [016]
+
+  chdir /usr/share/html5-validator
+  exec python build/build.py --control-port=8889 run
+  respawn
++--
+
+  Save and start it.
+
++--
+  start html5-validator
++--
+
+  Afterwards you can access your validator via <<<http://server/w3c-validator>>> and set the URI in your code.
 
 +--
 public class My {
   public void main() {
     String xhtml = "<html><body><p>Hello, world!</p></body></html>";
+    URI instanceURL = new URI("http://server/w3c-validator/check")
     ValidationResponse response =
-      new ValidatorBuilder().html().validate(xhtml);
+      new ValidatorBuilder().html(instanceURL).validate(xhtml);
     assert response.valid();
   }
 }
 +--
 
   Similar mechanism is available for
-  {{{./html-validator-local-instance.html}HTML local validation}}
+  {{{./html-validator.html}HTML remote validation}}
   and
   {{{./css-validator.html}CSS validation}}.
 
