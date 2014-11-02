@@ -6,7 +6,8 @@
 [![Build Status](https://travis-ci.org/jcabi/jcabi-w3c.svg?branch=master)](https://travis-ci.org/jcabi/jcabi-w3c)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.jcabi/jcabi-w3c/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.jcabi/jcabi-w3c)
 
-More details are here: [w3c.jcabi.com](http://w3c.jcabi.com/index.html)
+More details are here: [w3c.jcabi.com](http://w3c.jcabi.com/index.html).
+Also, read this blog post: [W3C Java Validators](http://www.yegor256.com/2014/04/29/w3c-java-validators.html).
 
 The library contains a few Java adapters to
 [W3C online validators](http://validator.w3.org/):
