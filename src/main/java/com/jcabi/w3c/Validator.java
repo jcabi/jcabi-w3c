@@ -65,6 +65,11 @@ import java.io.IOException;
  * from it, but it will be valid.
  *
  * <p>Objects of this interface should be immutable and thread-safe.
+
+ * <p>Please <b>don't use</b> URL as argument of
+ * {@link com.jcabi.w3c.Validator#validate(java.lang.String)}, it should only be
+ * content of document which is being validated
+
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
