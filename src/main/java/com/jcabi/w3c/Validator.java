@@ -65,11 +65,6 @@ import java.io.IOException;
  * from it, but it will be valid.
  *
  * <p>Objects of this interface should be immutable and thread-safe.
-
- * <p>Please <b>don't use</b> URL as argument of
- * {@link com.jcabi.w3c.Validator#validate(java.lang.String)}, it should only be
- * content of document which is being validated
-
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
@@ -84,6 +79,9 @@ public interface Validator {
      * <p>The method should never throw runtime exceptions, no matter what
      * happened with the HTTP connection to the W3C server. It will return
      * an invalid response, but will never throw.
+     *
+     * <p>This method expects content of a document which should be
+     * validated, not URL to the document
      *
      * @param content The HTML/CSS content to validate
      * @return The response
