@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>jcabi-w3c &#x2013; W3C HTML Java Validator (Local)</title>
+        <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
+                    <meta name="author" content="Antonio Acevedo" />
+                            <script>
+                var _gaq = _gaq || [];
+                _gaq.push(['_setAccount', 'UA-1963507-23']);
+                _gaq.push(['_trackPageview']);
+                (function() {
+                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                })();
+            </script>
+                                                                                                                
+<link rel="shortcut icon" href="http://img.jcabi.com/favicon.ico"/>
+                                                                                                                
+<link rel="author" href="https://plus.google.com/u/0/114792568016408327418?rel=author"/>
+                                            <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+        <script>
+            $(document).ready(
+                function() {
+                    $(".menu-button").click(
+                        function() {
+                            if ($("#here-goes-menu").attr("class") == "menu-off") {
+                                $("#menu").clone().attr("class", "mobile-menu").appendTo("#here-goes-menu");
+                                $("#here-goes-menu").attr("class", "menu-on");
+                            } else {
+                                $(".mobile-menu").hide();
+                                $("#here-goes-menu").attr("class", "menu-off");
+                            }
+                        }
+                    );
+                }
+            );
+        </script>
+    </head>
+    <body>
+                <section class="page" itemscope="" itemtype="http://schema.org/BlogPosting">
+            <nav class="menu-section" role="navigation">
+                <ul class="menu" id="menu">
+                                                                                    <li>
+                            <span>Overview</span>
+                                                            <ul>
+                                                                                                    <li >
+                            <span>                        <a href="index.html" title="Introduction">Introduction</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li >
+                            <span>                        <a href="apidocs-1.2/index.html" title="API 1.2 (JavaDoc)">API 1.2 (JavaDoc)</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li >
+                            <span>                        <a href="cobertura/index.html" title="Test coverage">Test coverage</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li >
+                            <span>                        <a href="https://github.com/jcabi/jcabi-w3c/releases" title="Release History">Release History</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                        </ul>
+                                                    </li>
+                                            <li>
+                            <span>Examples</span>
+                                                            <ul>
+                                                                                                    <li >
+                            <span>                        <a href="html-validator.html" title="HTML Validator">HTML Validator</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li  class='active' >
+                            <span>                        <a href="html-validator-local-instance.html" title="HTML Validator (local)">HTML Validator (local)</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li >
+                            <span>                        <a href="css-validator.html" title="CSS Validator">CSS Validator</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                        </ul>
+                                                    </li>
+                                            <li>
+                            <span>Project Documentation</span>
+                                                            <ul>
+                                                                                                    <li >
+                            <span>                        <a href="project-info.html" title="Project Information">Project Information</a>
+        </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
+                                                                                                                        <li >
+                            <span>                        <a href="project-reports.html" title="Project Reports">Project Reports</a>
+        </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
+                                                                                        </ul>
+                                                    </li>
+                                    </ul>
+            </nav>
+            <div class="right-side">
+                <main role="main">
+                    <div class="content">
+                        <header>
+                            <div class="logo">
+                                <a href="../"
+                                    title=" logo ">
+                                    <img src="http://img.jcabi.com/logo-square.svg"
+                                        alt="jcabi"
+                                                                                    width="64"
+                                                                                                                            height="64"
+                                                                                itemprop="image"
+                                    />
+                                </a>
+                            </div>
+                            <div class="teamed">
+                                <a href="http://www.teamed.io">
+                                    <img src="http://img.teamed.io/btn.svg" alt="teamed.io logo"/>
+                                </a>
+                            </div>
+                            <ul class="badges">
+                                <li>
+                                    <strong itemprop="version">1.2</strong>
+                                </li>
+                                <li>
+                                    
+                                    <time itemprop="datePublished" datetime="2015-01-29T01:56:29Z">
+                                        
+                                        29-Jan-2015
+                                    </time>
+                                </li>
+                                <li class="menu-button">menu</li>
+                            </ul>
+                        </header>
+                        <div id="here-goes-menu" class="menu-off"></div>
+                                                                            <a href="https://github.com/jcabi/jcabi-w3c">
+                                <img src="http://img.jcabi.com/fork-me.svg" class="fork-me"/>
+                            </a>
+                                                <article role="article" itemprop="articleBody">
+                            <!--  --><!-- Copyright (c) 2014-2015, jcabi.com --><!-- All rights reserved. --><!--  --><!-- Redistribution and use in source and binary forms, with or without --><!-- modification, are permitted provided that the following conditions --><!-- are met: 1) Redistributions of source code must retain the above --><!-- copyright notice, this list of conditions and the following --><!-- disclaimer. 2) Redistributions in binary form must reproduce the above --><!-- copyright notice, this list of conditions and the following --><!-- disclaimer in the documentation and/or other materials provided --><!-- with the distribution. 3) Neither the name of the jcabi.com nor --><!-- the names of its contributors may be used to endorse or promote --><!-- products derived from this software without specific prior written --><!-- permission. --><!--  --><!-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS --><!-- "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT --><!-- NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND --><!-- FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL --><!-- THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, --><!-- INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES --><!-- (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR --><!-- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) --><!-- HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, --><!-- STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) --><!-- ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED --><!-- OF THE POSSIBILITY OF SUCH DAMAGE. --><!--  --><div class="section">
+<h2><a name="W3C_HTML_Java_Validator_Local"></a>W3C HTML Java Validator (Local)</h2>
+<p>Validate your HTML against a local instance of <a class="externalLink" href="http://validator.w3.org/">W3C Markup Validation Service</a> installed in your server as describes the following <a class="externalLink" href="https://raymii.org/s/tutorials/Local_W3C_HTML5_Validator_Server.html">tutorial</a>.</p>
+<p>Install required packages.</p>
+<div class="source">
+<pre>apt-get install w3c-markup-validator mercurial subversion python default-jdk</pre></div>
+<p>Compile/install the HTML5 validator (not included in W3 validator).</p>
+<div class="source">
+<pre>mkdir /usr/share/html5-validator
+cd /usr/share/html5-validator</pre></div>
+<p>Set the <tt>JAVA_HOME</tt> path.</p>
+<div class="source">
+<pre>export JAVA_HOME=/usr/lib/jvm/java-6-openjdk</pre></div>
+<p>Clone the latest validator source.</p>
+<div class="source">
+<pre>hg clone https://bitbucket.org/validator/build build</pre></div>
+<p>Start the build (If you encounter a Java exception, run the build script again).</p>
+<div class="source">
+<pre>python build/build.py all</pre></div>
+<p>Configuring the w3c-validator to allow private networks in <tt>/etc/w3c/validator.conf</tt>.</p>
+<div class="source">
+<pre>Allow Private IPs = yes</pre></div>
+<p>Enable the HTML5 validator by uncommenting the following.</p>
+<div class="source">
+<pre>&lt;![CDATA[
+  &lt;External&gt;
+  HTML5 = http://localhost:8888/html5/
+  &lt;/External&gt;
+]]&gt;</pre></div>
+<p>Create the upstart script to start the HTML5 validator at boot.</p>
+<div class="source">
+<pre>vim /etc/init/html5-validator.conf</pre></div>
+<p>Contents.</p>
+<div class="source">
+<pre>description &quot;Validator.nu HTML5 Validator&quot;
+
+start on (local-filesystems and net-device-up)
+stop on runlevel [016]
+
+chdir /usr/share/html5-validator
+exec python build/build.py --control-port=8889 run
+respawn</pre></div>
+<p>Save and start it.</p>
+<div class="source">
+<pre>start html5-validator</pre></div>
+<p>Afterwards you can access your validator via <tt>http://server/w3c-validator</tt> and set the URI in your code.</p>
+<div class="source">
+<pre>public class My {
+  public void main() {
+    String xhtml = &quot;&lt;html&gt;&lt;body&gt;&lt;p&gt;Hello, world!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&quot;;
+    URI instanceURL = new URI(&quot;http://server/w3c-validator/check&quot;)
+    ValidationResponse response =
+      new ValidatorBuilder().html(instanceURL).validate(xhtml);
+    assert response.valid();
+  }
+}</pre></div>
+<p>Similar mechanism is available for <a href="./html-validator.html">HTML remote validation</a> and <a href="./css-validator.html">CSS validation</a>.</p>
+<p>All events are logged through <a class="externalLink" href="http://www.slf4j.org/">slf4j</a>, using <tt>&quot;com.jcabi.w3c&quot;</tt> logger. If you want to see them, just add proper binding to classpath, as explained in <a class="externalLink" href="http://www.slf4j.org/manual.html">SLF4J manual</a>.</p></div>
+                        </article>
+                    </div>
+                </main>
+                <footer class="legal-notes">
+                    <div>
+                        Copyright &#169;
+                                                                            2012-2015
+                                            </div>
+                    <div>jcabi.com, All Rights Reserved.</div>
+                    <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
+                </footer>
+            </div>
+        </section>
+    </body>
+</html>
