@@ -83,11 +83,12 @@ public final class DefaultHtmlValidatorTest {
      */
     @Ignore
     @Test(expected = IOException.class)
-    public void throwsIOExceptionWhenW3cServerIsUnavailable() throws Exception {
+    public void throwsIOExceptionWhenValidationServerIsUnavailable()
+        throws Exception {
         final MkContainer container = new MkGrizzlyContainer().next(
             new MkAnswer.Simple(HttpURLConnection.HTTP_UNAVAILABLE)
         ).start();
-        new DefaultHtmlValidator(container.home()).validate("<html/>");
+        new DefaultHtmlValidator(container.home()).validate("<html></html>");
         container.stop();
     }
 

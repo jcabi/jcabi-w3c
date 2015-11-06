@@ -95,11 +95,12 @@ public final class DefaultCssValidatorTest {
      */
     @Ignore
     @Test(expected = IOException.class)
-    public void throwsIOExceptionWhenW3cServerIsUnavailable() throws Exception {
+    public void throwsIOExceptionWhenValidationServerIsUnavailable()
+        throws Exception {
         final MkContainer container = new MkGrizzlyContainer().next(
             new MkAnswer.Simple(HttpURLConnection.HTTP_UNAVAILABLE)
         ).start();
-        new DefaultCssValidator(container.home()).validate("* { }");
+        new DefaultCssValidator(container.home()).validate("body { }");
         container.stop();
     }
 
