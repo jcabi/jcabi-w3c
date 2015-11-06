@@ -49,7 +49,7 @@ public final class DefaultHtmlValidatorITCase {
      */
     @Test
     @RetryOnFailure(verbose = false)
-    public void validatesCssDocument() throws Exception {
+    public void validatesHtmlDocument() throws Exception {
         MatcherAssert.assertThat(
             ValidatorBuilder.HTML.validate(
                 StringUtils.join(
