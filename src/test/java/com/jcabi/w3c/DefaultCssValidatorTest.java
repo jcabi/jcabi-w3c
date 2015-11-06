@@ -32,8 +32,11 @@ package com.jcabi.w3c;
 import com.jcabi.http.mock.MkAnswer;
 import com.jcabi.http.mock.MkContainer;
 import com.jcabi.http.mock.MkGrizzlyContainer;
+import java.io.IOException;
+import java.net.HttpURLConnection;
 import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -80,6 +83,24 @@ public final class DefaultCssValidatorTest {
             "/* hey */\n\n/* JIGSAW IGNORE: .. */\n\n* { abc: cde }\n"
         );
         MatcherAssert.assertThat(response.toString(), response.valid());
+    }
+
+    /**
+     * DefaultHtmlValidator throw IOException when W3C server is unavailable.
+     * @throws Exception If something goes wrong inside
+     * @todo #10:30min DefaultCssValidator have to be updated to throw only
+     *  IOException when W3C validation server is unavailable. Any other
+     *  exception type can be confusing for users. Remove @Ignore annotation
+     *  after finishing implementation.
+     */
+    @Ignore
+    @Test(expected = IOException.class)
+    public void throwsIOExceptionWhenW3cServerIsUnavailable() throws Exception {
+        final MkContainer container = new MkGrizzlyContainer().next(
+            new MkAnswer.Simple(HttpURLConnection.HTTP_UNAVAILABLE)
+        ).start();
+        new DefaultCssValidator(container.home()).validate("* { }");
+        container.stop();
     }
 
 }
