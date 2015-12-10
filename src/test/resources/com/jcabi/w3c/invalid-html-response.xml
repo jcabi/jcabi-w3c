@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope">
+	<env:Body>
+		<m:markupvalidationresponse
+			xmlns:m="http://www.w3.org/2005/10/markup-validator">
+			<m:uri>file</m:uri>
+			<m:checkedby>http://validator.w3.org/</m:checkedby>
+			<m:doctype></m:doctype>
+			<m:charset>utf-8</m:charset>
+			<m:validity>false</m:validity>
+			<m:warnings>
+				<m:warningcount>3</m:warningcount>
+				<m:warninglist>
+					<m:warning>
+						<m:messageid>W04</m:messageid>
+						<m:message>No Character Encoding Found! Falling back to UTF-8.
+						</m:message>
+					</m:warning>
+					<m:warning>
+						<m:messageid>W06</m:messageid>
+						<m:message>Unable to Determine Parse Mode!</m:message>
+					</m:warning>
+					<m:warning>
+						<m:messageid>W27</m:messageid>
+						<m:message>No Character encoding declared at document level
+						</m:message>
+					</m:warning>
+				</m:warninglist>
+			</m:warnings>
+			<m:errors>
+				<m:errorcount>2</m:errorcount>
+				<m:errorlist>
+					<m:error>
+						<m:line>1</m:line>
+						<m:col>1</m:col>
+						<m:message>character &quot;t&quot; not allowed in prolog
+						</m:message>
+						<m:messageid>46</m:messageid>
+						<m:explanation>  <![CDATA[<p class="helpwanted"><a href="feedback.html?uri=;errmsg_id=46#errormsg" title="Suggest improvements on this error message through our feedback channels">&#x2709;</a></p>]]>
+						</m:explanation>
+						<m:source><![CDATA[<strong title="Position where error was detected.">t</strong>his is invalid html]]></m:source>
+					</m:error>
+					<m:error>
+						<m:line>1</m:line>
+						<m:col>21</m:col>
+						<m:message>end of document in prolog</m:message>
+						<m:messageid>47</m:messageid>
+						<m:explanation><![CDATA[<p class="helpwanted"><a href="feedback.html?uri=;errmsg_id=47#errormsg" title="Suggest improvements on this error message through our feedback channels">&#x2709;</a></p><div class="ve mid-47"><p>
+						This error may appear when the validator receives an empty document. Please make sure that the document you are uploading is not empty, and <a href="feedback.html">report</a> any discrepancy.</p></div>]]>
+						</m:explanation>
+						<m:source><![CDATA[this is invalid htm<strong title="Position where error was detected.">l</strong>]]></m:source>
+					</m:error>
+				</m:errorlist>
+			</m:errors>
+		</m:markupvalidationresponse>
+	</env:Body>
+</env:Envelope>

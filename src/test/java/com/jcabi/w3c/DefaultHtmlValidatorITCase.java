@@ -38,7 +38,7 @@ import org.junit.Test;
 /**
  * Integration case for {@link DefaultHtmlValidator}.
  * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
+ * @version $Id: c8f79647cb1da6ce4802f3a0f7bdef46301061c1 $
  * @since 0.8
  */
 public final class DefaultHtmlValidatorITCase {
@@ -62,5 +62,16 @@ public final class DefaultHtmlValidatorITCase {
             Matchers.empty()
         );
     }
-
+    
+    @Test
+    @RetryOnFailure(verbose = false)
+    public void validatesInvalidHtmlDocument() throws Exception {
+        MatcherAssert.assertThat(
+            ValidatorBuilder.HTML.validate(
+            	"this is an invalid html"	
+            ).errors(),
+            Matchers.not(Matchers.empty())
+        );
+    }
+    
 }
