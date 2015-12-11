@@ -53,9 +53,15 @@ public final class DefaultHtmlValidatorITCase {
     @RetryOnFailure(verbose = false)
     public void validatesHtmlDocument() throws Exception {
         MatcherAssert.assertThat(
-                        ValidatorBuilder.HTML
-                                        .validate(this.validHtml()).errors(),
-                        Matchers.empty()
+            ValidatorBuilder.HTML.validate(
+                StringUtils.join(
+                    "<!DOCTYPE html>",
+                    "<html><head><meta charset='UTF-8'/>",
+                    "<title>hey</title></head>",
+                    "<body></body></html>"
+                )
+            ).errors(),
+            Matchers.empty()
         );
     }
 
@@ -73,18 +79,4 @@ public final class DefaultHtmlValidatorITCase {
             Matchers.not(Matchers.empty())
         );
     }
-
-    /**
-     * Creates a valid html.
-     * @return Valid html content
-     */
-    private String validHtml() {
-        return StringUtils.join(
-                        "<!DOCTYPE html>",
-                        "<html><head><meta charset='UTF-8'/>",
-                        "<title>hey</title></head>",
-                        "<body></body></html>"
-        );
-    }
-
 }
