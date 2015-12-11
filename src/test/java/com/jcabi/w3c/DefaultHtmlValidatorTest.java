@@ -85,17 +85,18 @@ public final class DefaultHtmlValidatorTest {
             .validate("this is an invalid html");
         container.stop();
         MatcherAssert.assertThat(
-                        "Validity must be invalid!",
-                        !response.valid()
+            "Validity must be invalid!",
+            !response.valid()
         );
         MatcherAssert.assertThat(
-                        "Must has at least one error",
-                        response.errors(), this.withoutDefects()
+            "Must has at least one error",
+            response.errors(),
+            this.withoutDefects()
         );
         MatcherAssert.assertThat(
-                        "Must has at least one warning",
-                        response.warnings(),
-                        this.withoutDefects()
+            "Must has at least one warning",
+            response.warnings(),
+            this.withoutDefects()
         );
     }
 
