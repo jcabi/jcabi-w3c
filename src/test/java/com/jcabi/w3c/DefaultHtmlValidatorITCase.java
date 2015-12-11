@@ -37,6 +37,7 @@ import org.junit.Test;
 
 /**
  * Integration case for {@link DefaultHtmlValidator}.
+ *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @since 0.8
@@ -45,21 +46,44 @@ public final class DefaultHtmlValidatorITCase {
 
     /**
      * DefaultHtmlValidator can validate HTML document.
+     *
      * @throws Exception If something goes wrong inside
      */
     @Test
     @RetryOnFailure(verbose = false)
     public void validatesHtmlDocument() throws Exception {
         MatcherAssert.assertThat(
-            ValidatorBuilder.HTML.validate(
-                StringUtils.join(
-                    "<!DOCTYPE html>",
-                    "<html><head><meta charset='UTF-8'/>",
-                    "<title>hey</title></head>",
-                    "<body></body></html>"
-                )
+                        ValidatorBuilder.HTML
+                                        .validate(this.validHtml()).errors(),
+                        Matchers.empty()
+        );
+    }
+
+    /**
+     * DefaultHtmlValidator can validate invalid HTML document.
+     *
+     * @throws Exception If something goes wrong inside
+     */
+    @Test
+    public void validatesInvalidHtmlDocument() throws Exception {
+        MatcherAssert.assertThat(
+                        ValidatorBuilder.HTML.validate(
+                                        "this is an invalid html"
             ).errors(),
-            Matchers.empty()
+            Matchers.not(Matchers.empty())
+        );
+    }
+
+    /**
+     * Creates a valid html.
+     * @return Valid html content
+     */
+    private String validHtml() {
+        return StringUtils.join(
+                        "<!DOCTYPE html>",
+                        "<html><head><meta charset='UTF-8'/>",
+                        "<title>hey</title></head>",
+                        "<body></body></html>"
         );
     }
 
