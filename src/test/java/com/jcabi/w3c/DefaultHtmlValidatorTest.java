@@ -114,13 +114,13 @@ public final class DefaultHtmlValidatorTest {
     public void throwsIOExceptionWhenValidationServerErrorOccurred()
         throws Exception {
         final Set<Integer> responses = new HashSet<Integer>(
-                        Arrays.asList(
-                                      HttpURLConnection.HTTP_INTERNAL_ERROR,
-                                      HttpURLConnection.HTTP_NOT_IMPLEMENTED,
-                                      HttpURLConnection.HTTP_BAD_GATEWAY,
-                                      HttpURLConnection.HTTP_UNAVAILABLE,
-                                      HttpURLConnection.HTTP_GATEWAY_TIMEOUT,
-                                      HttpURLConnection.HTTP_VERSION
+            Arrays.asList(
+                HttpURLConnection.HTTP_INTERNAL_ERROR,
+                HttpURLConnection.HTTP_NOT_IMPLEMENTED,
+                HttpURLConnection.HTTP_BAD_GATEWAY,
+                HttpURLConnection.HTTP_UNAVAILABLE,
+                HttpURLConnection.HTTP_GATEWAY_TIMEOUT,
+                HttpURLConnection.HTTP_VERSION
             )
         );
         final Set<Integer> caught = new HashSet<Integer>();
