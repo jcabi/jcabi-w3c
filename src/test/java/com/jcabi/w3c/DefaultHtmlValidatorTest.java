@@ -148,17 +148,16 @@ public final class DefaultHtmlValidatorTest {
      * @return Response from W3C.
      */
     private String validReturn() {
-        return StringUtils
-                .join(
-                      "<env:Envelope",
-                      " xmlns:env='http://www.w3.org/2003/05/soap-envelope'>",
-                      "<env:Body><m:markupvalidationresponse",
-                      " xmlns:m='http://www.w3.org/2005/10/markup-validator'>",
-                      "<m:validity>true</m:validity>",
-                      "<m:checkedby>W3C</m:checkedby>",
-                      "<m:doctype>text/html</m:doctype>",
-                      "<m:charset>UTF-8</m:charset>",
-                      "</m:markupvalidationresponse></env:Body></env:Envelope>"
+        return StringUtils.join(
+            "<env:Envelope",
+            " xmlns:env='http://www.w3.org/2003/05/soap-envelope'>",
+            "<env:Body><m:markupvalidationresponse",
+            " xmlns:m='http://www.w3.org/2005/10/markup-validator'>",
+            "<m:validity>true</m:validity>",
+            "<m:checkedby>W3C</m:checkedby>",
+            "<m:doctype>text/html</m:doctype>",
+            "<m:charset>UTF-8</m:charset>",
+            "</m:markupvalidationresponse></env:Body></env:Envelope>"
         );
     }
 
