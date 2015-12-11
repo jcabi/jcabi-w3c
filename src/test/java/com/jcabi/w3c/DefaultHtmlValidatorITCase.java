@@ -73,8 +73,8 @@ public final class DefaultHtmlValidatorITCase {
     @Test
     public void validatesInvalidHtmlDocument() throws Exception {
         MatcherAssert.assertThat(
-                        ValidatorBuilder.HTML.validate(
-                                        "this is an invalid html"
+            ValidatorBuilder.HTML.validate(
+                "this is an invalid html"
             ).errors(),
             Matchers.not(Matchers.empty())
         );
