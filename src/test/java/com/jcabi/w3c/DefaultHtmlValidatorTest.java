@@ -82,7 +82,7 @@ public final class DefaultHtmlValidatorTest {
         ).start();
         final Validator validator = new DefaultHtmlValidator(container.home());
         final ValidationResponse response = validator
-                        .validate("this is an invalid html");
+            .validate("this is an invalid html");
         container.stop();
         MatcherAssert.assertThat(
                         "Validity must be invalid!",
@@ -128,10 +128,10 @@ public final class DefaultHtmlValidatorTest {
             MkContainer container = null;
             try {
                 container = new MkGrizzlyContainer().next(
-                                new MkAnswer.Simple(status)
+                    new MkAnswer.Simple(status)
                 ).start();
                 new DefaultHtmlValidator(container.home())
-                                .validate("<html></html>");
+                    .validate("<html></html>");
             } catch (final IOException ex) {
                 caught.add(status);
             } finally {
