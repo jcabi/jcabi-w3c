@@ -78,7 +78,9 @@ public final class DefaultHtmlValidatorTest {
     @Test
     public void validateInvalidHtml() throws Exception {
         final MkContainer container = new MkGrizzlyContainer().next(
-                        new MkAnswer.Simple(this.invalidHtmlResponse())
+            new MkAnswer.Simple(
+                this.invalidHtmlResponse()
+            )
         ).start();
         final Validator validator = new DefaultHtmlValidator(container.home());
         final ValidationResponse response = validator
