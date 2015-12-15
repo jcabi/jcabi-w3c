@@ -133,16 +133,26 @@ public final class DefaultHtmlValidatorTest {
                 container = new MkGrizzlyContainer().next(
                     new MkAnswer.Simple(status)
                 ).start();
-                new DefaultHtmlValidator(container.home())
-                    .validate("<html></html>");
+                new DefaultHtmlValidator(
+                    container.home()
+                ).validate(
+                    "<html></html>"
+                );
             } catch (final IOException ex) {
                 caught.add(status);
             } finally {
                 container.stop();
             }
         }
-        final Integer[] data = responses.toArray(new Integer[responses.size()]);
-        MatcherAssert.assertThat(caught, Matchers.containsInAnyOrder(data));
+        final Integer[] data = responses.toArray(
+            new Integer[responses.size()]
+        );
+        MatcherAssert.assertThat(
+            caught,
+            Matchers.containsInAnyOrder(
+                data
+            )
+        );
     }
 
     /**
@@ -170,9 +180,15 @@ public final class DefaultHtmlValidatorTest {
      */
     private String invalidHtmlResponse() throws IOException {
         final InputStream file = DefaultHtmlValidator.class
-                        .getResourceAsStream("invalid-html-response.xml");
-        final String xml = IOUtils.toString(file);
-        IOUtils.closeQuietly(file);
+           .getResourceAsStream(
+               "invalid-html-response.xml"
+           );
+        final String xml = IOUtils.toString(
+            file
+        );
+        IOUtils.closeQuietly(
+            file
+        );
         return xml;
     }
 
@@ -181,7 +197,11 @@ public final class DefaultHtmlValidatorTest {
      * @return Matcher
      */
     private Matcher<Collection<Defect>> withoutDefects() {
-        return Matchers.not(Matchers.emptyCollectionOf(Defect.class));
+        return Matchers.not(
+            Matchers.emptyCollectionOf(
+                Defect.class
+            )
+        );
     }
 
 }
