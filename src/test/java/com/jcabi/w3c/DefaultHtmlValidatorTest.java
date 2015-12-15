@@ -63,12 +63,17 @@ public final class DefaultHtmlValidatorTest {
     @Test
     public void validatesHtmlDocument() throws Exception {
         final MkContainer container = new MkGrizzlyContainer().next(
-                        new MkAnswer.Simple(this.validReturn())
+            new MkAnswer.Simple(
+                this.validReturn()
+            )
         ).start();
         final Validator validator = new DefaultHtmlValidator(container.home());
         final ValidationResponse response = validator.validate("<html/>");
         container.stop();
-        MatcherAssert.assertThat(response.toString(), response.valid());
+        MatcherAssert.assertThat(
+            response.toString(),
+            response.valid()
+        );
     }
 
     /**
@@ -179,10 +184,9 @@ public final class DefaultHtmlValidatorTest {
      * @throws IOException if something goes wrong.
      */
     private String invalidHtmlResponse() throws IOException {
-        final InputStream file = DefaultHtmlValidator.class
-           .getResourceAsStream(
+        final InputStream file = DefaultHtmlValidator.class.getResourceAsStream(
                "invalid-html-response.xml"
-           );
+        );
         final String xml = IOUtils.toString(
             file
         );
