@@ -52,7 +52,7 @@ import lombok.ToString;
 final class DefaultHtmlValidator extends BaseValidator implements Validator {
 
     /**
-     * The HTTP_OK code
+     * The HTTP_OK code.
      */
     private static final int HTTP_OK = 200;
 
