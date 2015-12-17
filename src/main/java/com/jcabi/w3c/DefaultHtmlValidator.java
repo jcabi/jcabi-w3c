@@ -52,6 +52,11 @@ import lombok.ToString;
 final class DefaultHtmlValidator extends BaseValidator implements Validator {
 
     /**
+     * The HTTP_OK code
+     */
+    private static final int HTTP_OK = 200;
+
+    /**
      * The URI to use in W3C.
      */
     private final transient String uri;
@@ -73,7 +78,7 @@ final class DefaultHtmlValidator extends BaseValidator implements Validator {
             this.entity("uploaded_file", html, MediaType.TEXT_HTML)
         );
         final Response response = req.fetch();
-        if(response.status() != 200) {
+        if (response.status() != HTTP_OK) {
             throw new IOException(
                 response.reason()
             );
