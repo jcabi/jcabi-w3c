@@ -80,12 +80,7 @@ public final class DefaultHtmlValidatorTest {
     /**
      * DefaultHtmlValidator throw IOException when W3C server error occurred.
      * @throws Exception If something goes wrong inside
-     * @todo #10:30min DefaultHtmlValidator have to be updated to throw only
-     *  IOException when W3C validation server is unavailable. Any other
-     *  exception type can be confusing for users. Remove @Ignore annotation
-     *  after finishing implementation.
      */
-    @Ignore
     @Test
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public void throwsIOExceptionWhenValidationServerErrorOccurred()

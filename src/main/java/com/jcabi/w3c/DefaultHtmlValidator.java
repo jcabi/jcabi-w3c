@@ -31,6 +31,7 @@ package com.jcabi.w3c;
 
 import com.jcabi.aspects.Immutable;
 import com.jcabi.http.Request;
+import com.jcabi.http.Response;
 import com.jcabi.http.response.XmlResponse;
 import java.io.IOException;
 import java.net.URI;
@@ -71,8 +72,14 @@ final class DefaultHtmlValidator extends BaseValidator implements Validator {
             this.uri,
             this.entity("uploaded_file", html, MediaType.TEXT_HTML)
         );
+        final Response response = req.fetch();
+        if(response.status() != 200) {
+            throw new IOException(
+                response.reason()
+            );
+        }
         return this.build(
-            req.fetch().as(XmlResponse.class)
+            response.as(XmlResponse.class)
                 .registerNs("env", "http://www.w3.org/2003/05/soap-envelope")
                 .registerNs("m", "http://www.w3.org/2005/10/markup-validator")
                 .assertXPath("//m:validity")
