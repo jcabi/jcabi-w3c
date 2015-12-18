@@ -149,15 +149,8 @@ public final class DefaultHtmlValidatorTest {
                 container.stop();
             }
         }
-        final Integer[] data = responses.toArray(
-            new Integer[responses.size()]
-        );
-        MatcherAssert.assertThat(
-            caught,
-            Matchers.containsInAnyOrder(
-                data
-            )
-        );
+        final Integer[] data = responses.toArray(new Integer[responses.size()]);
+        MatcherAssert.assertThat(caught, Matchers.containsInAnyOrder(data));
     }
 
     /**
