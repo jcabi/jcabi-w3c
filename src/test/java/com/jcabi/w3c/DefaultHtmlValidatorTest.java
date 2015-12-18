@@ -185,14 +185,10 @@ public final class DefaultHtmlValidatorTest {
      */
     private String invalidHtmlResponse() throws IOException {
         final InputStream file = DefaultHtmlValidator.class.getResourceAsStream(
-               "invalid-html-response.xml"
+            "invalid-html-response.xml"
         );
-        final String xml = IOUtils.toString(
-            file
-        );
-        IOUtils.closeQuietly(
-            file
-        );
+        final String xml = IOUtils.toString(file);
+        IOUtils.closeQuietly(file);
         return xml;
     }
 
@@ -201,11 +197,7 @@ public final class DefaultHtmlValidatorTest {
      * @return Matcher
      */
     private Matcher<Collection<Defect>> withoutDefects() {
-        return Matchers.not(
-            Matchers.emptyCollectionOf(
-                Defect.class
-            )
-        );
+        return Matchers.not(Matchers.emptyCollectionOf(Defect.class));
     }
 
 }
