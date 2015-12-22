@@ -34,6 +34,7 @@ import com.jcabi.http.Request;
 import com.jcabi.http.Response;
 import com.jcabi.http.response.XmlResponse;
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.URI;
 import javax.ws.rs.core.MediaType;
 import lombok.EqualsAndHashCode;
@@ -50,11 +51,6 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode(callSuper = false, of = "uri")
 final class DefaultHtmlValidator extends BaseValidator implements Validator {
-
-    /**
-     * The HTTP_OK code.
-     */
-    private static final int HTTP_OK = 200;
 
     /**
      * The URI to use in W3C.
@@ -78,7 +74,7 @@ final class DefaultHtmlValidator extends BaseValidator implements Validator {
             this.entity("uploaded_file", html, MediaType.TEXT_HTML)
         );
         final Response response = req.fetch();
-        if (response.status() != HTTP_OK) {
+        if (response.status() != HttpURLConnection.HTTP_OK) {
             throw new IOException(
                 response.reason()
             );
