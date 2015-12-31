@@ -138,14 +138,6 @@ final class DefaultValidationResponse implements ValidationResponse {
     }
 
     /**
-     * Set validity flag.
-     * @param flag The flag to set
-     */
-    public void setValid(final boolean flag) {
-        this.ivalid = flag;
-    }
-
-    /**
      * Add error.
      * @param error The error to add
      */
