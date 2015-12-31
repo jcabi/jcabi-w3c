@@ -51,7 +51,7 @@ final class DefaultValidationResponse implements ValidationResponse {
     /**
      * Is it valid?
      */
-    private transient boolean ivalid;
+    private final transient boolean ivalid;
 
     /**
      * Who validated it?
