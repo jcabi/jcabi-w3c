@@ -39,7 +39,7 @@ import java.util.Set;
  * <p>See {@link ValidatorBuilder} for explanation of how to get an instance
  * of this interface.
  *
- * <p>Implementation must be immutable and thread-safe.
+ * <p>Implementation may be mutable but thread-safe.
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$

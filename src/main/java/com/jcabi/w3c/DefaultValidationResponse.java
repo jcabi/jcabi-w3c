@@ -71,12 +71,14 @@ final class DefaultValidationResponse implements ValidationResponse {
     /**
      * Set of errors found.
      */
-    private final transient Set<Defect> ierrors = new HashSet<Defect>(0);
+    private final transient Set<Defect> ierrors =
+        Collections.synchronizedSet(new HashSet<Defect>(0));
 
     /**
      * Set of warnings found.
      */
-    private final transient Set<Defect> iwarnings = new HashSet<Defect>(0);
+    private final transient Set<Defect> iwarnings =
+        Collections.synchronizedSet(new HashSet<Defect>(0));
 
     /**
      * Public ctor.
