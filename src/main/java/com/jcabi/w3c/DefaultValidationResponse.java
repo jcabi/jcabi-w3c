@@ -33,8 +33,8 @@ import com.jcabi.log.Logger;
 import java.net.URI;
 import java.nio.charset.Charset;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArraySet;
 import lombok.EqualsAndHashCode;
 
 /**
@@ -71,12 +71,14 @@ final class DefaultValidationResponse implements ValidationResponse {
     /**
      * Set of errors found.
      */
-    private final transient Set<Defect> ierrors = new HashSet<Defect>(0);
+    private final transient Set<Defect> ierrors =
+        new CopyOnWriteArraySet<Defect>();
 
     /**
      * Set of warnings found.
      */
-    private final transient Set<Defect> iwarnings = new HashSet<Defect>(0);
+    private final transient Set<Defect> iwarnings =
+        new CopyOnWriteArraySet<Defect>();
 
     /**
      * Public ctor.
@@ -129,18 +131,12 @@ final class DefaultValidationResponse implements ValidationResponse {
 
     @Override
     public Set<Defect> errors() {
-        synchronized (this.ierrors) {
-            final Set<Defect> copy = new HashSet<Defect>(this.ierrors);
-            return Collections.unmodifiableSet(copy);
-        }
+        return Collections.unmodifiableSet(this.ierrors);
     }
 
     @Override
     public Set<Defect> warnings() {
-        synchronized (this.iwarnings) {
-            final Set<Defect> copy = new HashSet<Defect>(this.iwarnings);
-            return Collections.unmodifiableSet(copy);
-        }
+        return Collections.unmodifiableSet(this.iwarnings);
     }
 
     /**
@@ -148,9 +144,7 @@ final class DefaultValidationResponse implements ValidationResponse {
      * @param error The error to add
      */
     public void addError(final Defect error) {
-        synchronized (this.ierrors) {
-            this.ierrors.add(error);
-        }
+        this.ierrors.add(error);
     }
 
     /**
@@ -158,9 +152,7 @@ final class DefaultValidationResponse implements ValidationResponse {
      * @param warning The warning to add
      */
     public void addWarning(final Defect warning) {
-        synchronized (this.iwarnings) {
-            this.iwarnings.add(warning);
-        }
+        this.iwarnings.add(warning);
     }
 
     /**
@@ -169,13 +161,11 @@ final class DefaultValidationResponse implements ValidationResponse {
      * @return The text
      */
     private String asText(final Set<Defect> defects) {
-        synchronized (defects) {
-            final StringBuilder text = new StringBuilder(0);
-            for (final Defect defect : defects) {
-                text.append("  ").append(defect.toString()).append('\n');
-            }
-            return text.toString();
+        final StringBuilder text = new StringBuilder(0);
+        for (final Defect defect : defects) {
+            text.append("  ").append(defect.toString()).append('\n');
         }
+        return text.toString();
     }
 
 }
