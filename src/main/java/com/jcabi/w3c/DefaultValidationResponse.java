@@ -71,14 +71,12 @@ final class DefaultValidationResponse implements ValidationResponse {
     /**
      * Set of errors found.
      */
-    private final transient Set<Defect> ierrors =
-        Collections.synchronizedSet(new HashSet<Defect>(0));
+    private final transient Set<Defect> ierrors = new HashSet<Defect>(0);
 
     /**
      * Set of warnings found.
      */
-    private final transient Set<Defect> iwarnings =
-        Collections.synchronizedSet(new HashSet<Defect>(0));
+    private final transient Set<Defect> iwarnings = new HashSet<Defect>(0);
 
     /**
      * Public ctor.
@@ -131,12 +129,18 @@ final class DefaultValidationResponse implements ValidationResponse {
 
     @Override
     public Set<Defect> errors() {
-        return Collections.unmodifiableSet(this.ierrors);
+        synchronized (this.ierrors) {
+            final HashSet<Defect> copySet = new HashSet<Defect>(this.ierrors);
+            return Collections.unmodifiableSet(copySet);
+        }
     }
 
     @Override
     public Set<Defect> warnings() {
-        return Collections.unmodifiableSet(this.iwarnings);
+        synchronized (this.iwarnings) {
+            final HashSet<Defect> copySet = new HashSet<Defect>(this.iwarnings);
+            return Collections.unmodifiableSet(copySet);
+        }
     }
 
     /**
@@ -144,7 +148,9 @@ final class DefaultValidationResponse implements ValidationResponse {
      * @param error The error to add
      */
     public void addError(final Defect error) {
-        this.ierrors.add(error);
+        synchronized (this.ierrors) {
+            this.ierrors.add(error);
+        }
     }
 
     /**
@@ -152,7 +158,9 @@ final class DefaultValidationResponse implements ValidationResponse {
      * @param warning The warning to add
      */
     public void addWarning(final Defect warning) {
-        this.iwarnings.add(warning);
+        synchronized (this.iwarnings) {
+            this.iwarnings.add(warning);
+        }
     }
 
     /**
@@ -161,11 +169,13 @@ final class DefaultValidationResponse implements ValidationResponse {
      * @return The text
      */
     private String asText(final Set<Defect> defects) {
-        final StringBuilder text = new StringBuilder(0);
-        for (final Defect defect : defects) {
-            text.append("  ").append(defect.toString()).append('\n');
+        synchronized (defects) {
+            final StringBuilder text = new StringBuilder(0);
+            for (final Defect defect : defects.toArray(new Defect[0])) {
+                text.append("  ").append(defect.toString()).append('\n');
+            }
+            return text.toString();
         }
-        return text.toString();
     }
 
 }
