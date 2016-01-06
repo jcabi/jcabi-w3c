@@ -130,16 +130,16 @@ final class DefaultValidationResponse implements ValidationResponse {
     @Override
     public Set<Defect> errors() {
         synchronized (this.ierrors) {
-            final HashSet<Defect> copySet = new HashSet<Defect>(this.ierrors);
-            return Collections.unmodifiableSet(copySet);
+            final Set<Defect> copy = new HashSet<Defect>(this.ierrors);
+            return Collections.unmodifiableSet(copy);
         }
     }
 
     @Override
     public Set<Defect> warnings() {
         synchronized (this.iwarnings) {
-            final HashSet<Defect> copySet = new HashSet<Defect>(this.iwarnings);
-            return Collections.unmodifiableSet(copySet);
+            final Set<Defect> copy = new HashSet<Defect>(this.iwarnings);
+            return Collections.unmodifiableSet(copy);
         }
     }
 
