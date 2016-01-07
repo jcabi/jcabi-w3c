@@ -91,10 +91,6 @@ public final class DefaultCssValidatorTest {
     /**
      * DefaultCssValidator throw IOException when W3C server error occurred.
      * @throws Exception If something goes wrong inside
-     * @todo :30min DefaultCssValidator have to be updated to throw only
-     *  IOException when W3C validation server is unavailable. Any other
-     *  exception type can be confusing for users. Remove @Ignore annotation
-     *  after finishing implementation.
      */
     @Test
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
