@@ -29,16 +29,16 @@
  */
 package com.jcabi.w3c;
 
+import com.jcabi.aspects.Immutable;
+import com.jcabi.http.Request;
+import com.jcabi.http.Response;
+import com.jcabi.http.response.XmlResponse;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
-import com.jcabi.aspects.Immutable;
-import com.jcabi.http.Request;
-import com.jcabi.http.Response;
-import com.jcabi.http.response.XmlResponse;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.apache.commons.lang3.StringUtils;
@@ -84,6 +84,8 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
             return this.processed(css);
         } catch (final IOException ex) {
             throw ex;
+        } catch (final IllegalArgumentException ex) {
+            throw new IOException(ex);
         }
     }
 
