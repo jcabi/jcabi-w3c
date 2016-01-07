@@ -40,7 +40,6 @@ import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -66,9 +65,9 @@ public final class DefaultCssValidatorTest {
                     "<m:validity>true</m:validity>",
                     "<m:checkedby>W3C</m:checkedby>",
                     "</m:cssvalidationresponse></env:Body></env:Envelope>"
-                )
+                    )
             )
-        ).start();
+            ).start();
         final Validator validator = new DefaultCssValidator(container.home());
         final ValidationResponse response = validator.validate("* { }");
         container.stop();
@@ -85,7 +84,7 @@ public final class DefaultCssValidatorTest {
         final ValidationResponse response = validator.validate(
             // @checkstyle RegexpSingleline (1 line)
             "/* hey */\n\n/* JIGSAW IGNORE: .. */\n\n* { abc: cde }\n"
-        );
+            );
         MatcherAssert.assertThat(response.toString(), response.valid());
     }
 
@@ -97,11 +96,10 @@ public final class DefaultCssValidatorTest {
      *  exception type can be confusing for users. Remove @Ignore annotation
      *  after finishing implementation.
      */
-    @Ignore
     @Test
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public void throwsIOExceptionWhenValidationServerErrorOccurred()
-        throws Exception {
+                    throws Exception {
         final Set<Integer> responses = new HashSet<Integer>(
             Arrays.asList(
                 HttpURLConnection.HTTP_INTERNAL_ERROR,
@@ -110,16 +108,16 @@ public final class DefaultCssValidatorTest {
                 HttpURLConnection.HTTP_UNAVAILABLE,
                 HttpURLConnection.HTTP_GATEWAY_TIMEOUT,
                 HttpURLConnection.HTTP_VERSION
-            )
-        );
+                )
+                        );
         final Set<Integer> caught = new HashSet<Integer>();
         for (final Integer status : responses) {
             MkContainer container = null;
             try {
                 container = new MkGrizzlyContainer().next(
                     new MkAnswer.Simple(status)
-                ).start();
-                new DefaultHtmlValidator(container.home()).validate("body { }");
+                    ).start();
+                new DefaultCssValidator(container.home()).validate("body { }");
             } catch (final IOException ex) {
                 caught.add(status);
             } finally {
@@ -130,8 +128,8 @@ public final class DefaultCssValidatorTest {
             caught,
             Matchers.containsInAnyOrder(
                 responses.toArray(new Integer[responses.size()])
-            )
-        );
+                )
+            );
     }
 
 }
