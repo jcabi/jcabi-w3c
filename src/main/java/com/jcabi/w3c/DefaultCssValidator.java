@@ -79,14 +79,14 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
         );
         try {
             if (pattern.matcher(css).matches()) {
-                return this.success("");
+                response = this.success("");
+            } else {
+                response = this.processed(css);
             }
-            return this.processed(css);
-        } catch (final IOException ex) {
-            throw ex;
         } catch (final IllegalArgumentException ex) {
             throw new IOException(ex);
         }
+        return response;
     }
 
     /**
