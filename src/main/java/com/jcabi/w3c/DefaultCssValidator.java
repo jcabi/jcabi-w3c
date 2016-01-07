@@ -71,13 +71,16 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
         final Pattern pattern = Pattern.compile(
             ".*^/\\* JIGSAW IGNORE: [^\\n]+\\*/$.*",
             Pattern.MULTILINE | Pattern.DOTALL
-        );
-        if (pattern.matcher(css).matches()) {
-            response = this.success("");
-        } else {
-            response = this.processed(css);
+            );
+        try {
+            if (pattern.matcher(css).matches())
+                return this.success("");
+            return this.processed(css);
+        } catch (IOException ex) {
+            throw ex;
+        } catch (Throwable ex) {
+            throw new IOException(ex);
         }
-        return response;
     }
 
     /**
@@ -90,7 +93,7 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
         final Request req = this.request(
             this.uri,
             this.entity("file", DefaultCssValidator.filter(css), "text/css")
-        );
+            );
         return this.build(
             req.fetch().as(XmlResponse.class)
                 .registerNs("env", "http://www.w3.org/2003/05/soap-envelope")
@@ -98,7 +101,7 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
                 .assertXPath("//m:validity")
                 .assertXPath("//m:checkedby")
                 .xml()
-        );
+            );
     }
 
     /**
@@ -110,7 +113,7 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
         return Pattern.compile(
             "^/\\* JIGSAW: [^\\n]+\\*/$",
             Pattern.MULTILINE | Pattern.DOTALL
-        ).matcher(css).replaceAll("");
+            ).matcher(css).replaceAll("");
     }
 
 }
