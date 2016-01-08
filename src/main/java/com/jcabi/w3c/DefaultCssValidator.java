@@ -102,7 +102,7 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
             this.uri,
             this.entity("file", DefaultCssValidator.filter(css), "text/css")
         );
-        final Response response = this.withoutBadResponseStatus(req.fetch());
+        final Response response = this.correct(req.fetch());
         return this.build(
             response.as(XmlResponse.class)
                 .registerNs("env", "http://www.w3.org/2003/05/soap-envelope")
@@ -119,7 +119,7 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
      * @return Response passed as parameter.
      * @throws IOException when has some bad status.
      */
-    private Response withoutBadResponseStatus(final Response response)
+    private Response correct(final Response response)
         throws IOException {
         final List<Integer> badStatuses = Arrays.asList(
             HttpURLConnection.HTTP_INTERNAL_ERROR,
