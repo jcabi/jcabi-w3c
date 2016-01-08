@@ -115,7 +115,7 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
     /**
      * Check if response from W3C contains some bad status.
      * @param response Response from W3c.
-     * @return
+     * @return Response passed as parameter.
      * @throws IOException when has some bad status.
      */
     private Response withoutBadResponseStatus(final Response response)
