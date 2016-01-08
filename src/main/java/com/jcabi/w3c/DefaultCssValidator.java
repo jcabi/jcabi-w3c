@@ -41,7 +41,6 @@ import java.util.List;
 import java.util.regex.Pattern;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * Default implementation of CSS validator.
