@@ -121,7 +121,7 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
      */
     private Response correct(final Response response)
         throws IOException {
-        final List<Integer> badStatuses = Arrays.asList(
+        final List<Integer> statuses = Arrays.asList(
             HttpURLConnection.HTTP_INTERNAL_ERROR,
             HttpURLConnection.HTTP_NOT_IMPLEMENTED,
             HttpURLConnection.HTTP_BAD_GATEWAY,
@@ -129,7 +129,7 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
             HttpURLConnection.HTTP_GATEWAY_TIMEOUT,
             HttpURLConnection.HTTP_VERSION
         );
-        if (badStatuses.contains(response.status())) {
+        if (statuses.contains(response.status())) {
             throw new IOException(
                 String.format(
                     "Bad status from W3C server: %1d",
