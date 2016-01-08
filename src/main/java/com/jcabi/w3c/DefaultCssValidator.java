@@ -69,6 +69,8 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
         this.uri = entry.toString();
     }
 
+    // @todo introduces a test case to validade both process and sucess
+    // paths at this method
     @Override
     public ValidationResponse validate(final String css)
         throws IOException {
@@ -100,8 +102,7 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
             this.uri,
             this.entity("file", DefaultCssValidator.filter(css), "text/css")
         );
-        final Response response = req.fetch();
-        this.assertThatDoesNotHasBadHttpStatusAt(response);
+        final Response response = this.withoutBadResponseStatus(req.fetch());
         return this.build(
             response.as(XmlResponse.class)
                 .registerNs("env", "http://www.w3.org/2003/05/soap-envelope")
@@ -115,9 +116,10 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
     /**
      * Check if response from W3C contains some bad status.
      * @param response Response from W3c.
+     * @return
      * @throws IOException when has some bad status.
      */
-    private void assertThatDoesNotHasBadHttpStatusAt(final Response response)
+    private Response withoutBadResponseStatus(final Response response)
         throws IOException {
         final List<Integer> badStatuses = Arrays.asList(
             HttpURLConnection.HTTP_INTERNAL_ERROR,
@@ -129,12 +131,13 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
         );
         if (badStatuses.contains(response.status())) {
             throw new IOException(
-                StringUtils.join(
-                    "Bad status from W3C server: ",
-                    Integer.toString(response.status())
+                String.format(
+                    "Bad status from W3C server: %1d",
+                    response.status()
                 )
             );
         }
+        return response;
     }
 
     /**
