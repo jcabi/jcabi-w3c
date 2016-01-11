@@ -31,9 +31,13 @@ package com.jcabi.w3c;
 
 import com.jcabi.aspects.Immutable;
 import com.jcabi.http.Request;
+import com.jcabi.http.Response;
 import com.jcabi.http.response.XmlResponse;
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.URI;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -64,6 +68,9 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
         this.uri = entry.toString();
     }
 
+    // @todo #20:30min introduce a test case to test the success path when
+    //  has the pattern below and another one to test the processed path at
+    //  this method
     @Override
     public ValidationResponse validate(final String css)
         throws IOException {
@@ -72,10 +79,14 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
             ".*^/\\* JIGSAW IGNORE: [^\\n]+\\*/$.*",
             Pattern.MULTILINE | Pattern.DOTALL
         );
-        if (pattern.matcher(css).matches()) {
-            response = this.success("");
-        } else {
-            response = this.processed(css);
+        try {
+            if (pattern.matcher(css).matches()) {
+                response = this.success("");
+            } else {
+                response = this.processed(css);
+            }
+        } catch (final IllegalArgumentException ex) {
+            throw new IOException(ex);
         }
         return response;
     }
@@ -91,14 +102,42 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
             this.uri,
             this.entity("file", DefaultCssValidator.filter(css), "text/css")
         );
+        final Response response = this.correct(req.fetch());
         return this.build(
-            req.fetch().as(XmlResponse.class)
+            response.as(XmlResponse.class)
                 .registerNs("env", "http://www.w3.org/2003/05/soap-envelope")
                 .registerNs("m", "http://www.w3.org/2005/07/css-validator")
                 .assertXPath("//m:validity")
                 .assertXPath("//m:checkedby")
                 .xml()
         );
+    }
+
+    /**
+     * Check if response from W3C contains some bad status.
+     * @param response Response from W3c.
+     * @return Response passed as parameter.
+     * @throws IOException when has some bad status.
+     */
+    private Response correct(final Response response)
+        throws IOException {
+        final List<Integer> statuses = Arrays.asList(
+            HttpURLConnection.HTTP_INTERNAL_ERROR,
+            HttpURLConnection.HTTP_NOT_IMPLEMENTED,
+            HttpURLConnection.HTTP_BAD_GATEWAY,
+            HttpURLConnection.HTTP_UNAVAILABLE,
+            HttpURLConnection.HTTP_GATEWAY_TIMEOUT,
+            HttpURLConnection.HTTP_VERSION
+        );
+        if (statuses.contains(response.status())) {
+            throw new IOException(
+                String.format(
+                    "Bad status from W3C server: %1d",
+                    response.status()
+                )
+            );
+        }
+        return response;
     }
 
     /**

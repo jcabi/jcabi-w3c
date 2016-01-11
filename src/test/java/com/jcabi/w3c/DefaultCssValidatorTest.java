@@ -40,7 +40,6 @@ import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -92,12 +91,7 @@ public final class DefaultCssValidatorTest {
     /**
      * DefaultCssValidator throw IOException when W3C server error occurred.
      * @throws Exception If something goes wrong inside
-     * @todo #10:30min DefaultCssValidator have to be updated to throw only
-     *  IOException when W3C validation server is unavailable. Any other
-     *  exception type can be confusing for users. Remove @Ignore annotation
-     *  after finishing implementation.
      */
-    @Ignore
     @Test
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public void throwsIOExceptionWhenValidationServerErrorOccurred()
@@ -117,9 +111,12 @@ public final class DefaultCssValidatorTest {
             MkContainer container = null;
             try {
                 container = new MkGrizzlyContainer().next(
-                    new MkAnswer.Simple(status)
+                    new MkAnswer.Simple(
+                        status,
+                        "<env:Envelope />"
+                    )
                 ).start();
-                new DefaultHtmlValidator(container.home()).validate("body { }");
+                new DefaultCssValidator(container.home()).validate("body { }");
             } catch (final IOException ex) {
                 caught.add(status);
             } finally {
