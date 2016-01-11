@@ -69,8 +69,8 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
     }
 
     // @todo #20:30min introduce a test case to test the success path when
-    // has the pattern below and another one to test the processed path at
-    // this method
+    //  has the pattern below and another one to test the processed path at
+    //  this method
     @Override
     public ValidationResponse validate(final String css)
         throws IOException {
