@@ -74,7 +74,7 @@ public final class DefaultCssValidatorTest {
     public void ignoresEntireDocument() throws Exception {
         final Validator validator = ValidatorBuilder.CSS;
         final ValidationResponse response = validator.validate(
-            getDocumentWithIgnore()
+            documentWithIgnore()
         );
         MatcherAssert.assertThat(response.toString(), response.valid());
     }
@@ -155,7 +155,7 @@ public final class DefaultCssValidatorTest {
             container.start();
             final ValidationResponse response =
                 new DefaultCssValidator(container.home())
-                    .validate(getDocumentWithIgnore());
+                    .validate(documentWithIgnore());
             MatcherAssert.assertThat(response.toString(), response.valid());
             MatcherAssert.assertThat(container.queries(),Matchers.is(0));
         } finally {
@@ -163,7 +163,7 @@ public final class DefaultCssValidatorTest {
         }
     }
 
-    private String getDocumentWithIgnore() {
+    private String documentWithIgnore() {
         // @checkstyle RegexpSingleline (1 line)
         return "/* hey */\n\n/* JIGSAW IGNORE: .. */\n\n* { abc: cde }\n";
     }
