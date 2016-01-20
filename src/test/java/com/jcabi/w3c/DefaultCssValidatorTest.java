@@ -165,7 +165,7 @@ public final class DefaultCssValidatorTest {
 
     /**
      * Build a response with JIGSAW IGNORE.
-     * @return document with JIGSAW IGNORE.
+     * @return Document with JIGSAW IGNORE.
      */
     private String documentWithIgnore() {
         // @checkstyle RegexpSingleline (1 line)
