@@ -57,7 +57,7 @@ public final class DefaultCssValidatorTest {
     public void validatesCssDocument() throws Exception {
         final MkContainer container = new MkGrizzlyContainer().next(
             new MkAnswer.Simple(
-                validResponce()
+                this.validResponce()
             )
         ).start();
         final Validator validator = new DefaultCssValidator(container.home());
@@ -74,7 +74,7 @@ public final class DefaultCssValidatorTest {
     public void ignoresEntireDocument() throws Exception {
         final Validator validator = ValidatorBuilder.CSS;
         final ValidationResponse response = validator.validate(
-            documentWithIgnore()
+            this.documentWithIgnore()
         );
         MatcherAssert.assertThat(response.toString(), response.valid());
     }
@@ -130,14 +130,15 @@ public final class DefaultCssValidatorTest {
     @Test
     public void callsServerWhenPatternNotMatched() throws Exception {
         final MkContainer container = new MkGrizzlyContainer().next(
-            new MkAnswer.Simple(HttpURLConnection.HTTP_OK, validResponce())
+            new MkAnswer.Simple(
+                HttpURLConnection.HTTP_OK, this.validResponce()
+            )
         );
         try {
             container.start();
             final ValidationResponse response =
-                new DefaultCssValidator(container.home()).validate("body { }");
-            MatcherAssert.assertThat(response.toString(), response.valid());
-            MatcherAssert.assertThat(container.queries(),Matchers.is(1));
+                new DefaultCssValidator(container.home()).validate("html { }");
+            MatcherAssert.assertThat(container.queries(), Matchers.is(1));
         } finally {
             container.stop();
         }
@@ -155,19 +156,26 @@ public final class DefaultCssValidatorTest {
             container.start();
             final ValidationResponse response =
                 new DefaultCssValidator(container.home())
-                    .validate(documentWithIgnore());
-            MatcherAssert.assertThat(response.toString(), response.valid());
-            MatcherAssert.assertThat(container.queries(),Matchers.is(0));
+                    .validate(this.documentWithIgnore());
+            MatcherAssert.assertThat(container.queries(), Matchers.is(0));
         } finally {
             container.stop();
         }
     }
 
+    /**
+     * Build a response with JIGSAW IGNORE.
+     * @return document with JIGSAW IGNORE.
+     */
     private String documentWithIgnore() {
         // @checkstyle RegexpSingleline (1 line)
         return "/* hey */\n\n/* JIGSAW IGNORE: .. */\n\n* { abc: cde }\n";
     }
 
+    /**
+     * Build a response with valid result from W3C.
+     * @return Response from W3C.
+     */
     private String validResponce() {
         return StringUtils.join(
             "<env:Envelope",
