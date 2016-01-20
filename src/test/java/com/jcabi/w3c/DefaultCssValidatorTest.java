@@ -57,7 +57,7 @@ public final class DefaultCssValidatorTest {
     public void validatesCssDocument() throws Exception {
         final MkContainer container = new MkGrizzlyContainer().next(
             new MkAnswer.Simple(
-                this.validResponce()
+                this.validResponse()
             )
         ).start();
         final Validator validator = new DefaultCssValidator(container.home());
@@ -131,7 +131,7 @@ public final class DefaultCssValidatorTest {
     public void callsServerWhenPatternNotMatched() throws Exception {
         final MkContainer container = new MkGrizzlyContainer().next(
             new MkAnswer.Simple(
-                HttpURLConnection.HTTP_OK, this.validResponce()
+                HttpURLConnection.HTTP_OK, this.validResponse()
             )
         );
         try {
@@ -174,7 +174,7 @@ public final class DefaultCssValidatorTest {
      * Build a response with valid result from W3C.
      * @return Response from W3C.
      */
-    private String validResponce() {
+    private String validResponse() {
         return StringUtils.join(
             "<env:Envelope",
             " xmlns:env='http://www.w3.org/2003/05/soap-envelope'>",
