@@ -136,8 +136,7 @@ public final class DefaultCssValidatorTest {
         );
         try {
             container.start();
-            final ValidationResponse response =
-                new DefaultCssValidator(container.home()).validate("html { }");
+            new DefaultCssValidator(container.home()).validate("html { }");
             MatcherAssert.assertThat(container.queries(), Matchers.is(1));
         } finally {
             container.stop();
@@ -154,9 +153,8 @@ public final class DefaultCssValidatorTest {
         final MkContainer container = new MkGrizzlyContainer();
         try {
             container.start();
-            final ValidationResponse response =
-                new DefaultCssValidator(container.home())
-                    .validate(this.documentWithIgnore());
+            new DefaultCssValidator(container.home())
+                .validate(this.documentWithIgnore());
             MatcherAssert.assertThat(container.queries(), Matchers.is(0));
         } finally {
             container.stop();
