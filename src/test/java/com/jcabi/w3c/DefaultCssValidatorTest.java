@@ -57,15 +57,7 @@ public final class DefaultCssValidatorTest {
     public void validatesCssDocument() throws Exception {
         final MkContainer container = new MkGrizzlyContainer().next(
             new MkAnswer.Simple(
-                StringUtils.join(
-                    "<env:Envelope",
-                    " xmlns:env='http://www.w3.org/2003/05/soap-envelope'>",
-                    "<env:Body><m:cssvalidationresponse",
-                    " xmlns:m='http://www.w3.org/2005/07/css-validator'>",
-                    "<m:validity>true</m:validity>",
-                    "<m:checkedby>W3C</m:checkedby>",
-                    "</m:cssvalidationresponse></env:Body></env:Envelope>"
-                )
+                this.validResponse()
             )
         ).start();
         final Validator validator = new DefaultCssValidator(container.home());
@@ -82,8 +74,7 @@ public final class DefaultCssValidatorTest {
     public void ignoresEntireDocument() throws Exception {
         final Validator validator = ValidatorBuilder.CSS;
         final ValidationResponse response = validator.validate(
-            // @checkstyle RegexpSingleline (1 line)
-            "/* hey */\n\n/* JIGSAW IGNORE: .. */\n\n* { abc: cde }\n"
+            this.documentWithIgnore()
         );
         MatcherAssert.assertThat(response.toString(), response.valid());
     }
@@ -131,4 +122,67 @@ public final class DefaultCssValidatorTest {
         );
     }
 
+    /**
+     * DefaultCssValidator will call server when JIGSAW IGNORE pattern is not
+     * matched.
+     * @throws Exception If fails
+     */
+    @Test
+    public void callsServerWhenPatternNotMatched() throws Exception {
+        final MkContainer container = new MkGrizzlyContainer().next(
+            new MkAnswer.Simple(
+                HttpURLConnection.HTTP_OK, this.validResponse()
+            )
+        );
+        try {
+            container.start();
+            new DefaultCssValidator(container.home()).validate("html { }");
+            MatcherAssert.assertThat(container.queries(), Matchers.is(1));
+        } finally {
+            container.stop();
+        }
+    }
+
+    /**
+     * DefaultCssValidator will immediately reply when JIGSAW IGNORE pattern is
+     * matched.
+     * @throws Exception If fails
+     */
+    @Test
+    public void replyWhenPatternMatched() throws Exception {
+        final MkContainer container = new MkGrizzlyContainer();
+        try {
+            container.start();
+            new DefaultCssValidator(container.home())
+                .validate(this.documentWithIgnore());
+            MatcherAssert.assertThat(container.queries(), Matchers.is(0));
+        } finally {
+            container.stop();
+        }
+    }
+
+    /**
+     * Build a response with JIGSAW IGNORE.
+     * @return Document with JIGSAW IGNORE.
+     */
+    private String documentWithIgnore() {
+        // @checkstyle RegexpSingleline (1 line)
+        return "/* hey */\n\n/* JIGSAW IGNORE: .. */\n\n* { abc: cde }\n";
+    }
+
+    /**
+     * Build a response with valid result from W3C.
+     * @return Response from W3C.
+     */
+    private String validResponse() {
+        return StringUtils.join(
+            "<env:Envelope",
+            " xmlns:env='http://www.w3.org/2003/05/soap-envelope'>",
+            "<env:Body><m:cssvalidationresponse",
+            " xmlns:m='http://www.w3.org/2005/07/css-validator'>",
+            "<m:validity>true</m:validity>",
+            "<m:checkedby>W3C</m:checkedby>",
+            "</m:cssvalidationresponse></env:Body></env:Envelope>"
+        );
+    }
 }
