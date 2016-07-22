@@ -56,7 +56,7 @@ public final class DefaultHtmlValidatorITCase {
             ValidatorBuilder.HTML.validate(
                 StringUtils.join(
                     "<!DOCTYPE html>",
-                    "<html><head><meta charset='UTF-8'/>",
+                    "<html><head><meta charset='UTF-8'>",
                     "<title>hey</title></head>",
                     "<body></body></html>"
                 )

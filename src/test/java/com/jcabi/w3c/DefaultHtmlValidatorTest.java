@@ -51,6 +51,14 @@ import org.junit.Test;
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @todo #1:30min Invalid html response test file need to be fixed.
+ * File invalid-html-response.xml-without-schema contains valid content
+ * but there is no XSD schema file for it according to
+ * https://github.com/validator/validator/issues/322.
+ * Files with .xml extension are automatically validated by qulice
+ * so after extension changing it will broke the build.
+ * Need to write own XSD schema for it base on documentation
+ * or turn off checking this file.
  */
 public final class DefaultHtmlValidatorTest {
 
@@ -153,15 +161,10 @@ public final class DefaultHtmlValidatorTest {
      */
     private String validReturn() {
         return StringUtils.join(
-            "<env:Envelope",
-            " xmlns:env='http://www.w3.org/2003/05/soap-envelope'>",
-            "<env:Body><m:markupvalidationresponse",
-            " xmlns:m='http://www.w3.org/2005/10/markup-validator'>",
-            "<m:validity>true</m:validity>",
-            "<m:checkedby>W3C</m:checkedby>",
-            "<m:doctype>text/html</m:doctype>",
-            "<m:charset>UTF-8</m:charset>",
-            "</m:markupvalidationresponse></env:Body></env:Envelope>"
+            "<?xml version='1.0' encoding='utf-8' standalone='no'?>",
+            "<messages xmlns='http://n.validator.nu/messages/'>",
+            "<source encoding='UTF-8' type='text/html'>&lt;html/&gt;</source>",
+            "</messages>"
         );
     }
 
@@ -172,7 +175,7 @@ public final class DefaultHtmlValidatorTest {
      */
     private String invalidHtmlResponse() throws IOException {
         final InputStream file = DefaultHtmlValidator.class.getResourceAsStream(
-            "invalid-html-response.xml"
+            "invalid-html-response.xml-without-schema"
         );
         final String xml = IOUtils.toString(file);
         IOUtils.closeQuietly(file);

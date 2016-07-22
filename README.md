@@ -14,7 +14,7 @@ More details are here: [w3c.jcabi.com](http://w3c.jcabi.com/index.html).
 Also, read this blog post: [W3C Java Validators](http://www.yegor256.com/2014/04/29/w3c-java-validators.html).
 
 The library contains a few Java adapters to
-[W3C online validators](http://validator.w3.org/):
+[W3C online validators](http://validator.w3.org/nu/):
 
 ```java
 import com.jcabi.w3c.HtmlValidator;

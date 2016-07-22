@@ -33,10 +33,11 @@ import com.jcabi.aspects.Immutable;
 import com.jcabi.http.Request;
 import com.jcabi.http.Response;
 import com.jcabi.http.response.XmlResponse;
+import com.jcabi.xml.XML;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URI;
-import javax.ws.rs.core.MediaType;
+import java.util.List;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
@@ -71,7 +72,7 @@ final class DefaultHtmlValidator extends BaseValidator implements Validator {
         throws IOException {
         final Request req = this.request(
             this.uri,
-            this.entity("uploaded_file", html, MediaType.TEXT_HTML)
+            html
         );
         final Response response = req.fetch();
         if (response.status() != HttpURLConnection.HTTP_OK) {
@@ -81,14 +82,51 @@ final class DefaultHtmlValidator extends BaseValidator implements Validator {
         }
         return this.build(
             response.as(XmlResponse.class)
-                .registerNs("env", "http://www.w3.org/2003/05/soap-envelope")
-                .registerNs("m", "http://www.w3.org/2005/10/markup-validator")
-                .assertXPath("//m:validity")
-                .assertXPath("//m:checkedby")
-                .assertXPath("//m:doctype")
-                .assertXPath("//m:charset")
+                .registerNs("nu", "http://n.validator.nu/messages/")
+                .assertXPath("//nu:messages")
+                .assertXPath("//nu:source")
                 .xml()
         );
     }
 
+    /**
+     * Build response from XML.
+     * @param xml The response
+     * @return The validation response just built
+     */
+    private ValidationResponse build(final XML xml) {
+        final List<XML> errors = xml.nodes("//nu:error");
+        final List<XML> warnings = xml.nodes("//nu:info");
+        final DefaultValidationResponse resp = new DefaultValidationResponse(
+            errors.isEmpty() && warnings.isEmpty(),
+            URI.create(this.uri),
+            BaseValidator.textOf(xml.xpath("//nu:source/@type")),
+            BaseValidator.charset(
+                BaseValidator.textOf(xml.xpath("//nu:source/@encoding"))
+            )
+        );
+        for (final XML node : errors) {
+            resp.addError(this.defect(node));
+        }
+        for (final XML node : warnings) {
+            resp.addWarning(this.defect(node));
+        }
+        return resp;
+    }
+
+    /**
+     * Convert XML node to defect.
+     * @param node The node
+     * @return The defect
+     */
+    private Defect defect(final XML node) {
+        return new Defect(
+            BaseValidator.intOf(node.xpath("nu:error/@last-line")),
+            BaseValidator.intOf(node.xpath("nu:error/@last-column")),
+            BaseValidator.textOf(node.xpath("nu:extract/text()")),
+            BaseValidator.textOf(node.xpath("nu:elaboration/text()")),
+            "",
+            BaseValidator.textOf(node.xpath("nu:message/text()"))
+        );
+    }
 }

@@ -69,7 +69,7 @@ public final class ValidatorBuilder {
      */
     @SuppressWarnings("PMD.AvoidFieldNameMatchingMethodName")
     public static final Validator HTML = new DefaultHtmlValidator(
-        URI.create("http://validator.w3.org/check")
+        URI.create("http://validator.w3.org/nu/?out=xml&showsource=yes")
     );
 
     /**

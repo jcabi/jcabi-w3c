@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<messages xmlns="http://n.validator.nu/messages/">
+    <info first-column="1" last-column="22" last-line="1">
+        <message>Non-space characters found without seeing a doctype first. Expected e.g. <code xmlns="http://www.w3.org/1999/xhtml">&lt;!DOCTYPE html&gt;</code>.</message>
+        <extract>
+            <m>this is an invalid htm</m>l</extract>
+    </info>
+    <error first-column="1" last-column="22" last-line="1">
+        <message>Element <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#the-head-element">
+            <code>head</code>
+        </a> is missing a required instance of child element <code xmlns="http://www.w3.org/1999/xhtml">title</code>.</message>
+        <extract>
+            <m>this is an invalid htm</m>l</extract>
+        <elaboration>
+            <dl xmlns="http://www.w3.org/1999/xhtml">
+                <dt>Content model for element <a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#the-head-element">
+                    <code>head</code>
+                </a>:</dt>
+                <dd> If the document is <a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#iframe-iframe-srcdoc-document">an <code>iframe</code> <code>srcdoc</code> document</a> or if title
+                    information is available from a higher-level protocol: Zero or more elements of <a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#metadata-content">metadata content</a>, of which no more than one is a <a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#elementdef-title">
+                        <code>title</code>
+                    </a> element and no more
+                    than one is a <code>
+                        <a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#elementdef-base">base</a>
+                    </code> element.
+                </dd>
+                <dd> Otherwise: One or more elements of <a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#metadata-content">metadata content</a>, of which exactly one is a <a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#elementdef-title">
+                    <code>title</code>
+                </a> element and no more than one is a <code>
+                    <a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#elementdef-base">base</a>
+                </code> element.
+                </dd>
+            </dl>
+        </elaboration>
+    </error>
+    <source encoding="UTF-8" type="text/html">this is an invalid html</source>
+</messages>

@@ -42,11 +42,11 @@ W3C Java Validators
 
    * {{{./html-validator.html}<<<HtmlValidator>>>}} -
      validates HTML against
-     {{{http://validator.w3.org/}W3C Markup Validation Service}}.
+     {{{http://validator.w3.org/nu/}W3C Markup Validation Service}}.
 
    * {{{./html-validator-local-instance.html}<<<HtmlValidator (local)>>>}} -
      validates HTML against a local instance of
-     {{{http://validator.w3.org/}W3C Markup Validation Service}}
+     {{{http://validator.w3.org/nu/}W3C Markup Validation Service}}
      installed in your server.
 
    * {{{./css-validator.html}<<<CssValidator>>>}} -

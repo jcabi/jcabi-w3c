@@ -39,7 +39,7 @@
 W3C HTML Java Validator (Local)
 
   Validate your HTML against a local instance of
-  {{{http://validator.w3.org/}W3C Markup Validation Service}}
+  {{{http://validator.w3.org/nu/}W3C Markup Validation Service}}
   installed in your server as describes the following
   {{{https://raymii.org/s/tutorials/Local_W3C_HTML5_Validator_Server.html}tutorial}}.
 

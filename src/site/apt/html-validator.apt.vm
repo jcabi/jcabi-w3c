@@ -39,7 +39,7 @@
 W3C HTML Java Validator
 
   Validate your HTML against
-  {{{http://validator.w3.org/}W3C Markup Validation Service}}
+  {{{http://validator.w3.org/nu/}W3C Markup Validation Service}}
   with this code.
 
 +--

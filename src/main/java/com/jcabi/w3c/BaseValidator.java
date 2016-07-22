@@ -33,7 +33,6 @@ import com.jcabi.http.Request;
 import com.jcabi.http.request.JdkRequest;
 import com.jcabi.log.Logger;
 import com.jcabi.manifests.Manifests;
-import com.jcabi.xml.XML;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URI;
@@ -41,7 +40,6 @@ import java.nio.charset.Charset;
 import java.util.List;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.UriBuilder;
 import lombok.ToString;
 import org.apache.commons.io.Charsets;
 import org.apache.commons.lang3.CharEncoding;
@@ -83,13 +81,13 @@ class BaseValidator {
             .method(Request.POST)
             .body().set(entity).back()
             .header(HttpHeaders.USER_AGENT, BaseValidator.USER_AGENT)
-            .header(HttpHeaders.ACCEPT, "application/soap+xml")
+            .header(HttpHeaders.ACCEPT, MediaType.TEXT_HTML)
             .header(
                 HttpHeaders.CONTENT_TYPE,
                 Logger.format(
-                    "%s; boundary=%s",
-                    MediaType.MULTIPART_FORM_DATA,
-                    BaseValidator.BOUNDARY
+                    "%s; charset=%s",
+                    MediaType.TEXT_HTML,
+                    CharEncoding.UTF_8
                 )
             );
     }
@@ -119,33 +117,6 @@ class BaseValidator {
             .build()
             .writeTo(baos);
         return baos.toString(CharEncoding.UTF_8);
-    }
-
-    /**
-     * Build response from XML.
-     * @param soap The response
-     * @return The validation response just built
-     */
-    protected final ValidationResponse build(final XML soap) {
-        final DefaultValidationResponse resp = new DefaultValidationResponse(
-            "true".equals(
-                BaseValidator.textOf(soap.xpath("//m:validity/text()"))
-            ),
-            UriBuilder.fromUri(
-                BaseValidator.textOf(soap.xpath("//m:checkedby/text()"))
-            ).build(),
-            BaseValidator.textOf(soap.xpath("//m:doctype/text()")),
-            BaseValidator.charset(
-                BaseValidator.textOf(soap.xpath("//m:charset/text()"))
-            )
-        );
-        for (final XML node : soap.nodes("//m:error")) {
-            resp.addError(this.defect(node));
-        }
-        for (final XML node : soap.nodes("//m:warning")) {
-            resp.addWarning(this.defect(node));
-        }
-        return resp;
     }
 
     /**
@@ -193,22 +164,6 @@ class BaseValidator {
     }
 
     /**
-     * Convert SOAP node to defect.
-     * @param node The node
-     * @return The defect
-     */
-    private Defect defect(final XML node) {
-        return new Defect(
-            BaseValidator.intOf(node.xpath("m:line/text()")),
-            BaseValidator.intOf(node.xpath("m:col/text()")),
-            BaseValidator.textOf(node.xpath("m:source/text()")),
-            BaseValidator.textOf(node.xpath("m:explanation/text()")),
-            BaseValidator.textOf(node.xpath("m:messageid/text()")),
-            BaseValidator.textOf(node.xpath("m:message/text()"))
-        );
-    }
-
-    /**
      * Get text from list of strings, returned by
      * {@link XML#xpath(String)}.
      *
@@ -224,7 +179,7 @@ class BaseValidator {
      * @return The value
      * @see #intOf(List)
      */
-    private static String textOf(final List<String> lines) {
+    protected static String textOf(final List<String> lines) {
         final String text;
         if (lines.isEmpty()) {
             text = "";
@@ -243,7 +198,7 @@ class BaseValidator {
      * @return The value
      * @see #textOf(List)
      */
-    private static int intOf(final List<String> lines) {
+    protected static int intOf(final List<String> lines) {
         final int value;
         if (lines.isEmpty()) {
             value = 0;
@@ -258,7 +213,7 @@ class BaseValidator {
      * @param text Text representation of charset
      * @return The charset
      */
-    private static Charset charset(final String text) {
+    protected static Charset charset(final String text) {
         final Charset charset;
         if (text.isEmpty()) {
             charset = Charset.defaultCharset();

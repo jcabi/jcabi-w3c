@@ -33,12 +33,14 @@ import com.jcabi.aspects.Immutable;
 import com.jcabi.http.Request;
 import com.jcabi.http.Response;
 import com.jcabi.http.response.XmlResponse;
+import com.jcabi.xml.XML;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
+import javax.ws.rs.core.UriBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
@@ -107,6 +109,49 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
                 .assertXPath("//m:validity")
                 .assertXPath("//m:checkedby")
                 .xml()
+        );
+    }
+
+    /**
+     * Build response from XML.
+     * @param soap The response
+     * @return The validation response just built
+     */
+    private ValidationResponse build(final XML soap) {
+        final DefaultValidationResponse resp = new DefaultValidationResponse(
+            "true".equals(
+                BaseValidator.textOf(soap.xpath("//m:validity/text()"))
+            ),
+            UriBuilder.fromUri(
+                BaseValidator.textOf(soap.xpath("//m:checkedby/text()"))
+            ).build(),
+            BaseValidator.textOf(soap.xpath("//m:doctype/text()")),
+            BaseValidator.charset(
+                BaseValidator.textOf(soap.xpath("//m:charset/text()"))
+            )
+        );
+        for (final XML node : soap.nodes("//m:error")) {
+            resp.addError(this.defect(node));
+        }
+        for (final XML node : soap.nodes("//m:warning")) {
+            resp.addWarning(this.defect(node));
+        }
+        return resp;
+    }
+
+    /**
+     * Convert SOAP node to defect.
+     * @param node The node
+     * @return The defect
+     */
+    private Defect defect(final XML node) {
+        return new Defect(
+            BaseValidator.intOf(node.xpath("m:line/text()")),
+            BaseValidator.intOf(node.xpath("m:col/text()")),
+            BaseValidator.textOf(node.xpath("m:source/text()")),
+            BaseValidator.textOf(node.xpath("m:explanation/text()")),
+            BaseValidator.textOf(node.xpath("m:messageid/text()")),
+            BaseValidator.textOf(node.xpath("m:message/text()"))
         );
     }
 
