@@ -148,6 +148,16 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.qulice</groupId>
+                <artifactId>qulice-maven-plugin</artifactId>
+                <version>0.10</version>
+                <configuration>
+                    <excludes>
+                        <exclude>xml:/src/test/resources/com/jcabi/w3c/invalid-html-response.xml</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
