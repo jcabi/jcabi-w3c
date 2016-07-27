@@ -32,7 +32,9 @@ package com.jcabi.w3c;
 import com.jcabi.aspects.Immutable;
 import com.jcabi.http.Request;
 import com.jcabi.http.Response;
+import com.jcabi.http.request.JdkRequest;
 import com.jcabi.http.response.XmlResponse;
+import com.jcabi.log.Logger;
 import com.jcabi.xml.XML;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -40,6 +42,8 @@ import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriBuilder;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -98,7 +102,6 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
      */
     private ValidationResponse processed(final String css) throws IOException {
         final Request req = this.request(
-            this.uri,
             this.entity("file", DefaultCssValidator.filter(css), "text/css")
         );
         final Response response = this.correct(req.fetch());
@@ -110,6 +113,27 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
                 .assertXPath("//m:checkedby")
                 .xml()
         );
+    }
+
+    /**
+     * Send request and return response.
+     * @param entity The entity to POST
+     * @return The response
+     */
+    private Request request(final String entity) {
+        return new JdkRequest(this.uri)
+            .method(Request.POST)
+            .body().set(entity).back()
+            .header(HttpHeaders.USER_AGENT, BaseValidator.USER_AGENT)
+            .header(HttpHeaders.ACCEPT, "application/soap+xml")
+            .header(
+                HttpHeaders.CONTENT_TYPE,
+                Logger.format(
+                    "%s; boundary=%s",
+                    MediaType.MULTIPART_FORM_DATA,
+                    BaseValidator.BOUNDARY
+                )
+            );
     }
 
     /**

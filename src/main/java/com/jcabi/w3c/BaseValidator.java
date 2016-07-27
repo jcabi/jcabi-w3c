@@ -29,8 +29,6 @@
  */
 package com.jcabi.w3c;
 
-import com.jcabi.http.Request;
-import com.jcabi.http.request.JdkRequest;
 import com.jcabi.log.Logger;
 import com.jcabi.manifests.Manifests;
 import java.io.ByteArrayOutputStream;
@@ -38,8 +36,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.nio.charset.Charset;
 import java.util.List;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.MediaType;
 import lombok.ToString;
 import org.apache.commons.io.Charsets;
 import org.apache.commons.lang3.CharEncoding;
@@ -69,28 +65,6 @@ class BaseValidator {
      * Boundary for HTTP POST form data (just some random data).
      */
     protected static final String BOUNDARY = "vV9olNqRj00PC4OIlM7";
-
-    /**
-     * Send request and return response.
-     * @param uri The URI to fetch
-     * @param entity The entity to POST
-     * @return The response
-     */
-    protected final Request request(final String uri, final String entity) {
-        return new JdkRequest(uri)
-            .method(Request.POST)
-            .body().set(entity).back()
-            .header(HttpHeaders.USER_AGENT, BaseValidator.USER_AGENT)
-            .header(HttpHeaders.ACCEPT, MediaType.TEXT_HTML)
-            .header(
-                HttpHeaders.CONTENT_TYPE,
-                Logger.format(
-                    "%s; charset=%s",
-                    MediaType.TEXT_HTML,
-                    CharEncoding.UTF_8
-                )
-            );
-    }
 
     /**
      * Convert HTML to HTTP FORM entity.

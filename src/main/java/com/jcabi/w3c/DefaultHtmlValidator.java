@@ -32,14 +32,19 @@ package com.jcabi.w3c;
 import com.jcabi.aspects.Immutable;
 import com.jcabi.http.Request;
 import com.jcabi.http.Response;
+import com.jcabi.http.request.JdkRequest;
 import com.jcabi.http.response.XmlResponse;
+import com.jcabi.log.Logger;
 import com.jcabi.xml.XML;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.util.List;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.MediaType;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.apache.commons.lang3.CharEncoding;
 
 /**
  * Implementation of (X)HTML validator.
@@ -70,10 +75,7 @@ final class DefaultHtmlValidator extends BaseValidator implements Validator {
     @Override
     public ValidationResponse validate(final String html)
         throws IOException {
-        final Request req = this.request(
-            this.uri,
-            html
-        );
+        final Request req = this.request(html);
         final Response response = req.fetch();
         if (response.status() != HttpURLConnection.HTTP_OK) {
             throw new IOException(
@@ -87,6 +89,27 @@ final class DefaultHtmlValidator extends BaseValidator implements Validator {
                 .assertXPath("//nu:source")
                 .xml()
         );
+    }
+
+    /**
+     * Send request and return response.
+     * @param entity The entity to POST
+     * @return The response
+     */
+    private Request request(final String entity) {
+        return new JdkRequest(this.uri)
+            .method(Request.POST)
+            .body().set(entity).back()
+            .header(HttpHeaders.USER_AGENT, BaseValidator.USER_AGENT)
+            .header(HttpHeaders.ACCEPT, MediaType.TEXT_HTML)
+            .header(
+                HttpHeaders.CONTENT_TYPE,
+                Logger.format(
+                    "%s; charset=%s",
+                    MediaType.TEXT_HTML,
+                    CharEncoding.UTF_8
+                )
+            );
     }
 
     /**

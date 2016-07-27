@@ -32,7 +32,6 @@ package com.jcabi.w3c;
 import com.jcabi.aspects.RetryOnFailure;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -40,10 +39,6 @@ import org.junit.Test;
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @since 0.8
- * @todo #1:30min Fix validatesCssDocument test and remove @Ignore annotation.
- *  The test continuously fails because CSS validation server
- *  returns Internal Server Error.
- *  Need to check why (maybe url is broken) and fix it.
  */
 public final class DefaultCssValidatorITCase {
 
@@ -51,7 +46,6 @@ public final class DefaultCssValidatorITCase {
      * DefaultCssValidator can validate CSS document.
      * @throws Exception If something goes wrong inside
      */
-    @Ignore
     @Test
     @RetryOnFailure(verbose = false)
     public void validatesCssDocument() throws Exception {
