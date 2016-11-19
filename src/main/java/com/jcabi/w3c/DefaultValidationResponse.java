@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, jcabi.com
+ * Copyright (c) 2011-2016, jcabi.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,6 +42,7 @@ import lombok.EqualsAndHashCode;
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 0.1
  */
 @EqualsAndHashCode(
     of = { "ivalid", "validator", "type", "encoding", "ierrors", "iwarnings" }
@@ -71,14 +72,12 @@ final class DefaultValidationResponse implements ValidationResponse {
     /**
      * Set of errors found.
      */
-    private final transient Set<Defect> ierrors =
-        new CopyOnWriteArraySet<Defect>();
+    private final transient Set<Defect> ierrors;
 
     /**
      * Set of warnings found.
      */
-    private final transient Set<Defect> iwarnings =
-        new CopyOnWriteArraySet<Defect>();
+    private final transient Set<Defect> iwarnings;
 
     /**
      * Public ctor.
@@ -95,6 +94,8 @@ final class DefaultValidationResponse implements ValidationResponse {
         this.validator = server;
         this.type = tpe;
         this.encoding = enc;
+        this.ierrors = new CopyOnWriteArraySet<>();
+        this.iwarnings = new CopyOnWriteArraySet<>();
     }
 
     @Override
@@ -104,8 +105,10 @@ final class DefaultValidationResponse implements ValidationResponse {
             .append(Logger.format("Validator: \"%s\"\n", this.validator))
             .append(Logger.format("DOCTYPE: \"%s\"\n", this.type))
             .append(Logger.format("Charset: \"%s\"\n", this.encoding))
-            .append("Errors:\n").append(this.asText(this.ierrors))
-            .append("Warnings:\n").append(this.asText(this.iwarnings))
+            .append("Errors:\n")
+            .append(DefaultValidationResponse.asText(this.ierrors))
+            .append("Warnings:\n")
+            .append(DefaultValidationResponse.asText(this.iwarnings))
             .toString();
     }
 
@@ -160,7 +163,7 @@ final class DefaultValidationResponse implements ValidationResponse {
      * @param defects Set of them
      * @return The text
      */
-    private String asText(final Set<Defect> defects) {
+    private static String asText(final Set<Defect> defects) {
         final StringBuilder text = new StringBuilder(0);
         for (final Defect defect : defects) {
             text.append("  ").append(defect.toString()).append('\n');

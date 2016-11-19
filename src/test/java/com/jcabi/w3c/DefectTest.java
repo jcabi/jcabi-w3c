@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, jcabi.com
+ * Copyright (c) 2011-2016, jcabi.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -37,6 +37,7 @@ import org.junit.Test;
  * Test case for {@link Defect}.
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 0.1
  */
 public final class DefectTest {
 

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, jcabi.com
+ * Copyright (c) 2011-2016, jcabi.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,6 +59,8 @@ import lombok.ToString;
  * @see ValidationResponse
  * @see Validator
  * @see <a href="http://validator.w3.org/docs/api.html">W3C API</a>
+ * @since 0.1
+ * @checkstyle NonStaticMethodCheck (500 lines)
  */
 @ToString
 @EqualsAndHashCode

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, jcabi.com
+ * Copyright (c) 2011-2016, jcabi.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,12 +39,12 @@ import com.jcabi.xml.XML;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URI;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import org.apache.commons.lang3.CharEncoding;
 
 /**
  * Implementation of (X)HTML validator.
@@ -52,11 +52,13 @@ import org.apache.commons.lang3.CharEncoding;
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @see <a href="http://validator.w3.org/docs/api.html">W3C API</a>
+ * @since 0.1
  */
 @Immutable
 @ToString
 @EqualsAndHashCode(callSuper = false, of = "uri")
-final class DefaultHtmlValidator extends BaseValidator implements Validator {
+final class DefaultHtmlValidator
+    extends AbstractBaseValidator implements Validator {
 
     /**
      * The URI to use in W3C.
@@ -100,14 +102,14 @@ final class DefaultHtmlValidator extends BaseValidator implements Validator {
         return new JdkRequest(this.uri)
             .method(Request.POST)
             .body().set(entity).back()
-            .header(HttpHeaders.USER_AGENT, BaseValidator.USER_AGENT)
+            .header(HttpHeaders.USER_AGENT, AbstractBaseValidator.USER_AGENT)
             .header(HttpHeaders.ACCEPT, MediaType.TEXT_HTML)
             .header(
                 HttpHeaders.CONTENT_TYPE,
                 Logger.format(
                     "%s; charset=%s",
                     MediaType.TEXT_HTML,
-                    CharEncoding.UTF_8
+                    StandardCharsets.UTF_8
                 )
             );
     }
@@ -123,16 +125,16 @@ final class DefaultHtmlValidator extends BaseValidator implements Validator {
         final DefaultValidationResponse resp = new DefaultValidationResponse(
             errors.isEmpty() && warnings.isEmpty(),
             URI.create(this.uri),
-            BaseValidator.textOf(xml.xpath("//nu:source/@type")),
-            BaseValidator.charset(
-                BaseValidator.textOf(xml.xpath("//nu:source/@encoding"))
+            AbstractBaseValidator.textOf(xml.xpath("//nu:source/@type")),
+            AbstractBaseValidator.charset(
+                AbstractBaseValidator.textOf(xml.xpath("//nu:source/@encoding"))
             )
         );
         for (final XML node : errors) {
-            resp.addError(this.defect(node));
+            resp.addError(DefaultHtmlValidator.defect(node));
         }
         for (final XML node : warnings) {
-            resp.addWarning(this.defect(node));
+            resp.addWarning(DefaultHtmlValidator.defect(node));
         }
         return resp;
     }
@@ -142,14 +144,14 @@ final class DefaultHtmlValidator extends BaseValidator implements Validator {
      * @param node The node
      * @return The defect
      */
-    private Defect defect(final XML node) {
+    private static Defect defect(final XML node) {
         return new Defect(
-            BaseValidator.intOf(node.xpath("nu:error/@last-line")),
-            BaseValidator.intOf(node.xpath("nu:error/@last-column")),
-            BaseValidator.textOf(node.xpath("nu:extract/text()")),
-            BaseValidator.textOf(node.xpath("nu:elaboration/text()")),
+            AbstractBaseValidator.intOf(node.xpath("nu:error/@last-line")),
+            AbstractBaseValidator.intOf(node.xpath("nu:error/@last-column")),
+            AbstractBaseValidator.textOf(node.xpath("nu:extract/text()")),
+            AbstractBaseValidator.textOf(node.xpath("nu:elaboration/text()")),
             "",
-            BaseValidator.textOf(node.xpath("nu:message/text()"))
+            AbstractBaseValidator.textOf(node.xpath("nu:message/text()"))
         );
     }
 }

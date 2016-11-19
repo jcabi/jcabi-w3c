@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, jcabi.com
+ * Copyright (c) 2011-2016, jcabi.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,11 +54,13 @@ import lombok.ToString;
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @see <a href="http://jigsaw.w3.org/css-validator/api.html">W3C API</a>
+ * @since 0.1
  */
 @Immutable
 @ToString
 @EqualsAndHashCode(callSuper = false, of = "uri")
-final class DefaultCssValidator extends BaseValidator implements Validator {
+final class DefaultCssValidator
+    extends AbstractBaseValidator implements Validator {
 
     /**
      * The URI to use in W3C.
@@ -84,7 +86,7 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
         );
         try {
             if (pattern.matcher(css).matches()) {
-                response = this.success("");
+                response = AbstractBaseValidator.success("");
             } else {
                 response = this.processed(css);
             }
@@ -102,10 +104,12 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
      */
     private ValidationResponse processed(final String css) throws IOException {
         final Request req = this.request(
-            this.entity("file", DefaultCssValidator.filter(css), "text/css")
+            AbstractBaseValidator.entity(
+                "file", DefaultCssValidator.filter(css), "text/css"
+            )
         );
-        final Response response = this.correct(req.fetch());
-        return this.build(
+        final Response response = DefaultCssValidator.correct(req.fetch());
+        return DefaultCssValidator.build(
             response.as(XmlResponse.class)
                 .registerNs("env", "http://www.w3.org/2003/05/soap-envelope")
                 .registerNs("m", "http://www.w3.org/2005/07/css-validator")
@@ -124,14 +128,14 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
         return new JdkRequest(this.uri)
             .method(Request.POST)
             .body().set(entity).back()
-            .header(HttpHeaders.USER_AGENT, BaseValidator.USER_AGENT)
+            .header(HttpHeaders.USER_AGENT, AbstractBaseValidator.USER_AGENT)
             .header(HttpHeaders.ACCEPT, "application/soap+xml")
             .header(
                 HttpHeaders.CONTENT_TYPE,
                 Logger.format(
                     "%s; boundary=%s",
                     MediaType.MULTIPART_FORM_DATA,
-                    BaseValidator.BOUNDARY
+                    AbstractBaseValidator.BOUNDARY
                 )
             );
     }
@@ -141,24 +145,24 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
      * @param soap The response
      * @return The validation response just built
      */
-    private ValidationResponse build(final XML soap) {
+    private static ValidationResponse build(final XML soap) {
         final DefaultValidationResponse resp = new DefaultValidationResponse(
             "true".equals(
-                BaseValidator.textOf(soap.xpath("//m:validity/text()"))
+                AbstractBaseValidator.textOf(soap.xpath("//m:validity/text()"))
             ),
             UriBuilder.fromUri(
-                BaseValidator.textOf(soap.xpath("//m:checkedby/text()"))
+                AbstractBaseValidator.textOf(soap.xpath("//m:checkedby/text()"))
             ).build(),
-            BaseValidator.textOf(soap.xpath("//m:doctype/text()")),
-            BaseValidator.charset(
-                BaseValidator.textOf(soap.xpath("//m:charset/text()"))
+            AbstractBaseValidator.textOf(soap.xpath("//m:doctype/text()")),
+            AbstractBaseValidator.charset(
+                AbstractBaseValidator.textOf(soap.xpath("//m:charset/text()"))
             )
         );
         for (final XML node : soap.nodes("//m:error")) {
-            resp.addError(this.defect(node));
+            resp.addError(DefaultCssValidator.defect(node));
         }
         for (final XML node : soap.nodes("//m:warning")) {
-            resp.addWarning(this.defect(node));
+            resp.addWarning(DefaultCssValidator.defect(node));
         }
         return resp;
     }
@@ -168,14 +172,14 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
      * @param node The node
      * @return The defect
      */
-    private Defect defect(final XML node) {
+    private static Defect defect(final XML node) {
         return new Defect(
-            BaseValidator.intOf(node.xpath("m:line/text()")),
-            BaseValidator.intOf(node.xpath("m:col/text()")),
-            BaseValidator.textOf(node.xpath("m:source/text()")),
-            BaseValidator.textOf(node.xpath("m:explanation/text()")),
-            BaseValidator.textOf(node.xpath("m:messageid/text()")),
-            BaseValidator.textOf(node.xpath("m:message/text()"))
+            AbstractBaseValidator.intOf(node.xpath("m:line/text()")),
+            AbstractBaseValidator.intOf(node.xpath("m:col/text()")),
+            AbstractBaseValidator.textOf(node.xpath("m:source/text()")),
+            AbstractBaseValidator.textOf(node.xpath("m:explanation/text()")),
+            AbstractBaseValidator.textOf(node.xpath("m:messageid/text()")),
+            AbstractBaseValidator.textOf(node.xpath("m:message/text()"))
         );
     }
 
@@ -185,7 +189,7 @@ final class DefaultCssValidator extends BaseValidator implements Validator {
      * @return Response passed as parameter.
      * @throws IOException when has some bad status.
      */
-    private Response correct(final Response response)
+    private static Response correct(final Response response)
         throws IOException {
         final List<Integer> statuses = Arrays.asList(
             HttpURLConnection.HTTP_INTERNAL_ERROR,

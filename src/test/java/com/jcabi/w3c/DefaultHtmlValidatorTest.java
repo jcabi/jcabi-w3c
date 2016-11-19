@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, jcabi.com
+ * Copyright (c) 2011-2016, jcabi.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -35,6 +35,7 @@ import com.jcabi.http.mock.MkGrizzlyContainer;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -51,6 +52,7 @@ import org.junit.Test;
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 0.1
  */
 public final class DefaultHtmlValidatorTest {
 
@@ -113,9 +115,9 @@ public final class DefaultHtmlValidatorTest {
      */
     @Test
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
-    public void throwsIOExceptionWhenValidationServerErrorOccurred()
+    public void throwsIoExceptionWhenValidationServerErrorOccurred()
         throws Exception {
-        final Set<Integer> responses = new HashSet<Integer>(
+        final Set<Integer> responses = new HashSet<>(
             Arrays.asList(
                 HttpURLConnection.HTTP_INTERNAL_ERROR,
                 HttpURLConnection.HTTP_NOT_IMPLEMENTED,
@@ -125,7 +127,7 @@ public final class DefaultHtmlValidatorTest {
                 HttpURLConnection.HTTP_VERSION
             )
         );
-        final Set<Integer> caught = new HashSet<Integer>();
+        final Set<Integer> caught = new HashSet<>();
         for (final Integer status : responses) {
             MkContainer container = null;
             try {
@@ -169,7 +171,7 @@ public final class DefaultHtmlValidatorTest {
         final InputStream file = DefaultHtmlValidator.class.getResourceAsStream(
             "invalid-html-response.xml"
         );
-        final String xml = IOUtils.toString(file);
+        final String xml = IOUtils.toString(file, StandardCharsets.UTF_8);
         IOUtils.closeQuietly(file);
         return xml;
     }

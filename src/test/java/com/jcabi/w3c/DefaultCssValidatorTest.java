@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, jcabi.com
+ * Copyright (c) 2011-2016, jcabi.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,6 +46,7 @@ import org.junit.Test;
  * Test case for {@link DefaultCssValidator}.
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 0.1
  */
 public final class DefaultCssValidatorTest {
 
@@ -85,9 +86,9 @@ public final class DefaultCssValidatorTest {
      */
     @Test
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
-    public void throwsIOExceptionWhenValidationServerErrorOccurred()
+    public void throwsIoExceptionWhenValidationServerErrorOccurred()
         throws Exception {
-        final Set<Integer> responses = new HashSet<Integer>(
+        final Set<Integer> responses = new HashSet<>(
             Arrays.asList(
                 HttpURLConnection.HTTP_INTERNAL_ERROR,
                 HttpURLConnection.HTTP_NOT_IMPLEMENTED,
@@ -97,7 +98,7 @@ public final class DefaultCssValidatorTest {
                 HttpURLConnection.HTTP_VERSION
             )
         );
-        final Set<Integer> caught = new HashSet<Integer>();
+        final Set<Integer> caught = new HashSet<>();
         for (final Integer status : responses) {
             MkContainer container = null;
             try {

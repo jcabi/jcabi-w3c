@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, jcabi.com
+ * Copyright (c) 2011-2016, jcabi.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,16 +29,14 @@
  */
 package com.jcabi.w3c;
 
-import com.jcabi.log.Logger;
 import com.jcabi.manifests.Manifests;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import lombok.ToString;
-import org.apache.commons.io.Charsets;
-import org.apache.commons.lang3.CharEncoding;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 
@@ -47,9 +45,11 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 0.1
  */
 @ToString
-class BaseValidator {
+@SuppressWarnings("PMD.AbstractClassWithoutAbstractMethod")
+abstract class AbstractBaseValidator {
 
     /**
      * User agent.
@@ -74,52 +74,23 @@ class BaseValidator {
      * @return The HTTP post body
      * @throws IOException if fails
      */
-    protected final String entity(final String name, final String content,
+    protected static String entity(final String name, final String content,
         final String type) throws IOException {
         final ByteArrayOutputStream baos = new ByteArrayOutputStream();
         MultipartEntityBuilder.create()
             .setStrictMode()
-            .setCharset(Charsets.UTF_8)
-            .setBoundary(BaseValidator.BOUNDARY)
+            .setCharset(StandardCharsets.UTF_8)
+            .setBoundary(AbstractBaseValidator.BOUNDARY)
             .addBinaryBody(
                 name,
-                content.getBytes(Charsets.UTF_8),
-                ContentType.create(type, Charsets.UTF_8),
+                content.getBytes(StandardCharsets.UTF_8),
+                ContentType.create(type, StandardCharsets.UTF_8),
                 "file"
             )
             .addTextBody("output", "soap12")
             .build()
             .writeTo(baos);
-        return baos.toString(CharEncoding.UTF_8);
-    }
-
-    /**
-     * Build response from error that just happened.
-     * @param error The exception
-     * @return The validation response just built
-     */
-    protected final ValidationResponse failure(final Throwable error) {
-        final DefaultValidationResponse resp = new DefaultValidationResponse(
-            false,
-            URI.create("http://localhost/failure"),
-            "unknown-doctype",
-            Charset.defaultCharset()
-        );
-        String message = error.getMessage();
-        if (message == null) {
-            message = "";
-        }
-        resp.addError(
-            new Defect(
-                0,
-                0,
-                "",
-                Logger.format("%[exception]s", error),
-                "",
-                message
-            )
-        );
-        return resp;
+        return baos.toString(StandardCharsets.UTF_8.toString());
     }
 
     /**
@@ -127,7 +98,7 @@ class BaseValidator {
      * @param type Media type of resource just processed
      * @return The validation response just built
      */
-    protected final ValidationResponse success(final String type) {
+    protected static ValidationResponse success(final String type) {
         final DefaultValidationResponse resp = new DefaultValidationResponse(
             true,
             URI.create("http://localhost/success"),

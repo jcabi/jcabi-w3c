@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, jcabi.com
+ * Copyright (c) 2011-2016, jcabi.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -70,6 +70,7 @@ import java.io.IOException;
  * @version $Id$
  * @see <a href="http://jigsaw.w3.org/css-validator/api.html">W3C API, CSS</a>
  * @see ValidatorBuilder
+ * @since 0.1
  */
 public interface Validator {
 
