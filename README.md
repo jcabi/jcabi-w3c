@@ -4,7 +4,7 @@
 [![DevOps By Rultor.com](http://www.rultor.com/b/jcabi/jcabi-w3c)](http://www.rultor.com/p/jcabi/jcabi-w3c)
 
 [![Build Status](https://travis-ci.org/jcabi/jcabi-w3c.svg?branch=master)](https://travis-ci.org/jcabi/jcabi-w3c)
-[![PDD status](http://www.0pdd.com/svg?name=jcabi/jcabi-w3c)](http://www.0pdd.com/p?name=teamed/jcabi/jcabi-w3c)
+[![PDD status](http://www.0pdd.com/svg?name=jcabi/jcabi-w3c)](http://www.0pdd.com/p?name=jcabi/jcabi-w3c)
 [![Build status](https://ci.appveyor.com/api/projects/status/nr4a6220d5e6awmc/branch/master?svg=true)](https://ci.appveyor.com/project/yegor256/jcabi-w3c/branch/master)
 [![Javadoc](https://javadoc-emblem.rhcloud.com/doc/com.jcabi/jcabi-w3c/badge.svg)](http://www.javadoc.io/doc/com.jcabi/jcabi-w3c)
 
