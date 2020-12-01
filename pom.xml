@@ -125,7 +125,7 @@
         <dependency>
             <groupId>com.sun.grizzly</groupId>
             <artifactId>grizzly-servlet-webserver</artifactId>
-            <version>1.9.59</version>
+            <version>1.9.65</version>
             <scope>test</scope>
         </dependency>
         <dependency>
