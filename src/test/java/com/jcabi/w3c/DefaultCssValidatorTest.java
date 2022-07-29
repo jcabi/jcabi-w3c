@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2017, jcabi.com
+/*
+ * Copyright (c) 2011-2022, jcabi.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -44,8 +44,6 @@ import org.junit.Test;
 
 /**
  * Test case for {@link DefaultCssValidator}.
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.1
  */
 public final class DefaultCssValidatorTest {
@@ -118,7 +116,7 @@ public final class DefaultCssValidatorTest {
         MatcherAssert.assertThat(
             caught,
             Matchers.containsInAnyOrder(
-                responses.toArray(new Integer[responses.size()])
+                responses.toArray(new Integer[0])
             )
         );
     }
@@ -167,8 +165,12 @@ public final class DefaultCssValidatorTest {
      * @return Document with JIGSAW IGNORE.
      */
     private String documentWithIgnore() {
-        // @checkstyle RegexpSingleline (1 line)
-        return "/* hey */\n\n/* JIGSAW IGNORE: .. */\n\n* { abc: cde }\n";
+        return String.join(
+            "",
+            "/",
+            "* hey */\n\n/",
+            "* JIGSAW IGNORE: .. */\n\n* { abc: cde }\n"
+        );
     }
 
     /**

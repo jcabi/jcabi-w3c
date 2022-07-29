@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2017, jcabi.com
+/*
+ * Copyright (c) 2011-2022, jcabi.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,8 +36,6 @@ import org.junit.Test;
 
 /**
  * Integration case for {@link DefaultCssValidator}.
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.8
  */
 public final class DefaultCssValidatorITCase {

@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2017, jcabi.com
+/*
+ * Copyright (c) 2011-2022, jcabi.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -37,8 +37,6 @@ import lombok.EqualsAndHashCode;
  *
  * <p>Objects of this class are immutable and thread-safe.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @see <a href="http://validator.w3.org/docs/api.html">W3C API</a>
  * @since 0.1
  * @checkstyle LineLength (2 lines)

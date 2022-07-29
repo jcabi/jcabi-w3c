@@ -1,37 +1,52 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--
+Copyright (c) 2011-2022, jcabi.com
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions
+are met: 1) Redistributions of source code must retain the above
+copyright notice, this list of conditions and the following
+disclaimer. 2) Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following
+disclaimer in the documentation and/or other materials provided
+with the distribution. 3) Neither the name of the jcabi.com nor
+the names of its contributors may be used to endorse or promote
+products derived from this software without specific prior written
+permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
 <messages xmlns="http://n.validator.nu/messages/">
-    <info first-column="1" last-column="22" last-line="1">
-        <message>Non-space characters found without seeing a doctype first. Expected e.g. <code xmlns="http://www.w3.org/1999/xhtml">&lt;!DOCTYPE html&gt;</code>.</message>
-        <extract>
-            <m>this is an invalid htm</m>l</extract>
-    </info>
-    <error first-column="1" last-column="22" last-line="1">
-        <message>Element <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#the-head-element">
-            <code>head</code>
-        </a> is missing a required instance of child element <code xmlns="http://www.w3.org/1999/xhtml">title</code>.</message>
-        <extract>
-            <m>this is an invalid htm</m>l</extract>
-        <elaboration>
-            <dl xmlns="http://www.w3.org/1999/xhtml">
-                <dt>Content model for element <a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#the-head-element">
-                    <code>head</code>
-                </a>:</dt>
-                <dd> If the document is <a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#iframe-iframe-srcdoc-document">an <code>iframe</code> <code>srcdoc</code> document</a> or if title
-                    information is available from a higher-level protocol: Zero or more elements of <a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#metadata-content">metadata content</a>, of which no more than one is a <a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#elementdef-title">
-                        <code>title</code>
-                    </a> element and no more
-                    than one is a <code>
-                        <a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#elementdef-base">base</a>
-                    </code> element.
+  <info first-column="1" last-column="22" last-line="1">
+    <message>Non-space characters found without seeing a doctype first. Expected e.g. <code xmlns="http://www.w3.org/1999/xhtml">&lt;!DOCTYPE html&gt;</code>.</message>
+    <extract><m>this is an invalid htm</m>l</extract>
+  </info>
+  <error first-column="1" last-column="22" last-line="1">
+    <message>Element <a xmlns="http://www.w3.org/1999/xhtml" href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#the-head-element"><code>head</code></a> is missing a required instance of child element <code xmlns="http://www.w3.org/1999/xhtml">title</code>.</message>
+    <extract><m>this is an invalid htm</m>l</extract>
+    <elaboration>
+      <dl xmlns="http://www.w3.org/1999/xhtml">
+        <dt>Content model for element <a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#the-head-element"><code>head</code></a>:</dt>
+        <dd> If the document is <a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#iframe-iframe-srcdoc-document">an <code>iframe</code> <code>srcdoc</code> document</a> or if title
+                    information is available from a higher-level protocol: Zero or more elements of <a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#metadata-content">metadata content</a>, of which no more than one is a <a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#elementdef-title"><code>title</code></a> element and no more
+                    than one is a <code><a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#elementdef-base">base</a></code> element.
                 </dd>
-                <dd> Otherwise: One or more elements of <a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#metadata-content">metadata content</a>, of which exactly one is a <a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#elementdef-title">
-                    <code>title</code>
-                </a> element and no more than one is a <code>
-                    <a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#elementdef-base">base</a>
-                </code> element.
+        <dd> Otherwise: One or more elements of <a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#metadata-content">metadata content</a>, of which exactly one is a <a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#elementdef-title"><code>title</code></a> element and no more than one is a <code><a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#elementdef-base">base</a></code> element.
                 </dd>
-            </dl>
-        </elaboration>
-    </error>
-    <source encoding="UTF-8" type="text/html">this is an invalid html</source>
+      </dl>
+    </elaboration>
+  </error>
+  <source encoding="UTF-8" type="text/html">this is an invalid html</source>
 </messages>

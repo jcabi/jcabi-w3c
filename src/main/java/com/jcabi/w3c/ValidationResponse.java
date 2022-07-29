@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2017, jcabi.com
+/*
+ * Copyright (c) 2011-2022, jcabi.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,8 +41,6 @@ import java.util.Set;
  *
  * <p>Implementation may be mutable but thread-safe.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @see ValidatorBuilder
  * @see Validator#validate(String)
  * @see <a href="http://validator.w3.org/docs/api.html">W3C API, HTML</a>

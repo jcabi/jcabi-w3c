@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2017, jcabi.com
+/*
+ * Copyright (c) 2011-2022, jcabi.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,6 @@ import org.junit.Test;
 /**
  * Test case for {@link DefaultHtmlValidator}.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.1
  */
 public final class DefaultHtmlValidatorTest {
@@ -145,7 +143,7 @@ public final class DefaultHtmlValidatorTest {
                 container.stop();
             }
         }
-        final Integer[] data = responses.toArray(new Integer[responses.size()]);
+        final Integer[] data = responses.toArray(new Integer[0]);
         MatcherAssert.assertThat(caught, Matchers.containsInAnyOrder(data));
     }
 

@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2017, jcabi.com
+/*
+ * Copyright (c) 2011-2022, jcabi.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -31,8 +31,6 @@
 /**
  * W3C validators.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 1.0
  */
 package com.jcabi.w3c;

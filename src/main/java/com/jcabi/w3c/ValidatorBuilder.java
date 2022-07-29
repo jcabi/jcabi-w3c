@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2017, jcabi.com
+/*
+ * Copyright (c) 2011-2022, jcabi.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,6 @@ import lombok.ToString;
  *
  * <pre> System.out.println(response.toString());</pre>
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @see ValidationResponse
  * @see Validator
  * @see <a href="http://validator.w3.org/docs/api.html">W3C API</a>
@@ -71,7 +69,7 @@ public final class ValidatorBuilder {
      */
     @SuppressWarnings("PMD.AvoidFieldNameMatchingMethodName")
     public static final Validator HTML = new DefaultHtmlValidator(
-        URI.create("http://validator.w3.org/nu/?out=xml&showsource=yes")
+        URI.create("https://validator.w3.org/nu/?out=xml&showsource=yes")
     );
 
     /**
@@ -79,7 +77,7 @@ public final class ValidatorBuilder {
      */
     @SuppressWarnings("PMD.AvoidFieldNameMatchingMethodName")
     public static final Validator CSS = new DefaultCssValidator(
-        URI.create("http://jigsaw.w3.org/css-validator/validator")
+        URI.create("https://jigsaw.w3.org/css-validator/validator")
     );
 
     /**

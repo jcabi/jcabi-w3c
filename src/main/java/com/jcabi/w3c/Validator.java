@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2017, jcabi.com
+/*
+ * Copyright (c) 2011-2022, jcabi.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -66,8 +66,6 @@ import java.io.IOException;
  *
  * <p>Objects of this interface should be immutable and thread-safe.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @see <a href="http://jigsaw.w3.org/css-validator/api.html">W3C API, CSS</a>
  * @see ValidatorBuilder
  * @since 0.1

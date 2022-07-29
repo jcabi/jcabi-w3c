@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2017, jcabi.com
+/*
+ * Copyright (c) 2011-2022, jcabi.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,8 +39,6 @@
  *   &lt;artifactId&gt;jcabi-w3c&lt;/artifactId&gt;
  * &lt;/dependency&gt;</pre>
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 1.0
  * @see <a href="http://w3c.jcabi.com/">project website</a>
  */
