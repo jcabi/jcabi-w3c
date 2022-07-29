@@ -4,6 +4,7 @@
 [![Managed by Zerocracy](https://www.0crat.com/badge/C3RUBL5H9.svg)](https://www.0crat.com/p/C3RUBL5H9)
 [![DevOps By Rultor.com](http://www.rultor.com/b/jcabi/jcabi-w3c)](http://www.rultor.com/p/jcabi/jcabi-w3c)
 
+[![mvn](https://github.com/jcabi/jcabi-w3c/actions/workflows/mvn.yml/badge.svg)](https://github.com/jcabi/jcabi-w3c/actions/workflows/mvn.yml)
 [![PDD status](http://www.0pdd.com/svg?name=jcabi/jcabi-w3c)](http://www.0pdd.com/p?name=jcabi/jcabi-w3c)
 [![Javadoc](https://javadoc.io/badge/com.jcabi/jcabi-w3c.svg)](http://www.javadoc.io/doc/com.jcabi/jcabi-w3c)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.jcabi/jcabi-w3c/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.jcabi/jcabi-w3c)
