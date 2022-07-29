@@ -8,6 +8,7 @@
 [![PDD status](http://www.0pdd.com/svg?name=jcabi/jcabi-w3c)](http://www.0pdd.com/p?name=jcabi/jcabi-w3c)
 [![Javadoc](https://javadoc.io/badge/com.jcabi/jcabi-w3c.svg)](http://www.javadoc.io/doc/com.jcabi/jcabi-w3c)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.jcabi/jcabi-w3c/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.jcabi/jcabi-w3c)
+[![codecov](https://codecov.io/gh/com.jcabi/jcabi-w3c/branch/master/graph/badge.svg)](https://codecov.io/gh/com.jcabi/jcabi-w3c)
 
 More details are here: [w3c.jcabi.com](http://w3c.jcabi.com/index.html).
 Also, read this blog post: [W3C Java Validators](http://www.yegor256.com/2014/04/29/w3c-java-validators.html).
