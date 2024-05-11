@@ -180,7 +180,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
       <plugin>
         <groupId>com.qulice</groupId>
         <artifactId>qulice-maven-plugin</artifactId>
-        <version>0.21.0</version>
+        <version>0.23.0</version>
         <configuration>
           <excludes>
             <exclude>xml:/src/test/resources/com/jcabi/w3c/invalid-html-response.xml</exclude>
