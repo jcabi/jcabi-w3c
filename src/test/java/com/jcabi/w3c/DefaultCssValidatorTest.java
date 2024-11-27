@@ -75,7 +75,7 @@ public final class DefaultCssValidatorTest {
         final ValidationResponse response = validator.validate(
             this.documentWithIgnore()
         );
-        MatcherAssert.assertThat(response.toString(), response.valid());
+        MatcherAssert.assertThat("document should be ignored", response.valid());
     }
 
     /**
