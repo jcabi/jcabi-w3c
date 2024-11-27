@@ -97,13 +97,12 @@ abstract class AbstractBaseValidator {
      * @return The validation response just built
      */
     protected static ValidationResponse success(final String type) {
-        final DefaultValidationResponse resp = new DefaultValidationResponse(
+        return new DefaultValidationResponse(
             true,
             URI.create("http://localhost/success"),
             type,
             Charset.defaultCharset()
         );
-        return resp;
     }
 
     /**
