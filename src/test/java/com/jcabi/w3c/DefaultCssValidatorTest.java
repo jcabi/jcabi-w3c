@@ -62,7 +62,7 @@ public final class DefaultCssValidatorTest {
         final Validator validator = new DefaultCssValidator(container.home());
         final ValidationResponse response = validator.validate("* { }");
         container.stop();
-        MatcherAssert.assertThat(response.toString(), response.valid());
+        MatcherAssert.assertThat("document should be valid", response.valid());
     }
 
     /**
