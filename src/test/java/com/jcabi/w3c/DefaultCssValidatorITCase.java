@@ -48,6 +48,7 @@ public final class DefaultCssValidatorITCase {
     @RetryOnFailure(verbose = false)
     public void validatesCssDocument() throws Exception {
         MatcherAssert.assertThat(
+            "css document should be valid",
             ValidatorBuilder.CSS.validate("* { }").errors(),
             Matchers.empty()
         );
