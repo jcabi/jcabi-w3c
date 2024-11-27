@@ -51,6 +51,7 @@ public final class DefaultHtmlValidatorITCase {
     @RetryOnFailure(verbose = false)
     public void validatesHtmlDocument() throws Exception {
         MatcherAssert.assertThat(
+            "html document should be error-free",
             ValidatorBuilder.HTML.validate(
                 StringUtils.join(
                     "<!DOCTYPE html>",
