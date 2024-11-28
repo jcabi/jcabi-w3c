@@ -144,7 +144,7 @@ public final class DefaultHtmlValidatorTest {
             }
         }
         final Integer[] data = responses.toArray(new Integer[0]);
-        MatcherAssert.assertThat(caught, Matchers.containsInAnyOrder(data));
+        MatcherAssert.assertThat("must be error-free", caught, Matchers.containsInAnyOrder(data));
     }
 
     /**
@@ -170,6 +170,7 @@ public final class DefaultHtmlValidatorTest {
             "invalid-html-response.xml"
         );
         final String xml = IOUtils.toString(file, StandardCharsets.UTF_8);
+        file.close();
         IOUtils.closeQuietly(file);
         return xml;
     }
