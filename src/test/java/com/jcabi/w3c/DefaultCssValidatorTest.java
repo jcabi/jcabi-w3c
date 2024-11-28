@@ -114,6 +114,7 @@ public final class DefaultCssValidatorTest {
             }
         }
         MatcherAssert.assertThat(
+            "must be error-free",
             caught,
             Matchers.containsInAnyOrder(
                 responses.toArray(new Integer[0])
@@ -136,7 +137,7 @@ public final class DefaultCssValidatorTest {
         try {
             container.start();
             new DefaultCssValidator(container.home()).validate("html { }");
-            MatcherAssert.assertThat(container.queries(), Matchers.is(1));
+            MatcherAssert.assertThat("must be 1 match", container.queries(), Matchers.is(1));
         } finally {
             container.stop();
         }
