@@ -92,7 +92,8 @@ public final class DefaultHtmlValidatorTest {
         container.stop();
         MatcherAssert.assertThat(
             "Validity must be invalid!",
-            !response.valid()
+            response.valid(),
+            Matchers.is(false)
         );
         MatcherAssert.assertThat(
             "Must has at least one error",
