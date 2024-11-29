@@ -155,7 +155,7 @@ public final class DefaultCssValidatorTest {
             container.start();
             new DefaultCssValidator(container.home())
                 .validate(this.documentWithIgnore());
-            MatcherAssert.assertThat(container.queries(), Matchers.is(0));
+            MatcherAssert.assertThat("should not respond", container.queries(), Matchers.is(0));
         } finally {
             container.stop();
         }
