@@ -168,13 +168,11 @@ public final class DefaultHtmlValidatorTest {
      * @throws IOException if something goes wrong.
      */
     private String invalidHtmlResponse() throws IOException {
-        final InputStream file = DefaultHtmlValidator.class.getResourceAsStream(
+        try (InputStream file = DefaultHtmlValidator.class.getResourceAsStream(
             "invalid-html-response.xml"
-        );
-        final String xml = IOUtils.toString(file, StandardCharsets.UTF_8);
-        file.close();
-        IOUtils.closeQuietly(file);
-        return xml;
+        )) {
+            return IOUtils.toString(file, StandardCharsets.UTF_8);
+        }
     }
 
     /**
