@@ -62,7 +62,7 @@ public final class DefaultCssValidatorTest {
         final Validator validator = new DefaultCssValidator(container.home());
         final ValidationResponse response = validator.validate("* { }");
         container.stop();
-        MatcherAssert.assertThat(response.toString(), response.valid());
+        MatcherAssert.assertThat("document should be valid", response.valid(), Matchers.is(true));
     }
 
     /**
@@ -75,7 +75,7 @@ public final class DefaultCssValidatorTest {
         final ValidationResponse response = validator.validate(
             this.documentWithIgnore()
         );
-        MatcherAssert.assertThat(response.toString(), response.valid());
+        MatcherAssert.assertThat(response.toString(), response.valid(), Matchers.is(true));
     }
 
     /**
@@ -114,6 +114,7 @@ public final class DefaultCssValidatorTest {
             }
         }
         MatcherAssert.assertThat(
+            "must be error-free",
             caught,
             Matchers.containsInAnyOrder(
                 responses.toArray(new Integer[0])
@@ -136,7 +137,7 @@ public final class DefaultCssValidatorTest {
         try {
             container.start();
             new DefaultCssValidator(container.home()).validate("html { }");
-            MatcherAssert.assertThat(container.queries(), Matchers.is(1));
+            MatcherAssert.assertThat("must be 1 match", container.queries(), Matchers.is(1));
         } finally {
             container.stop();
         }
@@ -154,7 +155,7 @@ public final class DefaultCssValidatorTest {
             container.start();
             new DefaultCssValidator(container.home())
                 .validate(this.documentWithIgnore());
-            MatcherAssert.assertThat(container.queries(), Matchers.is(0));
+            MatcherAssert.assertThat("should not respond", container.queries(), Matchers.is(0));
         } finally {
             container.stop();
         }

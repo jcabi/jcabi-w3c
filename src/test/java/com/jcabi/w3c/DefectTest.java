@@ -54,6 +54,7 @@ public final class DefectTest {
             " some message "
         );
         MatcherAssert.assertThat(
+            "defect should be transformed to string",
             defect,
             Matchers.hasToString(
                 // @checkstyle LineLength (1 line)

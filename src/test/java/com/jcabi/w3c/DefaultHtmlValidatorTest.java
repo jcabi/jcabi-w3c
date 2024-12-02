@@ -71,7 +71,8 @@ public final class DefaultHtmlValidatorTest {
         container.stop();
         MatcherAssert.assertThat(
             response.toString(),
-            response.valid()
+            response.valid(),
+            Matchers.is(true)
         );
     }
 
@@ -92,7 +93,8 @@ public final class DefaultHtmlValidatorTest {
         container.stop();
         MatcherAssert.assertThat(
             "Validity must be invalid!",
-            !response.valid()
+            response.valid(),
+            Matchers.is(false)
         );
         MatcherAssert.assertThat(
             "Must has at least one error",
@@ -144,7 +146,7 @@ public final class DefaultHtmlValidatorTest {
             }
         }
         final Integer[] data = responses.toArray(new Integer[0]);
-        MatcherAssert.assertThat(caught, Matchers.containsInAnyOrder(data));
+        MatcherAssert.assertThat("must be error-free", caught, Matchers.containsInAnyOrder(data));
     }
 
     /**
@@ -166,12 +168,11 @@ public final class DefaultHtmlValidatorTest {
      * @throws IOException if something goes wrong.
      */
     private String invalidHtmlResponse() throws IOException {
-        final InputStream file = DefaultHtmlValidator.class.getResourceAsStream(
+        try (InputStream file = DefaultHtmlValidator.class.getResourceAsStream(
             "invalid-html-response.xml"
-        );
-        final String xml = IOUtils.toString(file, StandardCharsets.UTF_8);
-        IOUtils.closeQuietly(file);
-        return xml;
+        )) {
+            return IOUtils.toString(file, StandardCharsets.UTF_8);
+        }
     }
 
     /**
