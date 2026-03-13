@@ -76,14 +76,14 @@ final class DefaultCssValidator
      * @throws IOException if fails
      */
     private ValidationResponse processed(final String css) throws IOException {
-        final Request req = this.request(
-            AbstractBaseValidator.entity(
-                "file", DefaultCssValidator.filter(css), "text/css"
-            )
-        );
-        final Response response = DefaultCssValidator.correct(req.fetch());
         return DefaultCssValidator.build(
-            response.as(XmlResponse.class)
+            DefaultCssValidator.correct(
+                this.request(
+                    AbstractBaseValidator.entity(
+                        "file", DefaultCssValidator.filter(css), "text/css"
+                    )
+                ).fetch()
+            ).as(XmlResponse.class)
                 .registerNs("env", "http://www.w3.org/2003/05/soap-envelope")
                 .registerNs("m", "http://www.w3.org/2005/07/css-validator")
                 .assertXPath("//m:validity")

@@ -45,6 +45,7 @@ import java.io.IOException;
  * @see ValidatorBuilder
  * @since 0.1
  */
+@FunctionalInterface
 public interface Validator {
 
     /**

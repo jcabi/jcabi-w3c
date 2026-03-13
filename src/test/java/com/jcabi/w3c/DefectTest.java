@@ -20,17 +20,16 @@ public final class DefectTest {
      */
     @Test
     public void transformsItselfToString() throws Exception {
-        final Defect defect = new Defect(
-            1,
-            1,
-            " some source ",
-            " some explanation ",
-            " some message ID ",
-            " some message "
-        );
         MatcherAssert.assertThat(
             "defect should be transformed to string",
-            defect,
+            new Defect(
+                1,
+                1,
+                " some source ",
+                " some explanation ",
+                " some message ID ",
+                " some message "
+            ),
             Matchers.hasToString(
                 // @checkstyle LineLength (1 line)
                 "[1:1] \"some source\", \"some explanation\", \"some message ID\", \"some message\""

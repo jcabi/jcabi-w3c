@@ -34,10 +34,12 @@ public final class DefaultCssValidatorTest {
                 this.validResponse()
             )
         ).start();
-        final Validator validator = new DefaultCssValidator(container.home());
-        final ValidationResponse response = validator.validate("* { }");
+        MatcherAssert.assertThat(
+            "document should be valid",
+            new DefaultCssValidator(container.home()).validate("* { }").valid(),
+            Matchers.is(true)
+        );
         container.stop();
-        MatcherAssert.assertThat("document should be valid", response.valid(), Matchers.is(true));
     }
 
     /**
@@ -58,7 +60,6 @@ public final class DefaultCssValidatorTest {
      * @throws Exception If something goes wrong inside
      */
     @Test
-    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public void throwsIoExceptionWhenValidationServerErrorOccurred()
         throws Exception {
         final Set<Integer> responses = new HashSet<>(

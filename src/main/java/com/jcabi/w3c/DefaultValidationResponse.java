@@ -137,7 +137,7 @@ final class DefaultValidationResponse implements ValidationResponse {
      * @return The text
      */
     private static String asText(final Set<Defect> defects) {
-        final StringBuilder text = new StringBuilder(0);
+        final StringBuilder text = new StringBuilder(100);
         for (final Defect defect : defects) {
             text.append("  ").append(defect.toString()).append('\n');
         }

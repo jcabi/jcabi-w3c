@@ -8,16 +8,13 @@ import com.jcabi.http.mock.MkAnswer;
 import com.jcabi.http.mock.MkContainer;
 import com.jcabi.http.mock.MkGrizzlyContainer;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.hamcrest.Matcher;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -52,7 +49,7 @@ public final class DefaultHtmlValidatorTest {
     }
 
     /**
-     * Test if {@link DefaultHtmlValidator} validades invalid html.
+     * Test if {@link DefaultHtmlValidator} validates invalid html.
      * @throws Exception If something goes wrong inside
      */
     @Test
@@ -62,24 +59,16 @@ public final class DefaultHtmlValidatorTest {
                 this.invalidHtmlResponse()
             )
         ).start();
-        final Validator validator = new DefaultHtmlValidator(container.home());
-        final ValidationResponse response = validator
-            .validate("this is an invalid html");
+        final ValidationResponse response = new DefaultHtmlValidator(
+            container.home()
+        ).validate("this is an invalid html");
         container.stop();
         MatcherAssert.assertThat(
-            "Validity must be invalid!",
-            response.valid(),
-            Matchers.is(false)
-        );
-        MatcherAssert.assertThat(
-            "Must has at least one error",
-            response.errors(),
-            this.withoutDefects()
-        );
-        MatcherAssert.assertThat(
-            "Must has at least one warning",
-            response.warnings(),
-            this.withoutDefects()
+            "Validity must be invalid",
+            !response.valid()
+                && !response.errors().isEmpty()
+                && !response.warnings().isEmpty(),
+            Matchers.is(true)
         );
     }
 
@@ -89,7 +78,6 @@ public final class DefaultHtmlValidatorTest {
      * @throws Exception If something goes wrong inside
      */
     @Test
-    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public void throwsIoExceptionWhenValidationServerErrorOccurred()
         throws Exception {
         final Set<Integer> responses = new HashSet<>(
@@ -120,8 +108,11 @@ public final class DefaultHtmlValidatorTest {
                 container.stop();
             }
         }
-        final Integer[] data = responses.toArray(new Integer[0]);
-        MatcherAssert.assertThat("must be error-free", caught, Matchers.containsInAnyOrder(data));
+        MatcherAssert.assertThat(
+            "must be error-free",
+            caught,
+            Matchers.containsInAnyOrder(responses.toArray(new Integer[0]))
+        );
     }
 
     /**
@@ -143,19 +134,12 @@ public final class DefaultHtmlValidatorTest {
      * @throws IOException if something goes wrong.
      */
     private String invalidHtmlResponse() throws IOException {
-        try (InputStream file = DefaultHtmlValidator.class.getResourceAsStream(
-            "invalid-html-response.xml"
-        )) {
-            return IOUtils.toString(file, StandardCharsets.UTF_8);
-        }
-    }
-
-    /**
-     * Matcher that checks if has no errors.
-     * @return Matcher
-     */
-    private Matcher<Collection<Defect>> withoutDefects() {
-        return Matchers.not(Matchers.emptyCollectionOf(Defect.class));
+        return IOUtils.toString(
+            DefaultHtmlValidator.class.getResourceAsStream(
+                "invalid-html-response.xml"
+            ),
+            StandardCharsets.UTF_8
+        );
     }
 
 }
