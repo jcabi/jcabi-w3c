@@ -7,7 +7,7 @@
  ------
 
 ~~
-~~ Copyright (c) 2014-2017, jcabi.com
+~~ Copyright (c) 2014-2026 Yegor Bugayenko
 ~~ All rights reserved.
 ~~
 ~~ Redistribution and use in source and binary forms, with or without
@@ -62,4 +62,3 @@ public class My {
   using <<<"com.jcabi.w3c">>> logger.
   If you want to see them, just add proper binding to classpath,
   as explained in {{{http://www.slf4j.org/manual.html}SLF4J manual}}.
-

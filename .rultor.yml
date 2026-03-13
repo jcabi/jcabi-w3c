@@ -1,5 +1,9 @@
+# SPDX-FileCopyrightText: Copyright (c) 2011-2026 Yegor Bugayenko
+# SPDX-License-Identifier: MIT
+---
+# yamllint disable rule:line-length
 docker:
-  image: yegor256/rultor-image:1.13.0
+  image: yegor256/java
 assets:
   settings.xml: yegor256/home#assets/jcabi/settings.xml
   secring.gpg: yegor256/home#assets/secring.gpg

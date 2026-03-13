@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: Copyright (c) 2011-2026 Yegor Bugayenko
+# SPDX-License-Identifier: MIT
 ---
 name: pdd
 on:
@@ -9,7 +11,8 @@ on:
       - master
 jobs:
   pdd:
+    timeout-minutes: 15
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/checkout@v6
       - uses: volodya-lombrozo/pdd-action@master

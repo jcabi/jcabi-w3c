@@ -1,8 +1,8 @@
 # SPDX-FileCopyrightText: Copyright (c) 2011-2026 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 ---
-name: xcop
-on:
+name: markdown-lint
+'on':
   push:
     branches:
       - master
@@ -10,9 +10,9 @@ on:
     branches:
       - master
 jobs:
-  xcop:
+  markdown-lint:
     timeout-minutes: 15
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v6
-      - uses: g4s8/xcop-action@master
+      - uses: DavidAnson/markdownlint-cli2-action@v20.0.0
