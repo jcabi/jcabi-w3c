@@ -27,7 +27,7 @@ import java.io.IOException;
  *   #position: 50%; &#47;* JIGSAW: this is a IE_-related hack *&#47;
  * }</pre>
  *
- * <p>You can also instruct the validator to ingore the entire file, by means
+ * <p>You can also instruct the validator to ignore the entire file, by means
  * of adding {@code JIGSAW IGNORE} comment anywhere in the text, for example:
  *
  * <pre> &#47;* JIGSAW IGNORE: it's an experimental file *&#47;

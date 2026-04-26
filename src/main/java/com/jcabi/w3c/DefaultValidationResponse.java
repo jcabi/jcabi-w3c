@@ -13,7 +13,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 import lombok.EqualsAndHashCode;
 
 /**
- * Default implementaiton of validation response.
+ * Default implementation of validation response.
  * @since 0.1
  */
 @EqualsAndHashCode(
