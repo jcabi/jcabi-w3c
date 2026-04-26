@@ -63,5 +63,4 @@ public interface Validator {
      * @throws IOException If fails
      */
     ValidationResponse validate(String content) throws IOException;
-
 }

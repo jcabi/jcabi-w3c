@@ -14,7 +14,6 @@ import lombok.EqualsAndHashCode;
 
 /**
  * Default implementaiton of validation response.
- *
  * @since 0.1
  */
 @EqualsAndHashCode(
@@ -58,8 +57,8 @@ final class DefaultValidationResponse implements ValidationResponse {
      * @param server Who validated it?
      * @param tpe DOCTYPE of the document
      * @param enc Charset of the document
-     * @checkstyle ParameterNumber (3 lines)
      */
+    // @checkstyle ParameterNumberCheck (5 lines)
     DefaultValidationResponse(final boolean val,
         final URI server, final String tpe,
         final Charset enc) {
@@ -73,16 +72,14 @@ final class DefaultValidationResponse implements ValidationResponse {
 
     @Override
     public String toString() {
-        return new StringBuilder(0)
-            .append(Logger.format("Validity: %B\n", this.ivalid))
-            .append(Logger.format("Validator: \"%s\"\n", this.validator))
-            .append(Logger.format("DOCTYPE: \"%s\"\n", this.type))
-            .append(Logger.format("Charset: \"%s\"\n", this.encoding))
-            .append("Errors:\n")
-            .append(DefaultValidationResponse.asText(this.ierrors))
-            .append("Warnings:\n")
-            .append(DefaultValidationResponse.asText(this.iwarnings))
-            .toString();
+        return Logger.format("Validity: %B%n", this.ivalid)
+            + Logger.format("Validator: \"%s\"%n", this.validator)
+            + Logger.format("DOCTYPE: \"%s\"%n", this.type)
+            + Logger.format("Charset: \"%s\"%n", this.encoding)
+            + String.format("Errors:%n")
+            + DefaultValidationResponse.asText(this.ierrors)
+            + String.format("Warnings:%n")
+            + DefaultValidationResponse.asText(this.iwarnings);
     }
 
     @Override
@@ -119,7 +116,7 @@ final class DefaultValidationResponse implements ValidationResponse {
      * Add error.
      * @param error The error to add
      */
-    public void addError(final Defect error) {
+    void addError(final Defect error) {
         this.ierrors.add(error);
     }
 
@@ -127,7 +124,7 @@ final class DefaultValidationResponse implements ValidationResponse {
      * Add warning.
      * @param warning The warning to add
      */
-    public void addWarning(final Defect warning) {
+    void addWarning(final Defect warning) {
         this.iwarnings.add(warning);
     }
 
@@ -139,9 +136,9 @@ final class DefaultValidationResponse implements ValidationResponse {
     private static String asText(final Set<Defect> defects) {
         final StringBuilder text = new StringBuilder(100);
         for (final Defect defect : defects) {
-            text.append("  ").append(defect.toString()).append('\n');
+            text.append("  ").append(defect.toString())
+                .append(System.lineSeparator());
         }
         return text.toString();
     }
-
 }

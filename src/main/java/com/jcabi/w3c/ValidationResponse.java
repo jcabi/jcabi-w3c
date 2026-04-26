@@ -61,5 +61,4 @@ public interface ValidationResponse {
      * @return List of warnings
      */
     Set<Defect> warnings();
-
 }

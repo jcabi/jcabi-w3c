@@ -33,8 +33,8 @@ import lombok.ToString;
  * @see Validator
  * @see <a href="http://validator.w3.org/docs/api.html">W3C API</a>
  * @since 0.1
- * @checkstyle NonStaticMethodCheck (500 lines)
  */
+// @checkstyle NonStaticMethodCheck (500 lines)
 @ToString
 @EqualsAndHashCode
 public final class ValidatorBuilder {
@@ -42,7 +42,6 @@ public final class ValidatorBuilder {
     /**
      * Static instance of HTML validator.
      */
-    @SuppressWarnings("PMD.AvoidFieldNameMatchingMethodName")
     public static final Validator HTML = new DefaultHtmlValidator(
         URI.create("https://validator.w3.org/nu/?out=xml&showsource=yes")
     );
@@ -50,7 +49,6 @@ public final class ValidatorBuilder {
     /**
      * Static instance of CSS validator.
      */
-    @SuppressWarnings("PMD.AvoidFieldNameMatchingMethodName")
     public static final Validator CSS = new DefaultCssValidator(
         URI.create("https://jigsaw.w3.org/css-validator/validator")
     );
@@ -88,5 +86,4 @@ public final class ValidatorBuilder {
     public Validator css(final URI uri) {
         return new DefaultCssValidator(uri);
     }
-
 }

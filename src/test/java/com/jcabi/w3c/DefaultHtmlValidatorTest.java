@@ -21,14 +21,12 @@ import org.junit.Test;
 
 /**
  * Test case for {@link DefaultHtmlValidator}.
- *
  * @since 0.1
  */
 public final class DefaultHtmlValidatorTest {
 
     /**
      * DefaultHtmlValidator can validate HTML document.
-     *
      * @throws Exception If something goes wrong inside
      */
     @Test
@@ -74,7 +72,6 @@ public final class DefaultHtmlValidatorTest {
 
     /**
      * DefaultHtmlValidator throw IOException when W3C server error occurred.
-     *
      * @throws Exception If something goes wrong inside
      */
     @Test
@@ -117,7 +114,7 @@ public final class DefaultHtmlValidatorTest {
 
     /**
      * Build a response with valid result from W3C.
-     * @return Response from W3C.
+     * @return Response from W3C
      */
     private String validReturn() {
         return StringUtils.join(
@@ -130,8 +127,8 @@ public final class DefaultHtmlValidatorTest {
 
     /**
      * Use a file to build the request.
-     * @return Request inside the file.
-     * @throws IOException if something goes wrong.
+     * @return Request inside the file
+     * @throws IOException if something goes wrong
      */
     private String invalidHtmlResponse() throws IOException {
         return IOUtils.toString(
@@ -141,5 +138,4 @@ public final class DefaultHtmlValidatorTest {
             StandardCharsets.UTF_8
         );
     }
-
 }

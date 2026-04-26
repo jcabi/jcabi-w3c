@@ -12,14 +12,12 @@ import org.junit.Test;
 
 /**
  * Integration case for {@link DefaultHtmlValidator}.
- *
  * @since 0.8
  */
 public final class DefaultHtmlValidatorITCase {
 
     /**
      * DefaultHtmlValidator can validate HTML document.
-     *
      * @throws Exception If something goes wrong inside
      */
     @Test
@@ -41,7 +39,6 @@ public final class DefaultHtmlValidatorITCase {
 
     /**
      * DefaultHtmlValidator can validate invalid HTML document.
-     *
      * @throws Exception If something goes wrong inside
      */
     @Test

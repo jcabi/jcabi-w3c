@@ -25,7 +25,6 @@ import lombok.ToString;
 
 /**
  * Default implementation of CSS validator.
- *
  * @see <a href="http://jigsaw.w3.org/css-validator/api.html">W3C API</a>
  * @since 0.1
  */
@@ -44,14 +43,14 @@ final class DefaultCssValidator
      * Public ctor.
      * @param entry Entry point to use
      */
+    // @checkstyle ConstructorsCodeFreeCheck (5 lines)
     DefaultCssValidator(final URI entry) {
         super();
         this.uri = entry.toString();
     }
 
     @Override
-    public ValidationResponse validate(final String css)
-        throws IOException {
+    public ValidationResponse validate(final String css) throws IOException {
         final ValidationResponse response;
         final Pattern pattern = Pattern.compile(
             ".*^/\\* JIGSAW IGNORE: [^\\n]+\\*/$.*",
@@ -102,8 +101,7 @@ final class DefaultCssValidator
             .method(Request.POST)
             .body().set(entity).back()
             .header(HttpHeaders.USER_AGENT, AbstractBaseValidator.USER_AGENT)
-            .header(HttpHeaders.ACCEPT, "application/soap+xml")
-            .header(
+            .header(HttpHeaders.ACCEPT, "application/soap+xml").header(
                 HttpHeaders.CONTENT_TYPE,
                 Logger.format(
                     "%s; boundary=%s",
@@ -158,9 +156,9 @@ final class DefaultCssValidator
 
     /**
      * Check if response from W3C contains some bad status.
-     * @param response Response from W3c.
-     * @return Response passed as parameter.
-     * @throws IOException when has some bad status.
+     * @param response Response from W3c
+     * @return Response passed as parameter
+     * @throws IOException when has some bad status
      */
     private static Response correct(final Response response)
         throws IOException {
@@ -194,5 +192,4 @@ final class DefaultCssValidator
             Pattern.MULTILINE | Pattern.DOTALL
         ).matcher(css).replaceAll("");
     }
-
 }

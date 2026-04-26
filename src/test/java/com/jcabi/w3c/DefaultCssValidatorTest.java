@@ -139,20 +139,20 @@ public final class DefaultCssValidatorTest {
 
     /**
      * Build a response with JIGSAW IGNORE.
-     * @return Document with JIGSAW IGNORE.
+     * @return Document with JIGSAW IGNORE
      */
     private String documentWithIgnore() {
         return String.join(
             "",
             "/",
-            "* hey */\n\n/",
-            "* JIGSAW IGNORE: .. */\n\n* { abc: cde }\n"
+            String.format("* hey */%n%n/"),
+            String.format("* JIGSAW IGNORE: .. */%n%n* { abc: cde }%n")
         );
     }
 
     /**
      * Build a response with valid result from W3C.
-     * @return Response from W3C.
+     * @return Response from W3C
      */
     private String validResponse() {
         return StringUtils.join(
