@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: Copyright (c) 2011-2026 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 ---
+# yamllint disable rule:line-length
 name: typos
 'on':
   push:
@@ -15,6 +16,4 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v6
-      - uses: crate-ci/typos@v1.35.4
-        with:
-          config: ./typos_config.toml
+      - uses: crate-ci/typos@v1.45.1

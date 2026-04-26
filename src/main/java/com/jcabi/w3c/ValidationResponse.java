@@ -57,9 +57,8 @@ public interface ValidationResponse {
     Set<Defect> errors();
 
     /**
-     * Returns lsit of warnings found during validation.
+     * Returns list of warnings found during validation.
      * @return List of warnings
      */
     Set<Defect> warnings();
-
 }

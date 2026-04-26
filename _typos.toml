@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: Copyright (c) 2011-2026 Yegor Bugayenko
+# SPDX-License-Identifier: MIT
+
+[default.extend-identifiers]
+ivalid = "ivalid"
+tpe = "tpe"
+
+[default.extend-words]
+ivalid = "ivalid"
+tpe = "tpe"

@@ -14,9 +14,10 @@ import lombok.EqualsAndHashCode;
  *
  * @see <a href="http://validator.w3.org/docs/api.html">W3C API</a>
  * @since 0.1
- * @checkstyle LineLength (2 lines)
  */
-@EqualsAndHashCode(of = { "iline", "icolumn", "isource", "iexplanation", "msg", "imessage" })
+@EqualsAndHashCode(
+    of = { "iline", "icolumn", "isource", "iexplanation", "msg", "imessage" }
+)
 public final class Defect {
 
     /**
@@ -57,8 +58,9 @@ public final class Defect {
      * @param explanation The explanation
      * @param mid ID of the message
      * @param message Message text
-     * @checkstyle ParameterNumber (5 lines)
      */
+    // @checkstyle ParameterNumberCheck (5 lines)
+    // @checkstyle ConstructorsCodeFreeCheck (10 lines)
     Defect(final int line, final int column, final String source,
         final String explanation, final String mid,
         final String message) {
@@ -130,5 +132,4 @@ public final class Defect {
     public String message() {
         return this.imessage;
     }
-
 }

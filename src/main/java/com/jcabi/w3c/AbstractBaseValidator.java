@@ -17,7 +17,6 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 
 /**
  * Abstract implementation of (X)HTML validator.
- *
  * @since 0.1
  */
 @ToString
@@ -50,11 +49,9 @@ abstract class AbstractBaseValidator {
     protected static String entity(final String name, final String content,
         final String type) throws IOException {
         final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        MultipartEntityBuilder.create()
-            .setStrictMode()
+        MultipartEntityBuilder.create().setStrictMode()
             .setCharset(StandardCharsets.UTF_8)
-            .setBoundary(AbstractBaseValidator.BOUNDARY)
-            .addBinaryBody(
+            .setBoundary(AbstractBaseValidator.BOUNDARY).addBinaryBody(
                 name,
                 content.getBytes(StandardCharsets.UTF_8),
                 ContentType.create(type, StandardCharsets.UTF_8),
@@ -63,7 +60,7 @@ abstract class AbstractBaseValidator {
             .addTextBody("output", "soap12")
             .build()
             .writeTo(baos);
-        return baos.toString(StandardCharsets.UTF_8.toString());
+        return baos.toString(StandardCharsets.UTF_8);
     }
 
     /**
@@ -139,5 +136,4 @@ abstract class AbstractBaseValidator {
         }
         return charset;
     }
-
 }

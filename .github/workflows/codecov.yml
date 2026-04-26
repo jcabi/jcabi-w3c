@@ -1,8 +1,9 @@
 # SPDX-FileCopyrightText: Copyright (c) 2011-2026 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 ---
+# yamllint disable rule:line-length
 name: codecov
-on:
+'on':
   push:
     branches:
       - master
@@ -12,10 +13,10 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
-          java-version: 11
+          java-version: 21
       - uses: actions/cache@v4
         with:
           path: ~/.m2/repository
@@ -23,7 +24,8 @@ jobs:
           restore-keys: |
             maven-
       - run: mvn install -Pjacoco
-      - uses: codecov/codecov-action@v5
+      - uses: codecov/codecov-action@v6
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           files: ./target/site/jacoco/jacoco.xml
           fail_ci_if_error: true

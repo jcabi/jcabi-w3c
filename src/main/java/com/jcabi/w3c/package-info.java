@@ -9,7 +9,7 @@
  * <p>The only dependency you need is (check our latest version available
  * at <a href="http://w3c.jcabi.com">w3c.jcabi.com</a>):
  *
- * <pre>&lt;depedency&gt;
+ * <pre>&lt;dependency&gt;
  *   &lt;groupId&gt;com.jcabi&lt;/groupId&gt;
  *   &lt;artifactId&gt;jcabi-w3c&lt;/artifactId&gt;
  * &lt;/dependency&gt;</pre>

@@ -23,7 +23,6 @@ import lombok.ToString;
 
 /**
  * Implementation of (X)HTML validator.
- *
  * @see <a href="http://validator.w3.org/docs/api.html">W3C API</a>
  * @since 0.1
  */
@@ -42,14 +41,14 @@ final class DefaultHtmlValidator
      * Public ctor.
      * @param entry Entry point to use
      */
+    // @checkstyle ConstructorsCodeFreeCheck (5 lines)
     DefaultHtmlValidator(final URI entry) {
         super();
         this.uri = entry.toString();
     }
 
     @Override
-    public ValidationResponse validate(final String html)
-        throws IOException {
+    public ValidationResponse validate(final String html) throws IOException {
         final Request req = this.request(html);
         final Response response = req.fetch();
         if (response.status() != HttpURLConnection.HTTP_OK) {
@@ -76,8 +75,7 @@ final class DefaultHtmlValidator
             .method(Request.POST)
             .body().set(entity).back()
             .header(HttpHeaders.USER_AGENT, AbstractBaseValidator.USER_AGENT)
-            .header(HttpHeaders.ACCEPT, MediaType.TEXT_HTML)
-            .header(
+            .header(HttpHeaders.ACCEPT, MediaType.TEXT_HTML).header(
                 HttpHeaders.CONTENT_TYPE,
                 Logger.format(
                     "%s; charset=%s",
