@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
- * SPDX-FileCopyrightText: Copyright (c) 2011-2026 Yegor Bugayenko
- * SPDX-License-Identifier: MIT
+* SPDX-FileCopyrightText: Copyright (c) 2011-2026 Yegor Bugayenko
+* SPDX-License-Identifier: MIT
 -->
 <messages xmlns="http://n.validator.nu/messages/">
   <info first-column="1" last-column="22" last-line="1">
