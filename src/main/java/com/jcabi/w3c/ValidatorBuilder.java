@@ -54,6 +54,13 @@ public final class ValidatorBuilder {
     );
 
     /**
+     * Public ctor.
+     */
+    public ValidatorBuilder() {
+        // nothing to initialize
+    }
+
+    /**
      * Build HTML validator.
      * @return The validator
      */
