@@ -15,20 +15,20 @@ import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link DefaultCssValidator}.
  * @since 0.1
  */
-public final class DefaultCssValidatorTest {
+final class DefaultCssValidatorTest {
 
     /**
      * DefaultCssValidator can validate CSS document.
      * @throws Exception If something goes wrong inside
      */
     @Test
-    public void validatesCssDocument() throws Exception {
+    void validatesCssDocument() throws Exception {
         final MkContainer container = new MkGrizzlyContainer().next(
             new MkAnswer.Simple(
                 this.validResponse()
@@ -47,7 +47,7 @@ public final class DefaultCssValidatorTest {
      * @throws Exception If something goes wrong inside
      */
     @Test
-    public void ignoresEntireDocument() throws Exception {
+    void ignoresEntireDocument() throws Exception {
         final Validator validator = ValidatorBuilder.CSS;
         final ValidationResponse response = validator.validate(
             this.documentWithIgnore()
@@ -60,8 +60,7 @@ public final class DefaultCssValidatorTest {
      * @throws Exception If something goes wrong inside
      */
     @Test
-    public void throwsIoExceptionWhenValidationServerErrorOccurred()
-        throws Exception {
+    void throwsIoExceptionWhenValidationServerErrorOccurred() throws Exception {
         final Set<Integer> responses = new HashSet<>(
             Arrays.asList(
                 HttpURLConnection.HTTP_INTERNAL_ERROR,
@@ -104,7 +103,7 @@ public final class DefaultCssValidatorTest {
      * @throws Exception If fails
      */
     @Test
-    public void callsServerWhenPatternNotMatched() throws Exception {
+    void callsServerWhenPatternNotMatched() throws Exception {
         final MkContainer container = new MkGrizzlyContainer().next(
             new MkAnswer.Simple(
                 HttpURLConnection.HTTP_OK, this.validResponse()
@@ -125,7 +124,7 @@ public final class DefaultCssValidatorTest {
      * @throws Exception If fails
      */
     @Test
-    public void replyWhenPatternMatched() throws Exception {
+    void replyWhenPatternMatched() throws Exception {
         final MkContainer container = new MkGrizzlyContainer();
         try {
             container.start();

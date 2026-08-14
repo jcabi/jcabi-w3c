@@ -17,20 +17,20 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link DefaultHtmlValidator}.
  * @since 0.1
  */
-public final class DefaultHtmlValidatorTest {
+final class DefaultHtmlValidatorTest {
 
     /**
      * DefaultHtmlValidator can validate HTML document.
      * @throws Exception If something goes wrong inside
      */
     @Test
-    public void validatesHtmlDocument() throws Exception {
+    void validatesHtmlDocument() throws Exception {
         final MkContainer container = new MkGrizzlyContainer().next(
             new MkAnswer.Simple(
                 this.validReturn()
@@ -51,7 +51,7 @@ public final class DefaultHtmlValidatorTest {
      * @throws Exception If something goes wrong inside
      */
     @Test
-    public void validateInvalidHtml() throws Exception {
+    void validateInvalidHtml() throws Exception {
         final MkContainer container = new MkGrizzlyContainer().next(
             new MkAnswer.Simple(
                 this.invalidHtmlResponse()
@@ -75,8 +75,7 @@ public final class DefaultHtmlValidatorTest {
      * @throws Exception If something goes wrong inside
      */
     @Test
-    public void throwsIoExceptionWhenValidationServerErrorOccurred()
-        throws Exception {
+    void throwsIoExceptionWhenValidationServerErrorOccurred() throws Exception {
         final Set<Integer> responses = new HashSet<>(
             Arrays.asList(
                 HttpURLConnection.HTTP_INTERNAL_ERROR,

@@ -58,7 +58,6 @@ final class DefaultValidationResponse implements ValidationResponse {
      * @param tpe DOCTYPE of the document
      * @param enc Charset of the document
      */
-    // @checkstyle ParameterNumberCheck (5 lines)
     DefaultValidationResponse(final boolean val,
         final URI server, final String tpe,
         final Charset enc) {

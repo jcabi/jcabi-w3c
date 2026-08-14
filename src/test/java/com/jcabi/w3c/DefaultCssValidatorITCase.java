@@ -7,13 +7,13 @@ package com.jcabi.w3c;
 import com.jcabi.aspects.RetryOnFailure;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Integration case for {@link DefaultCssValidator}.
  * @since 0.8
  */
-public final class DefaultCssValidatorITCase {
+final class DefaultCssValidatorITCase {
 
     /**
      * DefaultCssValidator can validate CSS document.
@@ -21,7 +21,7 @@ public final class DefaultCssValidatorITCase {
      */
     @Test
     @RetryOnFailure(verbose = false)
-    public void validatesCssDocument() throws Exception {
+    void validatesCssDocument() throws Exception {
         MatcherAssert.assertThat(
             "css document should be valid",
             ValidatorBuilder.CSS.validate("* { }").errors(),

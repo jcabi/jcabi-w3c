@@ -8,13 +8,13 @@ import com.jcabi.aspects.RetryOnFailure;
 import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Integration case for {@link DefaultHtmlValidator}.
  * @since 0.8
  */
-public final class DefaultHtmlValidatorITCase {
+final class DefaultHtmlValidatorITCase {
 
     /**
      * DefaultHtmlValidator can validate HTML document.
@@ -22,7 +22,7 @@ public final class DefaultHtmlValidatorITCase {
      */
     @Test
     @RetryOnFailure(verbose = false)
-    public void validatesHtmlDocument() throws Exception {
+    void validatesHtmlDocument() throws Exception {
         MatcherAssert.assertThat(
             "html document should be error-free",
             ValidatorBuilder.HTML.validate(
@@ -42,7 +42,7 @@ public final class DefaultHtmlValidatorITCase {
      * @throws Exception If something goes wrong inside
      */
     @Test
-    public void validatesInvalidHtmlDocument() throws Exception {
+    void validatesInvalidHtmlDocument() throws Exception {
         MatcherAssert.assertThat(
             "html document should be with errors",
             ValidatorBuilder.HTML.validate(

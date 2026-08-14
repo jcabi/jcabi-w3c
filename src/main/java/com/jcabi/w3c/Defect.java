@@ -59,7 +59,6 @@ public final class Defect {
      * @param mid ID of the message
      * @param message Message text
      */
-    // @checkstyle ParameterNumberCheck (5 lines)
     // @checkstyle ConstructorsCodeFreeCheck (10 lines)
     Defect(final int line, final int column, final String source,
         final String explanation, final String mid,
