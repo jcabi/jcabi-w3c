@@ -65,11 +65,6 @@ final class DefaultHtmlValidator
         );
     }
 
-    /**
-     * Send request and return response.
-     * @param entity The entity to POST
-     * @return The response
-     */
     private Request request(final String entity) {
         return new JdkRequest(this.uri)
             .method(Request.POST)
@@ -85,11 +80,6 @@ final class DefaultHtmlValidator
             );
     }
 
-    /**
-     * Build response from XML.
-     * @param xml The response
-     * @return The validation response just built
-     */
     private ValidationResponse build(final XML xml) {
         final List<XML> errors = xml.nodes("//nu:error");
         final List<XML> warnings = xml.nodes("//nu:info");
@@ -110,11 +100,6 @@ final class DefaultHtmlValidator
         return resp;
     }
 
-    /**
-     * Convert XML node to defect.
-     * @param node The node
-     * @return The defect
-     */
     private static Defect defect(final XML node) {
         return new Defect(
             AbstractBaseValidator.intOf(node.xpath("nu:error/@last-line")),

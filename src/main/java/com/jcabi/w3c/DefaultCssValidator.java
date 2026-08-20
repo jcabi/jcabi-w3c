@@ -68,12 +68,6 @@ final class DefaultCssValidator
         return response;
     }
 
-    /**
-     * Return a response after real processing of the CSS.
-     * @param css The CSS stylesheet to check
-     * @return The response
-     * @throws IOException if fails
-     */
     private ValidationResponse processed(final String css) throws IOException {
         return DefaultCssValidator.build(
             DefaultCssValidator.correct(
@@ -91,11 +85,6 @@ final class DefaultCssValidator
         );
     }
 
-    /**
-     * Send request and return response.
-     * @param entity The entity to POST
-     * @return The response
-     */
     private Request request(final String entity) {
         return new JdkRequest(this.uri)
             .method(Request.POST)
@@ -111,11 +100,6 @@ final class DefaultCssValidator
             );
     }
 
-    /**
-     * Build response from XML.
-     * @param soap The response
-     * @return The validation response just built
-     */
     private static ValidationResponse build(final XML soap) {
         final DefaultValidationResponse resp = new DefaultValidationResponse(
             "true".equals(
@@ -138,11 +122,6 @@ final class DefaultCssValidator
         return resp;
     }
 
-    /**
-     * Convert SOAP node to defect.
-     * @param node The node
-     * @return The defect
-     */
     private static Defect defect(final XML node) {
         return new Defect(
             AbstractBaseValidator.intOf(node.xpath("m:line/text()")),
@@ -154,12 +133,6 @@ final class DefaultCssValidator
         );
     }
 
-    /**
-     * Check if response from W3C contains some bad status.
-     * @param response Response from W3c
-     * @return Response passed as parameter
-     * @throws IOException when has some bad status
-     */
     private static Response correct(final Response response)
         throws IOException {
         final List<Integer> statuses = Arrays.asList(
@@ -181,11 +154,6 @@ final class DefaultCssValidator
         return response;
     }
 
-    /**
-     * Exclude problematic lines from CSS.
-     * @param css The css document
-     * @return New document, with lines excluded
-     */
     private static String filter(final String css) {
         return Pattern.compile(
             "^/\\* JIGSAW: [^\\n]+\\*/$",

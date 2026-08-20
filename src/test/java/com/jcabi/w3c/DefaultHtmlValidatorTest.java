@@ -111,10 +111,6 @@ final class DefaultHtmlValidatorTest {
         );
     }
 
-    /**
-     * Build a response with valid result from W3C.
-     * @return Response from W3C
-     */
     private String validReturn() {
         return StringUtils.join(
             "<?xml version='1.0' encoding='utf-8' standalone='no'?>",
@@ -124,11 +120,6 @@ final class DefaultHtmlValidatorTest {
         );
     }
 
-    /**
-     * Use a file to build the request.
-     * @return Request inside the file
-     * @throws IOException if something goes wrong
-     */
     private String invalidHtmlResponse() throws IOException {
         return IOUtils.toString(
             DefaultHtmlValidator.class.getResourceAsStream(

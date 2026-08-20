@@ -136,10 +136,6 @@ final class DefaultCssValidatorTest {
         }
     }
 
-    /**
-     * Build a response with JIGSAW IGNORE.
-     * @return Document with JIGSAW IGNORE
-     */
     private String documentWithIgnore() {
         return String.join(
             "",
@@ -149,10 +145,6 @@ final class DefaultCssValidatorTest {
         );
     }
 
-    /**
-     * Build a response with valid result from W3C.
-     * @return Response from W3C
-     */
     private String validResponse() {
         return StringUtils.join(
             "<env:Envelope",

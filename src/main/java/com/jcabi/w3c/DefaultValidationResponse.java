@@ -127,11 +127,6 @@ final class DefaultValidationResponse implements ValidationResponse {
         this.iwarnings.add(warning);
     }
 
-    /**
-     * Convert list of defects into string.
-     * @param defects Set of them
-     * @return The text
-     */
     private static String asText(final Set<Defect> defects) {
         final StringBuilder text = new StringBuilder(100);
         for (final Defect defect : defects) {
