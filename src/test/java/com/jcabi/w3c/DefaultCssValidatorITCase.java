@@ -11,12 +11,14 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Integration case for {@link DefaultCssValidator}.
+ *
  * @since 0.8
  */
 final class DefaultCssValidatorITCase {
 
     /**
      * DefaultCssValidator can validate CSS document.
+     *
      * @throws Exception If something goes wrong inside
      */
     @Test

@@ -17,6 +17,7 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 
 /**
  * Abstract implementation of (X)HTML validator.
+ *
  * @since 0.1
  */
 @ToString
@@ -40,6 +41,7 @@ abstract class AbstractBaseValidator {
 
     /**
      * Convert HTML to HTTP FORM entity.
+     *
      * @param name Name of HTTP form field
      * @param content The content of it
      * @param type Media type of it
@@ -65,6 +67,7 @@ abstract class AbstractBaseValidator {
 
     /**
      * Build a success response.
+     *
      * @param type Media type of resource just processed
      * @return The validation response just built
      */
@@ -87,7 +90,7 @@ abstract class AbstractBaseValidator {
      * there are no elements it means that the XPath is not found in the
      * document. In this case we should return an empty string. If any elements
      * are found - we're interested only in the first one. All others are
-     * ignored, because simply should not exist (if our XPath query is correct).
+     * ignored, because simply should not exist (if our XPath query is correct).</p>
      *
      * @param lines The lines to work with
      * @return The value
@@ -106,7 +109,7 @@ abstract class AbstractBaseValidator {
     /**
      * Get text from list of strings.
      *
-     * <p>See explanation of {@link #textOf(List)}.
+     * <p>See explanation of {@link #textOf(List)}.</p>
      *
      * @param lines The lines to work with
      * @return The value
@@ -124,6 +127,7 @@ abstract class AbstractBaseValidator {
 
     /**
      * Convert text to charset.
+     *
      * @param text Text representation of charset
      * @return The charset
      */

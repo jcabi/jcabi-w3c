@@ -7,7 +7,7 @@
  * W3C validators.
  *
  * <p>The only dependency you need is (check our latest version available
- * at <a href="http://w3c.jcabi.com">w3c.jcabi.com</a>):
+ * at <a href="http://w3c.jcabi.com">w3c.jcabi.com</a>):</p>
  *
  * <pre>&lt;dependency&gt;
  *   &lt;groupId&gt;com.jcabi&lt;/groupId&gt;

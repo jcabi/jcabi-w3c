@@ -23,6 +23,7 @@ import lombok.ToString;
 
 /**
  * Implementation of (X)HTML validator.
+ *
  * @see <a href="http://validator.w3.org/docs/api.html">W3C API</a>
  * @since 0.1
  */
@@ -39,6 +40,7 @@ final class DefaultHtmlValidator
 
     /**
      * Public ctor.
+     *
      * @param entry Entry point to use
      */
     // @checkstyle ConstructorsCodeFreeCheck (5 lines)

@@ -14,6 +14,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * Default implementation of validation response.
+ *
  * @since 0.1
  */
 @EqualsAndHashCode(
@@ -53,6 +54,7 @@ final class DefaultValidationResponse implements ValidationResponse {
 
     /**
      * Public ctor.
+     *
      * @param val The document is valid?
      * @param server Who validated it?
      * @param tpe DOCTYPE of the document
@@ -113,6 +115,7 @@ final class DefaultValidationResponse implements ValidationResponse {
 
     /**
      * Add error.
+     *
      * @param error The error to add
      */
     void addError(final Defect error) {
@@ -121,6 +124,7 @@ final class DefaultValidationResponse implements ValidationResponse {
 
     /**
      * Add warning.
+     *
      * @param warning The warning to add
      */
     void addWarning(final Defect warning) {

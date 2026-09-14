@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
 /**
  * Validation defect (error or warning) produced by {@link ValidationResponse}.
  *
- * <p>Objects of this class are immutable and thread-safe.
+ * <p>Objects of this class are immutable and thread-safe.</p>
  *
  * @see <a href="http://validator.w3.org/docs/api.html">W3C API</a>
  * @since 0.1
@@ -52,6 +52,7 @@ public final class Defect {
 
     /**
      * Protected ctor, to be called only from this package.
+     *
      * @param line Line number
      * @param column Column number
      * @param source Source line
@@ -86,6 +87,7 @@ public final class Defect {
 
     /**
      * Line number, where the defect was found.
+     *
      * @return Line number
      */
     public int line() {
@@ -94,6 +96,7 @@ public final class Defect {
 
     /**
      * Column number inside the line.
+     *
      * @return Column number
      */
     public int column() {
@@ -102,6 +105,7 @@ public final class Defect {
 
     /**
      * Source line, as quoted by W3C validator.
+     *
      * @return Full text of the source line
      */
     public String source() {
@@ -110,6 +114,7 @@ public final class Defect {
 
     /**
      * Explanation of the problem.
+     *
      * @return Text
      */
     public String explanation() {
@@ -118,6 +123,7 @@ public final class Defect {
 
     /**
      * Message ID, according to W3C API.
+     *
      * @return The ID
      */
     public String messageId() {
@@ -126,6 +132,7 @@ public final class Defect {
 
     /**
      * Text of the message.
+     *
      * @return The message returned by W3C server
      */
     public String message() {

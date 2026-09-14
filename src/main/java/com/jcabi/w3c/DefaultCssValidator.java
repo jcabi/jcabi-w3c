@@ -25,6 +25,7 @@ import lombok.ToString;
 
 /**
  * Default implementation of CSS validator.
+ *
  * @see <a href="http://jigsaw.w3.org/css-validator/api.html">W3C API</a>
  * @since 0.1
  */
@@ -41,6 +42,7 @@ final class DefaultCssValidator
 
     /**
      * Public ctor.
+     *
      * @param entry Entry point to use
      */
     // @checkstyle ConstructorsCodeFreeCheck (5 lines)

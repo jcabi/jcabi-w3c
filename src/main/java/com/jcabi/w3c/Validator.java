@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * Validator of CSS pages through W3C validation API.
  *
- * <p>Retrieve it from {@link ValidatorBuilder} and use like this:
+ * <p>Retrieve it from {@link ValidatorBuilder} and use like this:</p>
  *
  * <pre> HtmlValidator validator = new ValidatorBuilder().css();
  * ValidationResponse response = validator.validate(text);
@@ -20,7 +20,7 @@ import java.io.IOException;
  * <p>Sometimes this Jigsaw validator makes mistakes, sometimes you just need to
  * use some IE-specific feature, which is not CSS compliant. In this case you
  * may add comments to the document, at the end of every line you want to ignore
- * during validation, for example:
+ * during validation, for example:</p>
  *
  * <pre> div.test {
  *   color: red;
@@ -28,7 +28,7 @@ import java.io.IOException;
  * }</pre>
  *
  * <p>You can also instruct the validator to ignore the entire file, by means
- * of adding {@code JIGSAW IGNORE} comment anywhere in the text, for example:
+ * of adding {@code JIGSAW IGNORE} comment anywhere in the text, for example:</p>
  *
  * <pre> &#47;* JIGSAW IGNORE: it's an experimental file *&#47;
  * div.test {
@@ -37,9 +37,9 @@ import java.io.IOException;
  *
  * <p>Validation will happen anyway, but {@link ValidationResponse#valid()}
  * will return {@code TRUE}. You will still be able to read errors and warnings
- * from it, but it will be valid.
+ * from it, but it will be valid.</p>
  *
- * <p>Objects of this interface should be immutable and thread-safe.
+ * <p>Objects of this interface should be immutable and thread-safe.</p>
  *
  * @see <a href="http://jigsaw.w3.org/css-validator/api.html">W3C API, CSS</a>
  * @see ValidatorBuilder
@@ -53,10 +53,10 @@ public interface Validator {
      *
      * <p>The method should never throw runtime exceptions, no matter what
      * happened with the HTTP connection to the W3C server. It will return
-     * an invalid response, but will never throw.
+     * an invalid response, but will never throw.</p>
      *
      * <p>This method expects content of a document which should be
-     * validated, not URL to the document
+     * validated, not URL to the document</p>
      *
      * @param content The HTML/CSS content to validate
      * @return The response

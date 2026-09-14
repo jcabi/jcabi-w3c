@@ -12,9 +12,9 @@ import java.util.Set;
  * Response of HTML or CSS validation.
  *
  * <p>See {@link ValidatorBuilder} for explanation of how to get an instance
- * of this interface.
+ * of this interface.</p>
  *
- * <p>Implementation may be mutable but thread-safe.
+ * <p>Implementation may be mutable but thread-safe.</p>
  *
  * @see ValidatorBuilder
  * @see Validator#validate(String)
@@ -26,12 +26,14 @@ public interface ValidationResponse {
 
     /**
      * The document is valid and has no errors or warnings?
+     *
      * @return Is it valid?
      */
     boolean valid();
 
     /**
      * Who checked the document (normally contains a URL of W3C server).
+     *
      * @return URI of the server
      */
     URI checkedBy();
@@ -39,6 +41,7 @@ public interface ValidationResponse {
     /**
      * DOCTYPE of the document, if detected by the validator (may be empty
      * if {@code DOCTYPE} is not detected or if it's a CSS document).
+     *
      * @return Doctype or empty string
      */
     String doctype();
@@ -46,18 +49,21 @@ public interface ValidationResponse {
     /**
      * Charset of the document, if detected by the server (may be empty
      * if charset is not detected or it's a CSS document).
+     *
      * @return Charset of the document, e.g. {@code "UTF-8"}
      */
     Charset charset();
 
     /**
      * Returns list of errors found during validation.
+     *
      * @return List of errors or an empty list if no errors found
      */
     Set<Defect> errors();
 
     /**
      * Returns list of warnings found during validation.
+     *
      * @return List of warnings
      */
     Set<Defect> warnings();

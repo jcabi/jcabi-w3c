@@ -19,12 +19,14 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link DefaultCssValidator}.
+ *
  * @since 0.1
  */
 final class DefaultCssValidatorTest {
 
     /**
      * DefaultCssValidator can validate CSS document.
+     *
      * @throws Exception If something goes wrong inside
      */
     @Test
@@ -44,6 +46,7 @@ final class DefaultCssValidatorTest {
 
     /**
      * DefaultCssValidator can ignore the entire document.
+     *
      * @throws Exception If something goes wrong inside
      */
     @Test
@@ -57,6 +60,7 @@ final class DefaultCssValidatorTest {
 
     /**
      * DefaultCssValidator throw IOException when W3C server error occurred.
+     *
      * @throws Exception If something goes wrong inside
      */
     @Test
@@ -100,6 +104,7 @@ final class DefaultCssValidatorTest {
     /**
      * DefaultCssValidator will call server when JIGSAW IGNORE pattern is not
      * matched.
+     *
      * @throws Exception If fails
      */
     @Test
@@ -121,6 +126,7 @@ final class DefaultCssValidatorTest {
     /**
      * DefaultCssValidator will immediately reply when JIGSAW IGNORE pattern is
      * matched.
+     *
      * @throws Exception If fails
      */
     @Test

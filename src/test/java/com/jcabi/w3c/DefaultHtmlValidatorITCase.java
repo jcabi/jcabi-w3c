@@ -12,12 +12,14 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Integration case for {@link DefaultHtmlValidator}.
+ *
  * @since 0.8
  */
 final class DefaultHtmlValidatorITCase {
 
     /**
      * DefaultHtmlValidator can validate HTML document.
+     *
      * @throws Exception If something goes wrong inside
      */
     @Test
@@ -39,6 +41,7 @@ final class DefaultHtmlValidatorITCase {
 
     /**
      * DefaultHtmlValidator can validate invalid HTML document.
+     *
      * @throws Exception If something goes wrong inside
      */
     @Test

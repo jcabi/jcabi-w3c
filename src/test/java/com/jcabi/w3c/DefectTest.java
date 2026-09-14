@@ -10,12 +10,14 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Defect}.
+ *
  * @since 0.1
  */
 final class DefectTest {
 
     /**
      * Defect can be instantiated and transformed to string.
+     *
      * @throws Exception If something goes wrong inside
      */
     @Test

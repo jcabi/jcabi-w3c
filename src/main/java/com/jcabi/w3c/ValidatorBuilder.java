@@ -12,12 +12,12 @@ import lombok.ToString;
  * Builder of HTML and CSS validators.
  *
  * <p>This is your entry point to the module. Start with creating a new
- * validator:
+ * validator:</p>
  *
  * <pre> HtmlValidator validator = new ValidatorBuilder().html();</pre>
  *
  * <p>Now you can use it in order to validate your HTML document against
- * W3C rules:
+ * W3C rules:</p>
  *
  * <pre> ValidationResponse response = validator.validate(
  *   "&lt;html&gt;&lt;body&gt;...&lt;/body&gt;&lt;/html&gt;"
@@ -25,7 +25,7 @@ import lombok.ToString;
  *
  * <p>The response contains all information provided by W3C server. You can
  * work with details from {@link ValidationResponse} or just output it to
- * console:
+ * console:</p>
  *
  * <pre> System.out.println(response.toString());</pre>
  *
@@ -62,6 +62,7 @@ public final class ValidatorBuilder {
 
     /**
      * Build HTML validator.
+     *
      * @return The validator
      */
     public Validator html() {
@@ -70,6 +71,7 @@ public final class ValidatorBuilder {
 
     /**
      * Build CSS validator.
+     *
      * @return The validator
      */
     public Validator css() {
@@ -78,6 +80,7 @@ public final class ValidatorBuilder {
 
     /**
      * Build HTML validator, pointing to the given URI of W3C engine.
+     *
      * @param uri URI of validator
      * @return The validator
      */
@@ -87,6 +90,7 @@ public final class ValidatorBuilder {
 
     /**
      * Build CSS validator, pointing to the given URI of W3C engine.
+     *
      * @param uri URI of validator
      * @return The validator
      */

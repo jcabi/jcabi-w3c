@@ -21,12 +21,14 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link DefaultHtmlValidator}.
+ *
  * @since 0.1
  */
 final class DefaultHtmlValidatorTest {
 
     /**
      * DefaultHtmlValidator can validate HTML document.
+     *
      * @throws Exception If something goes wrong inside
      */
     @Test
@@ -48,6 +50,7 @@ final class DefaultHtmlValidatorTest {
 
     /**
      * Test if {@link DefaultHtmlValidator} validates invalid html.
+     *
      * @throws Exception If something goes wrong inside
      */
     @Test
@@ -72,6 +75,7 @@ final class DefaultHtmlValidatorTest {
 
     /**
      * DefaultHtmlValidator throw IOException when W3C server error occurred.
+     *
      * @throws Exception If something goes wrong inside
      */
     @Test
