@@ -74,6 +74,71 @@ final class DefaultHtmlValidatorTest {
     }
 
     /**
+     * DefaultHtmlValidator explains a defect with its message.
+     *
+     * @throws Exception If something goes wrong inside
+     */
+    @Test
+    void explainsDefectWithMessageWhenElaborationIsAbsent() throws Exception {
+        final MkContainer container = new MkGrizzlyContainer().next(
+            new MkAnswer.Simple(this.doctypeReturn())
+        ).start();
+        final ValidationResponse response = new DefaultHtmlValidator(
+            container.home()
+        ).validate("<html></html>");
+        container.stop();
+        MatcherAssert.assertThat(
+            "Explanation of the defect must not be empty",
+            response.errors().iterator().next().explanation(),
+            Matchers.equalTo(
+                "Start tag seen without seeing a doctype first."
+            )
+        );
+    }
+
+    /**
+     * DefaultHtmlValidator reads line of a defect.
+     *
+     * @throws Exception If something goes wrong inside
+     */
+    @Test
+    void readsLineOfDefect() throws Exception {
+        final MkContainer container = new MkGrizzlyContainer().next(
+            new MkAnswer.Simple(this.doctypeReturn())
+        ).start();
+        final ValidationResponse response = new DefaultHtmlValidator(
+            container.home()
+        ).validate("<html></html>");
+        container.stop();
+        MatcherAssert.assertThat(
+            "Line of the defect must not be zero",
+            response.errors().iterator().next().line(),
+            Matchers.equalTo(3)
+        );
+    }
+
+    /**
+     * DefaultHtmlValidator reads column of a defect.
+     *
+     * @throws Exception If something goes wrong inside
+     */
+    @Test
+    void readsColumnOfDefect() throws Exception {
+        final MkContainer container = new MkGrizzlyContainer().next(
+            new MkAnswer.Simple(this.doctypeReturn())
+        ).start();
+        final ValidationResponse response = new DefaultHtmlValidator(
+            container.home()
+        ).validate("<html></html>");
+        container.stop();
+        MatcherAssert.assertThat(
+            "Column of the defect must not be zero",
+            response.errors().iterator().next().column(),
+            Matchers.equalTo(6)
+        );
+    }
+
+    /**
      * DefaultHtmlValidator throw IOException when W3C server error occurred.
      *
      * @throws Exception If something goes wrong inside
@@ -121,6 +186,18 @@ final class DefaultHtmlValidatorTest {
             "<messages xmlns='http://n.validator.nu/messages/'>",
             "<source encoding='UTF-8' type='text/html'>&lt;html/&gt;</source>",
             "</messages>"
+        );
+    }
+
+    private String doctypeReturn() {
+        return StringUtils.join(
+            "<?xml version='1.0' encoding='utf-8'?>",
+            "<messages xmlns='http://n.validator.nu/messages/'>",
+            "<error first-column='1' last-column='6' last-line='3'>",
+            "<message>Start tag seen without seeing a doctype first.",
+            "</message><extract>&lt;html&gt;&lt;/html&gt;</extract></error>",
+            "<source encoding='UTF-8' type='text/html'>",
+            "&lt;html&gt;&lt;/html&gt;</source></messages>"
         );
     }
 
