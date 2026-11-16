@@ -74,6 +74,54 @@ final class DefaultHtmlValidatorTest {
     }
 
     /**
+     * DefaultHtmlValidator keeps the whole message of a defect.
+     *
+     * @throws Exception If something goes wrong inside
+     */
+    @Test
+    void keepsWholeMessageWhenItHasChildElements() throws Exception {
+        final MkContainer container = new MkGrizzlyContainer().next(
+            new MkAnswer.Simple(
+                this.invalidHtmlResponse()
+            )
+        ).start();
+        final ValidationResponse response = new DefaultHtmlValidator(
+            container.home()
+        ).validate("this is an invalid html");
+        container.stop();
+        MatcherAssert.assertThat(
+            "Message must not be cut at the first child element",
+            response.errors().iterator().next().message(),
+            Matchers.is(
+                "Element head is missing a required instance of child element title."
+            )
+        );
+    }
+
+    /**
+     * DefaultHtmlValidator keeps the whole source of a defect.
+     *
+     * @throws Exception If something goes wrong inside
+     */
+    @Test
+    void keepsWholeSourceWhenItHasChildElements() throws Exception {
+        final MkContainer container = new MkGrizzlyContainer().next(
+            new MkAnswer.Simple(
+                this.invalidHtmlResponse()
+            )
+        ).start();
+        final ValidationResponse response = new DefaultHtmlValidator(
+            container.home()
+        ).validate("this is an invalid html");
+        container.stop();
+        MatcherAssert.assertThat(
+            "Source must not be cut at the first child element",
+            response.errors().iterator().next().source(),
+            Matchers.is("this is an invalid html")
+        );
+    }
+
+    /**
      * DefaultHtmlValidator explains a defect with its message.
      *
      * @throws Exception If something goes wrong inside

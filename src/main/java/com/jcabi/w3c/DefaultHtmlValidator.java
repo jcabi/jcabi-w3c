@@ -104,10 +104,10 @@ final class DefaultHtmlValidator
 
     private static Defect defect(final XML node) {
         final String message = AbstractBaseValidator.textOf(
-            node.xpath("nu:message/text()")
+            node.xpath("string(nu:message)")
         );
         final String elaboration = AbstractBaseValidator.textOf(
-            node.xpath("nu:elaboration/text()")
+            node.xpath("string(nu:elaboration)")
         );
         final String explanation;
         if (elaboration.isBlank()) {
@@ -118,7 +118,7 @@ final class DefaultHtmlValidator
         return new Defect(
             AbstractBaseValidator.intOf(node.xpath("@last-line")),
             AbstractBaseValidator.intOf(node.xpath("@last-column")),
-            AbstractBaseValidator.textOf(node.xpath("nu:extract/text()")),
+            AbstractBaseValidator.textOf(node.xpath("string(nu:extract)")),
             explanation,
             "",
             message
